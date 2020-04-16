@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
+
+.initial-page
+{
+	background:rgba(0,0,0,0.009);
+}
 
 .navigation
 {
@@ -38,5 +44,26 @@
 
 .text-quote
 {
-	height:50vh;
+	font-family:'Heebo', sans-serif;
+}
+
+.quote-definition
+{
+	font-family:'Quicksand', sans-serif;
+}
+
+.quotes
+{
+	background:#EFD6FF;
+}
+
+.footer
+{
+	background:#8E5572;
+	font-family:'Quicksand', sans-serif;
+}
+
+.footer-brand-text
+{
+	font-family:'Baloo Bhaina 2', cursive;
 }
