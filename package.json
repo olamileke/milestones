@@ -1,0 +1,28 @@
+{
+  "name": "milestones",
+  "version": "1.0.0",
+  "description": "A simple app to record personal achievements",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "app",
+    "programming",
+    "milestone",
+    "node",
+    "js"
+  ],
+  "author": "Fambegbe Olamileke",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "tailwind": "^4.0.0"
+  }
+}

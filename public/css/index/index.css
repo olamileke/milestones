@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
+
+
+.navigation
+{
+	font-family:'Quicksand', sans-serif;
+}
+
+.login
+{
+	background:#8E5572;
+}
+
+.brand-text
+{
+	font-family:'Baloo Bhaina 2', cursive;
+}
+
+.brand-definition
+{
+	font-family:'Quicksand', sans-serif;
+}
+
+.get-started
+{
+	font-family:'Quicksand', sans-serif;
+	background:#673759;
+	transition:margin 0.45s ease-in-out;
+}
+
+
+.text-about
+{
+	background:#8E5572;
+	font-family:'Quicksand', sans-serif;
+}
+
+.text-quote
+{
+	height:50vh;
+}
