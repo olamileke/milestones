@@ -8,15 +8,14 @@
 	background:rgba(0,0,0,0.009);
 }
 
-.navigation
-{
-	font-family:'Quicksand', sans-serif;
-}
-
 .login
 {
-	background:#EBBAC1;
-	font-family:'Manrope', sans-serif;
+	background:#8E5572;
+}
+
+.initial-content
+{
+	height:calc(100vh - 72px);
 }
 
 .brand-text
@@ -24,33 +23,20 @@
 	font-family:'Baloo Bhaina 2', cursive;
 }
 
-.brand-definition
-{
-	font-family:'Quicksand', sans-serif;
-}
-
 .get-started
 {
-	font-family:'Quicksand', sans-serif;
 	background:#673759;
-	transition:margin 0.45s ease-in-out;
+	width:fit-content;
 }
-
 
 .text-about
 {
 	background:#8E5572;
-	font-family:'Quicksand', sans-serif;
 }
 
 .text-quote
 {
 	font-family:'Heebo', sans-serif;
-}
-
-.quote-definition
-{
-	font-family:'Quicksand', sans-serif;
 }
 
 .quotes
@@ -61,10 +47,19 @@
 .footer
 {
 	background:#8E5572;
-	font-family:'Quicksand', sans-serif;
 }
 
 .footer-brand-text
 {
 	font-family:'Baloo Bhaina 2', cursive;
 }
+
+
+@media(max-width:1024px)
+{
+	.initial-content
+	{
+		height:100%;
+	}
+}
+

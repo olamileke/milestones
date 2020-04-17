@@ -3,3 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@responsive
+{
+	.quicksand
+	{
+		font-family:'Quicksand', sans-serif;
+	}
+}

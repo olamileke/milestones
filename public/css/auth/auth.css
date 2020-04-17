@@ -2,7 +2,7 @@
 .page-container
 {
 	background:#F8F8F8;
-	font-family:'Quicksand', sans-serif;
+	/*background:#EBBAC1*/
 }
 
 .form-container
@@ -20,7 +20,20 @@ input
 	background:#F0F0F0;
 }
 
+input:focus
+{
+	background:rgba(0,0,0,0.1);
+}
+
 button
 {
 	background:#8E5572;
+}
+
+@media(max-width:576px)
+{
+	form
+	{
+		border-radius:5px;
+	}
 }
