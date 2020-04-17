@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= pageTitle %></title>
+		<%- include('../includes/styles.ejs') %>
+		<link rel="stylesheet" type="text/css" href="/css/auth/auth.css">
+	</head>
+	<body>
+		<div class='w-screen h-screen page-container flex justify-center items-center'>
+			<div class='grid grid-cols-12 h-full'>
+				<div class='col-start-2 col-end-7 flex flex-col justify-center'>
+					<img src="/images/auth/finish-line.svg">
+				</div>
+				<div class='col-start-8 col-end-11 flex flex-col justify-center'>
+					<p class='m-0 text-lg mb-3'><a href='/' class='text-gray-600'>Milestones</a></p>
+					<form class='p-6 border border-solid'>
+						<div class='mb-3 flex flex-col'>
+							<p class="text-gray-600 mb-2 text-sm">Full name</p>
+							<input type="text" name="name" class='focus:bg-white focus:outline-none p-3 w-full'>
+						</div>
+						<div class='mb-3 flex flex-col'>
+							<p class="text-gray-600 mb-2 text-sm">Email</p>
+							<input type="email" name="email" class='focus:bg-white focus:outline-none p-3 w-full'>
+						</div>
+						<div class='mb-5 flex flex-col'>
+							<p class="text-gray-600 mb-2 text-sm">Password</p>
+							<input type="password" name="password" class='focus:bg-white focus:outline-none p-3 w-full'>
+						</div>
+						<div class='text-right mb-3'>
+							<button type='submit' class='text-white p-2 rounded-md'>signup</button>
+						</div>
+						<div class='text-right mb-3'>
+							<a href="/login" class='text-gray-600'>Login instead?</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

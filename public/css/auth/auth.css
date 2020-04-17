@@ -1,0 +1,26 @@
+
+.page-container
+{
+	background:#F8F8F8;
+	font-family:'Quicksand', sans-serif;
+}
+
+.form-container
+{
+	width:350px;
+}
+
+form
+{
+	border-radius:30px 30px 30px 0;
+}
+
+input
+{
+	background:#F0F0F0;
+}
+
+button
+{
+	background:#8E5572;
+}
