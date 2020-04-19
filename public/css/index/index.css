@@ -25,8 +25,13 @@
 
 .get-started
 {
-	background:#673759;
+	background:#8E5572;
 	width:fit-content;
+}
+
+.get-started:active
+{
+	background:#673759;
 }
 
 .text-about

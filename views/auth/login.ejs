@@ -1,37 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title><%= pageTitle %></title>
-		<%- include('../includes/styles.ejs') %>
-		<link rel="stylesheet" type="text/css" href="/css/auth/auth.css">
-	</head>
-	<body>
-		<div class='w-screen h-screen px-5 sm:px-0 md:px-10 xl:px-0 page-container flex justify-center items-center quicksand'>
-			<p class='font-bold fixed top-0 left-0 m-5 sm:text-xl xl:text-base xl:mt-7 xl:ml-8'><a href='/'>Milestones</a></p>
-			<div class='grid grid-cols-12 h-full w-full'>
-				<div class='hidden md:flex xl:col-start-2 col-start-1 col-end-7 flex-col justify-center'>
-					<img src="/images/auth/finish-lineII.svg">
-				</div>
-				<div class='col-start-1 col-end-13 sm:col-start-3 sm:col-end-11 md:col-start-7 lg:col-start-8 md:col-end-13 xl:col-end-11 md:pl-8 xl:pl-0 col-end-11 flex flex-col justify-center'>
-					<form class='p-6 border border-solid border-gray-300'>
-						<div class='mb-3 flex flex-col'>
-							<p class="text-gray-600 mb-2 text-sm">Email</p>
-							<input type="email" name="email" class='focus:outline-none text-gray-600 p-3 w-full'>
-						</div>
-						<div class='mb-5 flex flex-col'>
-							<p class="text-gray-600 mb-2 text-sm">Password</p>
-							<input type="password" name="password" class='focus:outline-none text-gray-600 p-3 w-full'>
-						</div>
-						<div class='text-right mb-3'>
-							<button type='submit' class='text-white p-2 rounded-md'>login</button>
-						</div>
-						<div class='text-right mb-3'>
-							<a href="/signup" class='text-gray-600'>new account?</a>
-						</div>
-						
-					</form>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+<%- include('../includes/auth-base-top.ejs') %>
+
+<form class='p-6 border border-solid'>
+	<div class='mb-3 flex flex-col'>
+		<p class="text-gray-600 mb-2 text-sm">Email</p>
+		<input type="email" name="email" class='focus:outline-none text-gray-600 p-3 w-full' id='email'>
+	</div>
+	<div class='mb-5 flex flex-col'>
+		<p class="text-gray-600 mb-2 text-sm">Password</p>
+		<input type="password" name="password" class='focus:outline-none text-gray-600 p-3 w-full' id='password'>
+	</div>
+	<div class='text-right mb-3'>
+		<button type='submit' class='text-white p-2 rounded-md'>login</button>
+	</div>
+	<div class='text-right mb-3 flex flex-col'>
+		<a href="/signup" class='text-gray-600 mb-2'>new account</a>
+		<a href="" class='text-gray-600'>forgot password</a>
+	</div>
+	<input type="hidden" id='auth-action' value='login'>
+</form>
+
+<%- include('../includes/auth-base-end.ejs') %>
