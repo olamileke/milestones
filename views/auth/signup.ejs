@@ -1,25 +1,26 @@
 <%- include('../includes/auth-base-top.ejs') %>
 
-<form class='p-6 border border-solid'>
+<form class='p-6 border border-solid' action='/signup' method='POST'>
 	<div class='mb-3 flex flex-col'>
 		<p class="text-gray-600 mb-2 text-sm">Full name</p>
-		<input type="text" name="name" class='focus:outline-none text-gray-600 p-3 w-full' id='name'>
+		<input type="text" name="name"  value="<%= oldInput.name %>" class='focus:outline-none text-gray-600 p-3 w-full' id='name'>
 	</div>
 	<div class='mb-3 flex flex-col'>
 		<p class="text-gray-600 mb-2 text-sm">Email</p>
-		<input type="email" name="email" class='focus:outline-none text-gray-600 p-3 w-full' id='email'>
+		<input type="email" name="email" value="<%= oldInput.email %>" class='focus:outline-none text-gray-600 p-3 w-full' id='email'>
 	</div>
 	<div class='mb-5 flex flex-col'>
 		<p class="text-gray-600 mb-2 text-sm">Password</p>
-		<input type="password" name="password" class='focus:outline-none text-gray-600 p-3 w-full' id='password'>
+		<input type="password" name="password" value="<%= oldInput.password %>" class='focus:outline-none text-gray-600 p-3 w-full' id='password'>
 	</div>
 	<div class='text-right mb-3'>
-		<button type='submit' class='text-white p-2 rounded-md'>signup</button>
+		<button type='submit' class='text-white p-2 rounded-md active:outline-none focus:outline-none'>signup</button>
 	</div>
 	<div class='text-right mb-3'>
 		<a href="/login" class='text-gray-600'>Login instead</a>
 	</div>
 	<input type="hidden" id='auth-action' value='signup'>
+	<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 </form>
 		
 <%- include('../includes/auth-base-end.ejs') %>

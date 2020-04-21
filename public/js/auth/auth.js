@@ -11,6 +11,10 @@ $(document).ready(() => {
 		$('.name-notif').remove();
 		const [fname, lname] = text.split(' ');
 
+		if(text.length == 0) {
+			return false;
+		}
+
 		if(!lname && text.length < 5) {
 			name.after("<p class='mt-3 text-gray-600 text-xs name-notif' style='color:#EA3C53;'>first and last names are required. must also be more than 5 characters</p>");
 			return false;
@@ -32,8 +36,13 @@ $(document).ready(() => {
 	const validateEmail = function() {
 		$('.email-notif').remove();
 		let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		let text = email.val();
 
-		if(!re.test(email.val())) {
+		if(text.length == 0) {
+			return false;
+		}
+
+		if(!re.test(text)) {
 			email.after("<p class='mt-3 text-gray-600 text-xs email-notif' style='color:#EA3C53;'>enter a valid email address</p>");
 			return false;
 		}
@@ -43,8 +52,13 @@ $(document).ready(() => {
 
 	const validatePassword = function() {
 		$('.password-notif').remove();
+		let text = password.val();
 
-		if(password.val().length < 8) {
+		if(text.length == 0) {
+			return false;
+		}
+
+		if(text.length < 8) {
 			password.after("<p class='mt-3 text-gray-600 text-xs password-notif' style='color:#EA3C53;'>password must be at least 8 characters</p>");
 			return false;
 		}

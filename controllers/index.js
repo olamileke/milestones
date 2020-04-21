@@ -1,4 +1,9 @@
 
 exports.getIndex = (req, res, next) => {
-	res.render('index', {pageTitle:'Milestones'});
+	if(req.session.userId) {
+		res.render('auth-index', {pageTitle:'Milestones'});
+	}
+	else {
+		res.render('index', {pageTitle:'Milestones'});
+	}
 }

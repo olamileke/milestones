@@ -12,3 +12,8 @@
 					<img src="/images/auth/finish-line.svg">
 				</div>
 				<div class='col-start-1 col-end-13 sm:col-start-3 sm:col-end-11 md:col-start-7 lg:col-start-8 md:col-end-13 xl:col-end-11 md:pl-8 xl:pl-0 col-end-11 flex flex-col justify-center'>
+				<% if(notification) { %>
+					<div class='alert alert-<%= notification.class %>'>
+						<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
+					</div>
+				<% } %>
