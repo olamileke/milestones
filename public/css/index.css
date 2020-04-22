@@ -31,4 +31,24 @@
 	{
 		font-family:'Quicksand', sans-serif;
 	}
+
+	.bg-palette-100
+	{
+		background:#EBBAC1;
+	}
+
+	.bg-palette-200
+	{
+		background:#C5979D;
+	}
+
+	.bg-palette-300
+	{
+		background:#8E5572;
+	}
+
+	.bg-palette-400
+	{
+		background:#673759;
+	}
 }

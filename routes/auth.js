@@ -4,7 +4,7 @@ const authController = require('../controllers/auth');
 const guards = require('../guards/guards');
 const { body } = require('express-validator/check');
 
-router.get('/signup', guards.guestGuard, authController.getSignup);
+router.get('/signup', authController.getSignup);
 
 router.post('/signup', [body('name')
 					   .isLength({ min:5 })
@@ -22,9 +22,11 @@ router.post('/signup', [body('name')
 					   body('email').isEmail(),
 					   body('password').isLength({ min:8 })], authController.postSignup);
 
-router.get('/login', guards.guestGuard, authController.getLogin);
+router.get('/login', authController.getLogin);
 
 router.post('/login', [body('email').isEmail(),
 					  body('password').isLength({ min:8 })], authController.postLogin);
+
+router.get('/logout', authController.getLogout);
 
 module.exports = router;
