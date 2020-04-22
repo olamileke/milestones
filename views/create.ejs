@@ -1,0 +1,77 @@
+<%- include('includes/loggedin-top.ejs') %>
+	
+<div class='w-4/5 self-center create-project-parent'>
+	<p class='m-0 mb-3 text-lg font-semibold'>
+		Create a new project
+	</p>
+	<p class='m-0 mb-6'>* specify all required details here</p>
+
+	<form class='border border-color-005 p-6 bg-white mb-4' style='border-radius:0 50px 0 0;'>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>name</p>
+			<input type="text" class='focus:outline-none py-3 px-4 border border-color-005' name="" style=''>
+		</div>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>link(optional)</p>
+			<input type="text" class='focus:outline-none py-3 px-4 border border-color-005' name="" style=''>
+		</div>
+		<div class='mb-4'>
+			<button class='text-sm pt-3 pb-1 px-2 rounded-md text-white bg-palette-200 baloo-bhaina'>
+			<i class='fa fa-upload mr-1'></i>
+			Add Image</button>
+		</div>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>description</p>
+			<textarea rows='4' class='focus:outline-none py-3 px-4 border border-color-005'></textarea>
+		</div>
+		<div class='flex flex-row justify-between items-end'>
+			<button class='text-sm p-2 rounded-md text-white bg-palette-300 font-semibold'>
+			Create</button>
+			<p class='text-gray-600 underline toggle milestone' style='cursor:pointer;'>create milestone instead</p>
+		</div>
+	</form>
+</div>
+
+<div class='w-4/5 self-center create-milestone-parent hidden'>
+	<p class='m-0 mb-3 text-lg font-semibold'>
+		Add a new milestone
+	</p>
+	<p class='m-0 mb-6'>* specify all required details here</p>
+
+	<form class='border border-color-005 p-6 bg-white mb-4' style='border-radius:0 50px 0 0;'>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>name</p>
+			<input type="text" class='focus:outline-none py-3 px-4 border border-color-005' name="" style=''>
+		</div>
+		<div class='flex flex-row items-center mb-4'>
+			<input type="checkbox" name="" class='mr-2'> <p class='m-0 mt-1 baloo-bhaina text-gray-600'>Completed</p>
+		</div>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>link(optional)</p>
+			<input type="text" class='focus:outline-none py-3 px-4 border border-color-005' name="" style=''>
+		</div>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>Project(optional)</p>
+			<select class='focus:outline-none py-3 px-4 border border-color-005'>
+				<option>Misanthrope</option>
+				<option>Rockuneeze</option>
+			</select>
+		</div>
+		<div class='mb-4'>
+			<button class='text-sm pt-3 pb-1 px-2 rounded-md text-white bg-palette-200 baloo-bhaina'>
+			<i class='fa fa-upload mr-1'></i>
+			Add Image</button>
+		</div>
+		<div class='flex flex-col mb-4'>
+			<p class='text-base text-gray-600 m-0 mb-2 baloo-bhaina'>description</p>
+			<textarea rows='4' class='focus:outline-none py-3 px-4 border border-color-005'></textarea>
+		</div>
+		<div class='flex flex-row justify-between items-end'>
+			<button class='text-sm p-2 rounded-md text-white bg-palette-300 font-semibold'>
+			Create</button>
+			<p class='text-gray-600 underline toggle project' style='cursor:pointer;'>create project instead</p>
+		</div>
+	</form>
+</div>
+
+<%- include('includes/loggedin-end.ejs') %>

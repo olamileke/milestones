@@ -10,6 +10,7 @@ const config = require('./utils/config');
 
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
+const projectRoutes = require('./routes/projects');
 
 app = express();
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 
 app.use(indexRoutes);
 app.use(authRoutes);
+app.use(projectRoutes);
 
 mongoConnect(() => {
 	app.listen(3000);

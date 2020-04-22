@@ -645,6 +645,14 @@ video {
   color:#468847;
 }
 
+.nav-active
+	{
+  background:#8E5572;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0.375rem;
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0 * calc(1 - var(--space-y-reverse)));
@@ -17269,6 +17277,16 @@ video {
   font-family:'Quicksand', sans-serif;
 }
 
+.baloo-bhaina
+	{
+  font-family:'Baloo Bhaina 2', cursive;
+}
+
+.border-color-005
+	{
+  border-color:rgba(0,0,0,0.05);
+}
+
 .bg-palette-100
 	{
   background:#EBBAC1;
@@ -17310,6 +17328,14 @@ video {
 	{
     background:#DFF0D8;
     color:#468847;
+  }
+
+  .sm\:nav-active
+	{
+    background:#8E5572;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.375rem;
   }
 
   .sm\:space-y-0 > :not(template) ~ :not(template) {
@@ -33936,6 +33962,16 @@ video {
     font-family:'Quicksand', sans-serif;
   }
 
+  .sm\:baloo-bhaina
+	{
+    font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .sm\:border-color-005
+	{
+    border-color:rgba(0,0,0,0.05);
+  }
+
   .sm\:bg-palette-100
 	{
     background:#EBBAC1;
@@ -33978,6 +34014,14 @@ video {
 	{
     background:#DFF0D8;
     color:#468847;
+  }
+
+  .md\:nav-active
+	{
+    background:#8E5572;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.375rem;
   }
 
   .md\:space-y-0 > :not(template) ~ :not(template) {
@@ -50604,6 +50648,16 @@ video {
     font-family:'Quicksand', sans-serif;
   }
 
+  .md\:baloo-bhaina
+	{
+    font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .md\:border-color-005
+	{
+    border-color:rgba(0,0,0,0.05);
+  }
+
   .md\:bg-palette-100
 	{
     background:#EBBAC1;
@@ -50646,6 +50700,14 @@ video {
 	{
     background:#DFF0D8;
     color:#468847;
+  }
+
+  .lg\:nav-active
+	{
+    background:#8E5572;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.375rem;
   }
 
   .lg\:space-y-0 > :not(template) ~ :not(template) {
@@ -67272,6 +67334,16 @@ video {
     font-family:'Quicksand', sans-serif;
   }
 
+  .lg\:baloo-bhaina
+	{
+    font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .lg\:border-color-005
+	{
+    border-color:rgba(0,0,0,0.05);
+  }
+
   .lg\:bg-palette-100
 	{
     background:#EBBAC1;
@@ -67314,6 +67386,14 @@ video {
 	{
     background:#DFF0D8;
     color:#468847;
+  }
+
+  .xl\:nav-active
+	{
+    background:#8E5572;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.375rem;
   }
 
   .xl\:space-y-0 > :not(template) ~ :not(template) {
@@ -83938,6 +84018,16 @@ video {
   .xl\:quicksand
 	{
     font-family:'Quicksand', sans-serif;
+  }
+
+  .xl\:baloo-bhaina
+	{
+    font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .xl\:border-color-005
+	{
+    border-color:rgba(0,0,0,0.05);
   }
 
   .xl\:bg-palette-100

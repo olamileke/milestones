@@ -1,2 +1,10 @@
 
+.side-navigation
+{
+	box-shadow:40px 20px 5px 10px #fff;
+}
 
+input:focus, textarea:focus
+{
+	background:rgba(0,0,0,0.02);
+}

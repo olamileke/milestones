@@ -106,7 +106,7 @@ exports.postLogin = (req, res, next) => {
 			}
 
 			req.session.userId = userId;
-			res.redirect('/');
+			res.redirect('/dashboard');
 		})
 	})
 	.catch(err => {
@@ -121,7 +121,7 @@ exports.getLogout = (req, res, next) => {
 			console.log(err);
 		}
 		
-		res.redirect('/');
+		res.redirect('/login');
 	})
 }
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= pageTitle %></title>
+		<%- include('./styles.ejs') %>
+		<link rel="stylesheet" type="text/css" href="css/auth-index.css">
+	</head>
+	<body class="overflow-x-hidden">
+		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
+			<div class='grid grid-cols-12'>
+				<div class='col-start-1 col-end-4 flex flex-row items-center justify-center p-3 h-screen'>
+					<div class='bg-white h-screen border quicksand w-4/5 rounded-lg flex flex-col p-5' style='height:80%; border-color:rgba(0,0,0,0.05);'>
+						<div class='flex flex-col items-center mb-6'>
+							<div class='w-16 h-16 relative mb-2'>
+								<img src="images/abiodun.jpg" class='w-full h-full object-cover rounded-full'>
+								<div class='rounded-full absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.1); cursor: pointer;'></div>
+							</div>
+							<p class='text-sm font-semibold m-0'>Fambegbe Olamileke</p>
+							<p class='m-0 text-xs'>olamileke.dev@gmail.com</p>
+						</div>
+						<ul class='px-4 text-sm text-md text-gray-600'>
+							<li class='<%= path == "/" ? "nav-active" : "" %> mb-4 flex flex-row  py-2 px-4'>
+								<i class='fa fa-pager mr-5 mt-1'></i> <a href="/Dashboard" class='relative' style='top:1px'>Dashboard</a>
+							</li>
+							<li class='<%= path == "/create" ? "nav-active" : "" %> mb-4 flex flex-row py-2 px-4'>
+								<i class='fa fa-plus-circle mr-4 mt-1 text-md'></i> <a href="/create" class='relative' style='top:1px; left:2px;'>Create</a>
+							</li>
+							<li class='mb-4 flex flex-row py-2 px-4'>
+								<i class='fa fa-calendar-week mr-5 mt-1'></i> <a href="/" class='relative' style='top:1px'>Projects</a>
+							</li>
+							<li class='mb-4 flex flex-row py-2 px-4'>
+								<i class='fa fa-wave-square mr-4 mt-1'></i> <a href="/" class='relative' style='top:1px'>Visualizations</a>
+							</li>
+							<li class='mb-4 flex flex-row py-2 px-4'>
+								<i class='fa fa-file-export mr-5 mt-1'></i> <a href="/" class='relative' style='top:1px; left:-1px;'>File Downloads</a>
+							</li>
+							<li class='mb-4 flex flex-row py-2 px-4'>
+								<i class='fa fa-sign-out-alt mr-5 mt-1'></i> <a href="/logout" class='relative' style='top:1px'>Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-12'>
+					
+
+				
+			

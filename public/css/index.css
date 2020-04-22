@@ -21,6 +21,11 @@
 		background:#DFF0D8;
 		color:#468847;
 	}
+
+	.nav-active
+	{
+		@apply bg-palette-300 text-white font-semibold rounded-md;
+	}
 }
 
 @tailwind utilities;
@@ -30,6 +35,16 @@
 	.quicksand
 	{
 		font-family:'Quicksand', sans-serif;
+	}
+
+	.baloo-bhaina
+	{
+		font-family:'Baloo Bhaina 2', cursive;
+	}
+
+	.border-color-005
+	{
+		border-color:rgba(0,0,0,0.05);
 	}
 
 	.bg-palette-100

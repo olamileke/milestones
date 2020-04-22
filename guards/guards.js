@@ -1,7 +1,7 @@
 
 exports.guestGuard = (req, res, next) => {
 	if(req.session.userId) {
-		return res.redirect('/');
+		return res.redirect('/dashboard');
 	}
 
 	next();
@@ -9,7 +9,7 @@ exports.guestGuard = (req, res, next) => {
 
 exports.authGuard = (req, res, next) => {
 	if(!req.session.userId) {
-		return res.redirect('/');
+		return res.redirect('/login');
 	}
 
 	next();
