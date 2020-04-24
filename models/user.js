@@ -18,7 +18,7 @@ class User {
 
 	static updateAvatar(id, path) {
 		const db = getDB();
-		return db.collection('users').updateOne({_id:new ObjectId(id)}, {$set:{'avatar':path}});
+		return db.collection('users').updateOne({ _id:new ObjectId(id) }, { $set:{'avatar':path} });
 	}
 
 	static findById(id) {

@@ -1,9 +1,7 @@
 const User = require('../models/user');
 
 exports.postChangeAvatar = (req, res, next) => {
-	const path = req.file.path.replace(/\\/g, '/');
-	
-	User.updateAvatar(req.user._id, path)
+	User.updateAvatar(req.user._id, req.file.path)
 	.then(result => {
 		res.back();
 	})

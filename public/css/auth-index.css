@@ -4,14 +4,34 @@
 	background:rgba(0,0,0,0.03);
 }
 
-form button[type="submit"]
-{
-	transition:all 0.5s ease-in;
-}
-
 form button[type="submit"]:hover
 {
 	border-color:#c5979d;
+}
+
+.file__notif
+{
+	top:-30px;
+	left:-3%;
+}
+
+.file__notif.visible
+{
+	opacity:1;
+	top:-35px;
+}
+
+.file__notif::after
+{
+	position:absolute;
+	top:100%;
+	left:calc((100% - 20px)/2);
+	content:'';
+	border:10px solid rgba(0,0,0,0.55);
+	border-right-color:transparent;
+	border-left-color:transparent;
+	border-bottom-color:transparent;
+	display:block;
 }
 
 input:focus, textarea:focus

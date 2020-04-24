@@ -8,11 +8,11 @@ $(document).ready(() => {
 	const fileTrigger = $('.trigger-file');
 	const fileInput = $('.project-image-picker');
 	const projectImage = $('.project-image');
+	const fileNotification = $('.file__notif');
 
 	fileTrigger.click(function() {
 
-		const $this = $(this);
-		$this.next().click();
+		fileInput.click();
 	});
 
 	fileInput.change(function() {
@@ -23,7 +23,8 @@ $(document).ready(() => {
 			const reader = new FileReader();
 
 			reader.onload = function(e) {
-				projectImage.attr('src', e.target.result).removeClass('opacity-0').addClass('opacity-100');
+				projectImage.removeClass('w-0').addClass('w-full').attr('src', e.target.result);
+				projectImage.next().removeClass('w-0').addClass('w-full');
 			}
 
 			return reader.readAsDataURL(files[0]);
@@ -33,13 +34,22 @@ $(document).ready(() => {
 	const validateFile = file => {
 
 		if(!allowedExtensions.includes(file.type.toLowerCase())) {
+			fileInput.val('');
+			fileNotification.removeClass('w-0').addClass('visible').text('Invalid file format');
+			projectImage.removeClass('w-full').addClass('w-0');
+			projectImage.next().removeClass('w-full').addClass('w-0');
 			return false;
 		}
 
 		if(file.size > 6000000) {
+			fileInput.val('');
+			fileNotification.removeClass('w-0').addClass('visible').text('Image too large');
+			projectImage.removeClass('w-full').addClass('w-0');
+			projectImage.next().removeClass('w-full').addClass('w-0');
 			return false;
 		}
 
+		fileNotification.removeClass('visible').addClass('w-0');
 		return true;
 
 	}

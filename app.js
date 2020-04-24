@@ -25,15 +25,15 @@ const fileStorage = multer.diskStorage({
 		const url = req.url;
 
 		if(url.includes('avatar')) {
-			cb(null, 'images/users');
+			cb(null, path.join('images','users'));
 		}
 
 		if(url.includes('activity')) {
-			cb(null, 'images/activities');
+			cb(null, path.join('images','activities'));
 		}
 
 		if(url.includes('milestone')) {
-			cb(null, 'images/milestones');
+			cb(null, path.join('images','milestones'));
 		}
 	},
 	filename:(req, file, cb) => {
