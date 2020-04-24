@@ -1,7 +1,17 @@
 
-.side-navigation
+.nav-active-none:hover
 {
-	box-shadow:40px 20px 5px 10px #fff;
+	background:rgba(0,0,0,0.03);
+}
+
+form button[type="submit"]
+{
+	transition:all 0.5s ease-in;
+}
+
+form button[type="submit"]:hover
+{
+	border-color:#c5979d;
 }
 
 input:focus, textarea:focus

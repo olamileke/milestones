@@ -1,4 +1,5 @@
 const getDB = require('../utils/database').getDB;
+const ObjectId = require('mongodb').ObjectId;
 
 class User {
 	constructor(name, email, password, avatar, isActivated, created_at) {
@@ -13,6 +14,16 @@ class User {
 	save() {
 		const db = getDB();
 		return db.collection('users').insertOne(this);
+	}
+
+	static updateAvatar(id, path) {
+		const db = getDB();
+		return db.collection('users').updateOne({_id:new ObjectId(id)}, {$set:{'avatar':path}});
+	}
+
+	static findById(id) {
+		const db = getDB();
+		return db.collection('users').findOne({ _id:new ObjectId(id) });
 	}
 
 	static findByEmail(email) {
