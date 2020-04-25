@@ -9,7 +9,7 @@
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
 				<div class='col-start-1 col-end-4 flex flex-row items-center justify-center p-3 h-screen'>
-					<div class='bg-white h-screen border quicksand w-4/5 rounded-lg flex flex-col p-5' style='height:80%; border-color:rgba(0,0,0,0.05);'>
+					<div class='bg-white h-screen border border-color-005 quicksand w-4/5 rounded-lg flex flex-col p-5' style='height:80%;'>
 						<div class='flex flex-col items-center mb-6'>
 							<div class='w-16 h-16 relative mb-2'>
 								<img src="/<%= user.avatar %>" class='user__image w-full h-full object-cover rounded-full'>
@@ -27,7 +27,7 @@
 							<p class='m-0 text-xs'><%= user.email %></p>
 						</div>
 						<ul class='px-4 text-sm text-md text-gray-600'>
-							<li class='<%= path == "/" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row  py-2 px-4'>
+							<li class='<%= path == "/dashboard" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row  py-2 px-4'>
 								<i class='fa fa-pager mr-5 mt-1'></i> <a href="/dashboard" class='relative' style='top:1px'>Dashboard</a>
 							</li>
 							<li class='<%= path == "/create/activity" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row py-2 px-4'>

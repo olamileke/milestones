@@ -1,12 +1,12 @@
 <%- include('includes/loggedin-top.ejs') %>
 
 <% if(notification) { %>
-	<div class='w-4/5 self-center alert alert-<%= notification.class %>'>
+	<div class='w-5/6 self-center alert alert-<%= notification.class %>'>
 		<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
 	</div>
 <% } %>
 
-<div class='w-4/5 self-center create-project-parent text-gray-600'>
+<div class='w-5/6 self-center create-project-parent text-gray-600'>
 	<div class='mb-2 bg-white border border-color-005 flex flex-row justify-between items-center rounded-lg px-4 h-24'>
 		<div>
 			<p class='m-0 mb-2 text-base'>

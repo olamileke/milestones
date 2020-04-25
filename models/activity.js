@@ -1,4 +1,5 @@
 const getDB = require('../utils/database').getDB;
+const ObjectId = require('mongodb').ObjectId;
 
 class Activity {
 	constructor(name, link, description, imageUrl, created_at, userId) {
@@ -14,6 +15,12 @@ class Activity {
 	save() {
 		const db = getDB();
 		return db.collection('activities').insertOne(this);
+	}
+
+
+	static getCount(userId) {
+		const db = getDB();
+		return db.collection('activities').find({ userId:new ObjectId(userId) }).count();
 	}
 }
 
