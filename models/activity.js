@@ -18,6 +18,11 @@ class Activity {
 	}
 
 
+	static getAll() {
+		const db = getDB();
+		return db.collection('activities').find().toArray();
+	}
+
 	static getCount(userId) {
 		const db = getDB();
 		return db.collection('activities').find({ userId:new ObjectId(userId) }).count();

@@ -68,3 +68,19 @@ exports.postCreateActivity = (req, res, next) => {
 		console.log(err);
 	})
 }
+
+
+exports.getActivities = (req, res, next) => {
+	
+	Activity.getAll()
+	.then(activities => {
+		res.render('activities', {
+			pageTitle:'Activities',
+			path:'/activities',
+			activities:activities,
+		});
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}

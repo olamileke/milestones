@@ -3,60 +3,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
 
-.initial-page
-{
-	background:rgba(0,0,0,0.009);
-}
-
-.login
-{
-	background:#8E5572;
-}
-
 .initial-content
 {
 	height:calc(100vh - 72px);
 }
 
-.brand-text
-{
-	font-family:'Baloo Bhaina 2', cursive;
-}
-
-.get-started
+.get__started
 {
 	background:#8E5572;
-	width:fit-content;
 }
 
-.get-started:active
+.get__started:active
 {
 	background:#673759;
-}
-
-.text-about
-{
-	background:#8E5572;
-}
-
-.text-quote
-{
-	font-family:'Heebo', sans-serif;
-}
-
-.quotes
-{
-	background:#EFD6FF;
-}
-
-.footer
-{
-	background:#8E5572;
-}
-
-.footer-brand-text
-{
-	font-family:'Baloo Bhaina 2', cursive;
 }
 
 

@@ -7,9 +7,15 @@
 	.alert
 	{
 		@apply pt-4 pb-2 mb-3 text-center rounded;
+		border-color: rgba(0,0,0,0.05);
 		font-family:'Baloo Bhaina 2', cursive;
 	}
+}
 
+@tailwind utilities;
+
+@responsive
+{
 	.alert-danger
 	{
 		background:#FCE8E8;
@@ -22,16 +28,11 @@
 		color:#468847;
 	}
 
-	.nav-active
+	.comfortaa
 	{
-		@apply bg-palette-300 text-white font-semibold rounded-md;
+		font-family:'Comfortaa', sans-serif;
 	}
-}
 
-@tailwind utilities;
-
-@responsive
-{
 	.quicksand
 	{
 		font-family:'Quicksand', sans-serif;
@@ -65,5 +66,10 @@
 	.bg-palette-400
 	{
 		background:#673759;
+	}
+
+	.text-palette-300
+	{
+		color:#8E5572;
 	}
 }

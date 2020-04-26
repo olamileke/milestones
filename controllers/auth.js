@@ -4,7 +4,6 @@ const User = require('../models/user');
 
 exports.getSignup = (req, res, next) => {
 	const messages = req.flash('message');
-	console.log(messages);
 	let oldInput = {name:'', email:'', password:''};
 	let notification;
 
@@ -82,6 +81,7 @@ exports.postLogin = (req, res, next) => {
 	const errors = validationResult(req);
 
 	if(!errors.isEmpty()) {
+		console.log(errors);
 		return res.render('auth/login',{
 		pageTitle:'Login to Milestones',
 		oldInput:{email:email, password:password}
@@ -105,8 +105,11 @@ exports.postLogin = (req, res, next) => {
 				return res.redirect('/login');
 			}
 
-			req.session.userId = userId;
-			res.redirect('/dashboard');
+			req.session.regenerate(() => {
+				console.log(user);
+				req.session.userId = user._id;
+				return res.redirect('/dashboard');
+			})
 		})
 	})
 	.catch(err => {

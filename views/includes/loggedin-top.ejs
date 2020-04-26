@@ -8,47 +8,40 @@
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
-				<div class='col-start-1 col-end-4 flex flex-row items-center justify-center p-3 h-screen'>
-					<div class='bg-white h-screen border border-color-005 quicksand w-4/5 rounded-lg flex flex-col p-5' style='height:80%;'>
-						<div class='flex flex-col items-center mb-6'>
-							<div class='w-16 h-16 relative mb-2'>
-								<img src="/<%= user.avatar %>" class='user__image w-full h-full object-cover rounded-full'>
-								<div class='rounded-full absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.1);'>
-									<i class='fa fa-camera text-xs absolute bottom-0 mb-2' style='left:60%; color:rgba(255,255,255,0.81); cursor:pointer;'></i>
-									<form action='/user/change-avatar?_csrf=<%= csrfToken %>' method='POST' enctype="multipart/form-data">
-										<input type='file' name='image' class='user__image__picker hidden'>
-										<button class='hidden upload__user__image'>
-											<i class='fa fa-check-circle text-xs absolute bottom-0 mb-2' style='left:60%; color:rgba(255,255,255,0.81); cursor:pointer;'></i>
-										</button>
-									</form>
-								</div>
-							</div>
-							<p class='text-sm font-semibold m-0'><%= user.name %></p>
-							<p class='m-0 text-xs'><%= user.email %></p>
+				<div class='py-2 px-8 quicksand bg-white col-span-12 flex flex-row justify-between items-center border border-color-005'>
+					<div class='flex flex-row items-center'>
+						<img src="/images/auth-index/milestones-logo.png" width='50px' height="50px">
+						<p class='m-0 font-semibold uppercase text-sm'>Milestones</p>
+					</div>
+					<div class='flex flex-row items-center'>
+						<div class='flex flex-row items-center mr-3'>
+							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full'>
+							<p class='m-0 mt-1 text-gray-600 text-sm mr-3'><%= user.name.slice(0,15) %>...</p>
+							<i class='mt-1 fa fa-caret-down text-gray-600'></i>
 						</div>
-						<ul class='px-4 text-sm text-md text-gray-600'>
-							<li class='<%= path == "/dashboard" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row  py-2 px-4'>
-								<i class='fa fa-pager mr-5 mt-1'></i> <a href="/dashboard" class='relative' style='top:1px'>Dashboard</a>
-							</li>
-							<li class='<%= path == "/create/activity" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row py-2 px-4'>
-								<i class='fa fa-plus-circle mr-4 mt-1 text-md'></i> <a href="/create/activity" class='relative' style='top:1px; left:2px;'>New Activity</a>
-							</li>
-							<li class='<%= path == "/projects" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row py-2 px-4'>
-								<i class='fa fa-calendar-week mr-5 mt-1'></i> <a href="/" class='relative' style='top:1px'>Activities</a>
-							</li>
-							<li class='<%= path == "/visualizations" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row py-2 px-4'>
-								<i class='fa fa-wave-square mr-4 mt-1'></i> <a href="/" class='relative' style='top:1px'>Visualizations</a>
-							</li>
-							<li class='<%= path == "/file-downloads" ? "nav-active" : "nav-active-none" %> mb-4 flex flex-row py-2 px-4'>
-								<i class='fa fa-file-export mr-5 mt-1'></i> <a href="/" class='relative' style='top:1px; left:-1px;'>File Downloads</a>
-							</li>
-							<li class='nav-active-none mb-4 flex flex-row py-2 px-4'>
-								<i class='fa fa-sign-out-alt mr-5 mt-1'></i> <a href="/logout" class='relative' style='top:1px'>Logout</a>
-							</li>
-						</ul>
 					</div>
 				</div>
-				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-12 relative'>
+				<div class='col-start-1 col-end-4 flex flex-row pt-32 justify-center p-3 h-screen'>
+					<ul class='bg-white text-gray-600 text-sm border border-color-005 quicksand w-4/5 py-3 rounded-lg' style='height:fit-content;'>
+						<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4 w-full'>
+							<i class='fa fa-pager mr-3'></i> <a href='/'>Dashboard</a>
+						</li>
+						<li class='<%= path === "/create/activity" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4 w-full'>
+							<i class='fa fa-plus-circle mr-3'></i> <a href='/create/activity'>Create Activity</a>
+						</li>
+						<li class='<%= path === "/activities" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4'>
+							<i class='fa fa-calendar-week mr-3'></i> <a href='/activities'>Activities</a>
+						</li>
+						<li class='py-4 px-8 mr-4'>
+							<i class='fa fa-wave-square mr-2'></i> Visualizations
+						</li>
+						<li class='py-4 px-8 mr-4'>
+							<i class='fa fa-file mr-4'></i> File Downloads
+						</li>
+					</ul>
+				</div>
+				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-8 relative'>
+
 					
 
 				

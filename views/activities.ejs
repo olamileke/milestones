@@ -1,0 +1,26 @@
+<%- include('includes/loggedin-top') %>
+	
+	<div class='w-5/6 grid grid-cols-12 col-gap-5 self-center'>	
+		<% activities.forEach(activity => { %>
+			<div class='col-span-6 flex flex-col mb-8'>
+				<div class='relative'>
+					<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
+					<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>
+				</div>
+				<div class='border border-color-005 p-4 bg-white'>
+					<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
+					<p class='text-sm mb-1 text-gray-700'><%= activity.description %></p>
+					<p class='text-sm mb-1 text-gray-700'>10 milestones</p>
+					<a href="" class='underline text-sm text-gray-700'>more</a>
+				</div>
+				<!-- <div class='pt-2'>
+					<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
+					<p class='text-sm mb-1'><%= activity.description %></p>
+					<p class='text-sm mb-1'>10 milestones</p>
+					<a href="" class='underline text-sm'>more</a>
+				</div> -->
+			</div>
+		<% }) %>
+	</div>
+
+<%- include('includes/loggedin-end') %>

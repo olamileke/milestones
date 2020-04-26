@@ -18,4 +18,6 @@ router.post('/create/activity', [ body('name').isLength({ min:5 }),
 								  }),
 								  body('description').isLength({ min:10 }) ] ,activitiesController.postCreateActivity);
 
+router.get('/activities', activitiesController.getActivities);
+
 module.exports = router; 
