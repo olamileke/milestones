@@ -20,6 +20,11 @@ class Action {
 		const db = getDB();
 		return db.collection('actions').find({ userId:new ObjectId(userId) }).limit(5).toArray();
 	}
+
+	static getCount(userId) {
+		const db = getDB();
+		return db.collection('actions').find({ userId: new ObjectId(userId) }).count();
+	}
 }
 
 

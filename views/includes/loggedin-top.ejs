@@ -11,32 +11,40 @@
 				<div class='py-2 px-8 quicksand bg-white col-span-12 flex flex-row justify-between items-center border border-color-005'>
 					<div class='flex flex-row items-center'>
 						<img src="/images/auth-index/milestones-logo.png" width='50px' height="50px">
-						<p class='m-0 font-semibold uppercase text-sm'>Milestones</p>
+						<p class='m-0 text-lg baloo-bhaina'>Milestones</p>
 					</div>
 					<div class='flex flex-row items-center'>
-						<div class='flex flex-row items-center mr-3'>
-							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full'>
-							<p class='m-0 mt-1 text-gray-600 text-sm mr-3'><%= user.name.slice(0,15) %>...</p>
-							<i class='mt-1 fa fa-caret-down text-gray-600'></i>
+						<div class='flex flex-row items-center mr-3 cursor-pointer relative'>
+							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full' alt='<%= user.name %>'>
+							<p class='m-0 mt-1 text-gray-600 text-xs mr-3 nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
+							<i class='mt-1 fa fa-caret-down text-gray-600 nav__options__toggle'></i>
+							<div class='absolute transition-all duration-500 ease-in-out mt-20 opacity-0 rounded flex flex-col bg-white w-4/5 text-sm nav__options text-gray-600 z-50 border border-color-005' style='left:10%; top:1px;background:#F8F8F8; border-top-color:transparent;'>
+								<a href='#' class='outline-none pt-4 pb-0 text-center file__trigger'>change picture</a>
+								<form action='/user/change-avatar?_csrf=<%= csrfToken %>' method='POST' class='text-center' enctype='multipart/form-data'>
+									<input type="file" name="image" class='hidden user__image__picker'>
+									<button type='submit' class="focus:outline-none border-0 pt-4 pb-0 hidden upload__user__image">update picture</button>
+								</form>
+								<a href="/logout" class='outline-none pt-3 pb-4 text-center'>logout</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class='col-start-1 col-end-4 flex flex-row pt-32 justify-center p-3 h-screen'>
-					<ul class='bg-white text-gray-600 text-sm border border-color-005 quicksand w-4/5 py-3 rounded-lg' style='height:fit-content;'>
-						<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4 w-full'>
-							<i class='fa fa-pager mr-3'></i> <a href='/'>Dashboard</a>
+				<div class='col-start-1 col-end-4 flex flex-row pt-32 justify-center p-3 mx-2 h-screen'>
+					<ul class='bg-white text-gray-600  border border-color-005 comfortaa w-4/5 py-3' style='height:fit-content; font-size:0.812rem; border-radius:50px 10px 50px 10px;'>
+						<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
+							<i class='fa fa-pager mr-3'></i> <a href='/' class='outline-none'>Dashboard</a>
 						</li>
-						<li class='<%= path === "/create/activity" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4 w-full'>
-							<i class='fa fa-plus-circle mr-3'></i> <a href='/create/activity'>Create Activity</a>
+						<li class='<%= path === "/create/activity" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
+							<i class='fa fa-plus-circle mr-3'></i> <a href='/create/activity' class='outline-none'>Create Activity</a>
 						</li>
-						<li class='<%= path === "/activities" ? "font-semibold text-palette-300" : "" %> py-4 px-8 mr-4'>
-							<i class='fa fa-calendar-week mr-3'></i> <a href='/activities'>Activities</a>
+						<li class='<%= path === "/activities" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<i class='fa fa-calendar-week mr-3'></i> <a href='/activities' class='outline-none'>Activities</a>
 						</li>
-						<li class='py-4 px-8 mr-4'>
-							<i class='fa fa-wave-square mr-2'></i> Visualizations
+						<li class='<%= path === "/visualizations" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<i class='fa fa-wave-square mr-3'></i> <a href='/visualizations' class='outline-none'>Visualizations</a>
 						</li>
-						<li class='py-4 px-8 mr-4'>
-							<i class='fa fa-file mr-4'></i> File Downloads
+						<li class='<%= path === "/file" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<i class='fa fa-file mr-5'></i> <a href='/logout' class='outline-none'>File Downloads</a>
 						</li>
 					</ul>
 				</div>

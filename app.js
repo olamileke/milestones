@@ -10,6 +10,8 @@ const multer = require('multer');
 const config = require('./utils/config');
 const res_back = require('express-back');
 const User = require('./models/user');
+const Activity = require('./models/activity');
+const Action = require('./models/action');
 
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
@@ -82,8 +84,32 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
 	res.locals.csrfToken = req.csrfToken();
-	req.session.userId ? res.locals.user = req.user : res.user = undefined;
-	next();
+
+	if(req.session.userId) {
+		res.locals.user = req.user;
+
+		Activity.getAll(req.session.userId)
+		.then(activities => {
+			res.locals.activityCount = activities.length;
+			return activities;
+		})
+		.then(activities => {
+			return;
+		})
+		.then(() => {
+
+			Action.getCount(req.session.userId)
+			.then(result => {
+				res.locals.actionCount = result;
+				next();
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	} else {
+		next();
+	}
 })
 
 app.use(indexRoutes);

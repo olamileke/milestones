@@ -1,0 +1,19 @@
+<%
+	days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+	months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+	getDateString = timestamp => {
+		dt = new Date(timestamp);
+		day = days[dt.getDay()];
+		date = dt.getDate();
+		month = months[dt.getMonth()];
+		hours = dt.getHours();
+		minutes = dt.getMinutes();
+
+		if(hours == '0') {
+			hours = 12;
+		} 
+
+		return `${day} ${date} ${month}, ${hours}:${minutes}`;
+	}
+%>

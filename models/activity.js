@@ -2,13 +2,14 @@ const getDB = require('../utils/database').getDB;
 const ObjectId = require('mongodb').ObjectId;
 
 class Activity {
-	constructor(name, link, description, imageUrl, created_at, userId) {
+	constructor(name, link, description, imageUrl, created_at, userId, milestones) {
 		this.name = name;
 		this.link = link;
 		this.description = description;
 		this.imageUrl = imageUrl;
 		this.created_at = created_at;
 		this.userId = userId;
+		this.milestones = milestones;
 	}
 
 
@@ -18,14 +19,21 @@ class Activity {
 	}
 
 
-	static getAll() {
+	static getAll(userId) {
 		const db = getDB();
-		return db.collection('activities').find().toArray();
+		return db.collection('activities').find({ userId:new ObjectId(userId) }).toArray();
 	}
 
-	static getCount(userId) {
-		const db = getDB();
-		return db.collection('activities').find({ userId:new ObjectId(userId) }).count();
+	static getMilestonesCount(activities) {
+
+		let num;
+
+		activities.forEach(activity => {
+
+			num = num + activity.milestones.length;
+		})
+
+		return num;
 	}
 }
 

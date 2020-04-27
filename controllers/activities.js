@@ -1,28 +1,17 @@
 const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
-const dateUtils = require('../utils/date');
 const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
 
-	let numActivities;
-
-	Activity.getCount(req.user._id)
-	.then( num => {
-		numActivities = num;
-		return;		
-	})
-	.then(() => {
-		Action.getLastFive(req.user._id)
-		.then(actions => {
-			res.render('dashboard', {
-			pageTitle:'Milestones',
-			path:'/dashboard',
-			numActivities:numActivities,
-			actions:actions
-			});
-		})
+	Action.getLastFive(req.user._id)
+	.then(actions => {
+		res.render('dashboard', {
+		pageTitle:'Milestones',
+		path:'/dashboard',
+		actions:actions
+		});
 	})
 	.catch(err => {
 		console.log(err);
@@ -54,10 +43,10 @@ exports.postCreateActivity = (req, res, next) => {
 	const imageUrl = req.file.path;
 	const description = req.body.description;
 
-	const activity = new Activity(name, link, description, imageUrl, dateUtils.getDateString(Date.now()), req.user._id);
+	const activity = new Activity(name, link, description, imageUrl, Date.now() , req.user._id, []);
 	activity.save()
 	.then(result => {
-		const action = new Action('Create Activity', req.user._id, dateUtils.getDateString(Date.now()), result.ops[0]);
+		const action = new Action('Create Activity', req.user._id, Date.now() , result.ops[0]);
 		action.save()
 		.then(() => {
 			req.flash('message', {class:'success', 'message':'Activity created successfully'});
@@ -69,10 +58,9 @@ exports.postCreateActivity = (req, res, next) => {
 	})
 }
 
-
 exports.getActivities = (req, res, next) => {
 	
-	Activity.getAll()
+	Activity.getAll(req.user._id)
 	.then(activities => {
 		res.render('activities', {
 			pageTitle:'Activities',
@@ -83,4 +71,8 @@ exports.getActivities = (req, res, next) => {
 	.catch(err => {
 		console.log(err);
 	})
+}
+
+exports.getActivity = (req, res, next) => {
+	
 }

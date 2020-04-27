@@ -1,6 +1,8 @@
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check'); 
 const User = require('../models/user');
+const rootDirectory = require('../utils/path').rootDirectory;
 
 exports.getSignup = (req, res, next) => {
 	const messages = req.flash('message');
@@ -28,7 +30,7 @@ exports.postSignup = (req, res, next) => {
 	const password = req.body.password;
 
 	const errors = validationResult(req);
-
+ 
 	if(!errors.isEmpty()) {
 		return res.render('auth/signup',{
 		pageTitle:'Signup on Milestones',
@@ -46,7 +48,8 @@ exports.postSignup = (req, res, next) => {
 
 		bcrypt.hash(password, 12)
 		.then(hashedPassword => {
-			const user =  new User(name, email, hashedPassword, undefined, false, Date.now());
+			const anonImage = path.join('images', 'users', 'anon.png');
+			const user =  new User(name, email, hashedPassword, anonImage, false, Date.now());
 			user.save()
 			.then(() => {
 				req.flash('message', {class:'success', message:'Registration successful. Check your email'});
@@ -93,6 +96,7 @@ exports.postLogin = (req, res, next) => {
 		if(!user) {
 			req.flash('message', {class:'danger', message:'Invalid email or password'});
 			req.flash('message', {email:email, password:password});
+			console.log('wrong user');
 			return res.redirect('/login');
 		}
 
@@ -102,6 +106,7 @@ exports.postLogin = (req, res, next) => {
 			if(!passwordMatch) {
 				req.flash('message', {class:'danger', message:'Invalid email or password'});
 				req.flash('message', {email:email, password:password});
+				console.log('wrong password');
 				return res.redirect('/login');
 			}
 
