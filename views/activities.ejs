@@ -1,19 +1,23 @@
 <%- include('includes/loggedin-top') %>
 	
-	<div class='w-5/6 col-gap-5 self-center text-gray-700 text-sm pt-8'>	
-		<% activities.forEach(activity => { %>
-			<div class='relative'>
-				<a href='/activity/<%= activity._id %>' class='bg-white mb-3 flex flex-row items-center p-4 border border-color-005'>
-					<img src="/<%= activity.imageUrl %>"  class='object-cover rounded-md mr-5' width='70px' style='height:70px;'>
-					<div class='flex flex-col'>
-						<p class='m-0 mb-1 text-gray-900 baloo-bhaina text-lg'><%= activity.name %></p>
-						<p class='m-0 mb-1 quicksand'><%= activity.description.slice(0, 80) %>...</p>
-						<p><%= activity.milestones.length %> Milestones</p>
+	<div class='w-5/6 col-gap-5 self-center text-gray-00 text-sm'>	  
+		<div class='grid grid-cols-12'>
+			<% activities.forEach(activity => { %>
+				<div class='col-span-6 flex flex-col mb-8 mr-5'>
+					<div class='relative'>
+						<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
+						<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>
 					</div>
-					<p class='absolute top-0 right-0 text-xs mt-2 mr-2'>Mon 13 Dec, 16:08</p>
-				</a>
-			</div>
-		<% }) %>
+					<div class='border border-color-005 p-4 bg-white'>
+						<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
+						<p class='text-sm mb-1 text-gray-700'><%= activity.description.slice(0,50) %>...</p>
+						<p class='text-sm mb-1 text-gray-700'><%= activity.milestones.length %> milestones</p>
+						<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>more</a>
+					</div>
+				</div>
+			<% }) %>
+			
+		</div>		
 	</div>
 
 <%- include('includes/loggedin-end') %>

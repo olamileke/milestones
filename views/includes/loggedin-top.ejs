@@ -8,11 +8,8 @@
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
-				<div class='py-2 px-8 quicksand bg-white col-span-12 flex flex-row justify-between items-center border border-color-005'>
-					<div class='flex flex-row items-center'>
-						<img src="/images/auth-index/milestones-logo.png" width='50px' height="50px">
-						<p class='m-0 text-lg baloo-bhaina'>Milestones</p>
-					</div>
+				<div class='py-5 px-8 quicksand col-span-12 flex flex-row justify-between items-center'>
+					<p class='m-0 text-lg baloo-bhaina'>Milestones</p>
 					<div class='flex flex-row items-center'>
 						<div class='flex flex-row items-center mr-3 cursor-pointer relative'>
 							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full' alt='<%= user.name %>'>
@@ -30,7 +27,7 @@
 					</div>
 				</div>
 				<div class='col-start-1 col-end-4 flex flex-row pt-32 justify-center p-3 mx-2 h-screen'>
-					<ul class='bg-white text-gray-600  border border-color-005 comfortaa w-4/5 py-3' style='height:fit-content; font-size:0.812rem; border-radius:50px 10px 50px 10px;'>
+					<ul class='bg-white text-gray-600  border border-color-005 comfortaa w-4/5 py-3' style='height:fit-content; font-size:0.812rem; border-radius:10px 50px 10px 10px;'>
 						<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
 							<i class='fa fa-pager mr-3'></i> <a href='/' class='outline-none'>Dashboard</a>
 						</li>
@@ -48,7 +45,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-8 relative'>
+				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-4 relative'>
 
 					
 

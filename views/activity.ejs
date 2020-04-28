@@ -1,0 +1,17 @@
+<%- include('includes/loggedin-top.ejs') %>
+
+	<div class='w-5/6 self-center'>
+		<div class='bg-white border border-color-005 flex flex-row items-center p-4 mb-3'>
+			<img src="/<%= activity.imageUrl %>" alt='<%= activity.name %>' class='object-cover w-16 h-16 rounded mr-5'>
+			<div class='flex flex-col'>
+				<p class='m-0 mb-2'><%= activity.name %></p>
+				<p class='m-0 text-sm text-gray-700'><%= activity.description %></p>
+			</div>
+		</div>
+		<div class='flex flex-row'>
+			<a href="" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1'>Add Milestone</a>
+			<a href="" class='underline text-sm baloo-bhaina text-gray-800 mr-3'>Edit</a>
+			<a href="" class='underline text-sm baloo-bhaina text-gray-800'>Delete</a>
+		</div>
+	</div>
+<%- include('includes/loggedin-end.ejs') %>

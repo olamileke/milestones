@@ -74,5 +74,22 @@ exports.getActivities = (req, res, next) => {
 }
 
 exports.getActivity = (req, res, next) => {
-	
+	const activityId = req.params.activityId;
+
+	Activity.findById(activityId)
+	.then(activity => {
+		if(!activity) {
+			res.redirect('/dashboard');
+		}
+
+		if(activity.userId.toString() != req.user._id.toString()) {
+			res.redirect('/dashboard');
+		}
+
+		res.render('activity', {
+		pageTitle:activity.name,
+		path:'/activities',
+		activity:activity
+		});
+	})
 }

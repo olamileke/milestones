@@ -1,40 +1,43 @@
 				
 				</div>
-				<div class='pt-16 col-start-10 col-end-13 flex flex-col items-center'>
-					<div class='w-4/5 baloo-bhaina text-gray-600'>
-						<div class='flex flex-col px-4 py-8 mb-6 mr-4 rounded-lg' style='background:rgba(0,0,0,0.01)'>
+				<div class='pt-12 col-start-10 col-end-13 flex flex-col items-center'>
+					<div class='w-4/5 baloo-bhaina text-gray-700'>
+						<div class='flex flex-col px-4 py-6 mb-6 mr-4 rounded-lg' style='background:rgba(0,0,0,0.01)'>
 							<p class='m-0 mb-2 ml-1'>Milestone Completion</p>
-							<div class='relative rounded-md p-1' style='background:rgba(0,0,0,0.03)'>
-								<div class='absolute w-3/5 top-0 h-full bg-palette-300 rounded'>
+							<div class='relative p-1 rounded-sm' style='background:rgba(0,0,0,0.03)'>
+								<div class='absolute w-3/5 top-0 h-full rounded-md' style='background:#709255;'>
 									
 								</div>
 							</div>
 						</div>
-						<div class='flex flex-row items-center mb-6'>
-							<div class='w-16 h-16 rounded-full flex flex-row justify-center border border-color-005 items-center mr-4' style='background-color:rgba(0,0,0,0.03);'>
-								<i class='fa fa-tasks' style="color:#8E5572;"></i>
+						<div class='mb-3 baloo-bhaina h-16 py-2 pl-4 pr-4 box-content mr-5 flex flex-row items-center rounded-lg' style='background:rgba(0,0,0,0.01)'>	
+							<img src="/images/auth-index/checklist.svg" width='60px' class='mr-5'>
+							<div class='flex flex-col mr-auto'>
+								<p class='m-0 mr-auto mt-1 text-xs uppercase'>Activities</p>
+								<p class='m-0 text-2xl quicksand'><%= activityCount %></p>
 							</div>
-							<div class='flex flex-col w-24 items-center'>
-								<p class='m-0 mt-2 text-base mb-1'T>Activities</p>
-								<p class='m-0 text-xl'><%= activityCount %></p>
-							</div>
-						</div>
-						<div class='flex flex-row items-center mb-6'>
-							<div class='w-16 h-16 rounded-full flex flex-row justify-center items-center mr-4 border border-color-005' style='background-color:rgba(0,0,0,0.03);'>
-								<i class='fa fa-trophy' style="color:#8E5572;"></i>
-							</div>
-							<div class='flex flex-col items-center w-24'>
-								<p class='m-0 mt-2 text-base mb-1'>Milestones</p>
-								<p class='m-0 text-xl'>2/5</p>
+							<div class='px-2 pt-2 pb-1 rounded-full' style='background:rgba(0,0,0,0.01)'>
+								<i class='fa fa-arrow-right text-xs text-gray-600'></i>
 							</div>
 						</div>
-						<div class='flex flex-row items-center mb-6'>
-							<div class='w-16 h-16 rounded-full flex flex-row justify-center items-center mr-4 bg-white border border-color-005'>
-								<i class='fa fa-skating' style="color:#8E5572;"></i>
+						<div class='mb-3 h-16 py-2 pl-4 pr-4 box-content mr-5 flex flex-row items-center rounded-lg' style='background:rgba(0,0,0,0.01)'>	
+							<img src="/images/auth-index/winner.svg" width='45px' class='mr-8 ml-1'>
+							<div class='flex flex-col mr-auto'>
+								<p class='m-0 mr-auto mt-1 text-xs uppercase'>Milestones</p>
+								<p class='m-0 text-2xl quicksand'>0</p>
 							</div>
-							<div class='flex flex-col items-center w-24'>
-								<p class='m-0 mt-2 text-base mb-1'>Actions</p>
-								<p class='m-0 text-xl'><%= actionCount %></p>
+							<div class='px-2 pt-2 pb-1 rounded-full' style='background:rgba(0,0,0,0.01)'>
+								<i class='fa fa-arrow-right text-xs text-gray-600'></i>
+							</div>
+						</div>
+						<div class='mb-3 h-16 py-2 pl-4 pr-4 box-content mr-5 flex flex-row items-center rounded-lg' style='background:rgba(0,0,0,0.01)'>	
+							<img src="/images/auth-index/diversity.svg" width='50px' class='mr-6 ml-1'>
+							<div class='flex flex-col mr-auto'>
+								<p class='m-0 mr-auto mt-1 text-xs uppercase'>Actions</p>
+								<p class='m-0 text-2xl quicksand'><%= actionCount %></p>
+							</div>
+							<div class='px-2 pt-2 pb-1 rounded-full' style='background:rgba(0,0,0,0.01)'>
+								<i class='fa fa-arrow-right text-xs text-gray-600'></i>
 							</div>
 						</div>
 					</div>

@@ -24,6 +24,12 @@ class Activity {
 		return db.collection('activities').find({ userId:new ObjectId(userId) }).toArray();
 	}
 
+
+	static findById(id) {
+		const db = getDB();
+		return db.collection('activities').findOne({ _id:new ObjectId(id) });
+	}
+
 	static getMilestonesCount(activities) {
 
 		let num;
