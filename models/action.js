@@ -16,9 +16,9 @@ class Action {
 		return db.collection('actions').insertOne(this);
 	}
 
-	static getLastFive(userId) {
+	static getLastFour(userId) {
 		const db = getDB();
-		return db.collection('actions').find({ userId:new ObjectId(userId) }).limit(5).toArray();
+		return db.collection('actions').find({ userId:new ObjectId(userId) }).limit(4).toArray();
 	}
 
 	static getCount(userId) {

@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
 
-	Action.getLastFive(req.user._id)
+	Action.getLastFour(req.user._id)
 	.then(actions => {
 		res.render('dashboard', {
 		pageTitle:'Milestones',
@@ -85,6 +85,8 @@ exports.getActivity = (req, res, next) => {
 		if(activity.userId.toString() != req.user._id.toString()) {
 			res.redirect('/dashboard');
 		}
+
+		req.session.currentActivity = activity;
 
 		res.render('activity', {
 		pageTitle:activity.name,

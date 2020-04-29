@@ -17,6 +17,7 @@ const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const activityRoutes = require('./routes/activities');
 const userRoutes = require('./routes/user');
+const milestoneRoutes = require('./routes/milestones');
 
 app = express();
 
@@ -94,7 +95,11 @@ app.use((req, res, next) => {
 			return activities;
 		})
 		.then(activities => {
-			return;
+			
+			res.locals.milestonesCount = 0;
+			activities.forEach(activity => {
+				res.locals.milestonesCount += activity.milestones.length;
+			})
 		})
 		.then(() => {
 
@@ -116,6 +121,7 @@ app.use(indexRoutes);
 app.use(authRoutes);
 app.use(activityRoutes);
 app.use(userRoutes);
+app.use(milestoneRoutes);
 
 mongoConnect(() => {
 	app.listen(3000);

@@ -1,9 +1,9 @@
 <%- include('includes/loggedin-top') %>
 	
 	<div class='w-5/6 col-gap-5 self-center text-gray-00 text-sm'>	  
-		<div class='grid grid-cols-12'>
+		<div class='grid grid-cols-12 col-gap-5'>
 			<% activities.forEach(activity => { %>
-				<div class='col-span-6 flex flex-col mb-8 mr-5'>
+				<div class='hover:ml-1 transition-all duration-300 ease-in col-span-6 flex flex-col mb-5 cursor-pointer'>
 					<div class='relative'>
 						<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
 						<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>

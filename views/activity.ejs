@@ -1,17 +1,60 @@
 <%- include('includes/loggedin-top.ejs') %>
 
-	<div class='w-5/6 self-center'>
+	<div class='w-5/6 self-center z-10'>
 		<div class='bg-white border border-color-005 flex flex-row items-center p-4 mb-3'>
 			<img src="/<%= activity.imageUrl %>" alt='<%= activity.name %>' class='object-cover w-16 h-16 rounded mr-5'>
 			<div class='flex flex-col'>
-				<p class='m-0 mb-2'><%= activity.name %></p>
-				<p class='m-0 text-sm text-gray-700'><%= activity.description %></p>
+				<p class='m-0 mb-2 font-semibold'><%= activity.name %></p>
+				<p class='m-0 mb-1 text-sm text-gray-700'><%= activity.description %></p>
+				<p class='m-0 text-gray-700 text-sm'><%= activity.milestones.length %> milestones</p>
 			</div>
 		</div>
-		<div class='flex flex-row'>
-			<a href="" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1'>Add Milestone</a>
+		<div class='flex flex-row mb-4'>
+			<a href="#" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1 add__milestone'>Add Milestone</a>
 			<a href="" class='underline text-sm baloo-bhaina text-gray-800 mr-3'>Edit</a>
 			<a href="" class='underline text-sm baloo-bhaina text-gray-800'>Delete</a>
 		</div>
+
+		<div>
+			<% activity.milestones.forEach(milestone => { %>
+
+				<div class='p-4 flex flex-row items-center bg-white border border-color-005 mb-4'>
+					<img src="/<%= milestone.imageUrl %>" class='object-cover w-12 h-12 rounded mr-5'>
+					<p class='m-0 text-gray-600 text-sm mr-2' style='width:85%'>
+						<%= milestone.description %>
+					</p>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+
+	<div class='transition-all ease-in duration-500 fixed top-0 left-0 h-screen w-screen z--9999 flex flex-row justify-center items-center opacity-0 add__milestone__container' style='background:rgba(0,0,0,0.6)'>
+
+		<div class='bg-white relative rounded-md flex flex-col border border-color-005 pb-3' style='width:400px;top:-10vh;'>
+			<div class='flex flex-row justify-between items-center p-4 pb-3 pr-6 border-color-005 border-b'>
+				<p class='m-0 baloo-bhaina mt-1'>New Milestone - <%= activity.name %> </p>
+			</div>
+			<form  action='/create/milestone/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='py-3 px-5' enctype='multipart/form-data'>
+				<textarea rows='4' name='description' class='border-color-005 border w-full p-2 focus:outline-none text-sm text-gray-600'></textarea>
+				<div class='flex flex-row justify-between items-end pr-1'>
+					<div class='flex flex-row items-end'>
+						<img src="" class='rounded-md w-0 h-16 object-cover milestone__image__preview'>
+						<div>
+							<a href="#" class='underline text-gray-600 baloo-bhaina milestone__image__trigger'>add image</a>
+						</div>
+						<input type="file" name="image" class='hidden milestone__image__picker'>
+					</div>
+					<div class='flex flex-row'>
+						<div class='w-12 h-12 flex flex-row items-center justify-center bg-palette-300 rounded-full mr-3'>
+							<button type='submit' class='cursor-pointer focus:outline-none'><i class='fa fa-check text-white focus:outline-none'></i></button>
+						</div>
+						<div class='w-12 h-12 flex flex-row items-center justify-center bg-palette-300 rounded-full'>
+							<button type='button' class='cursor-pointer focus:outline-none close'><i class='fa fa-times text-white'></i></button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
 	</div>
 <%- include('includes/loggedin-end.ejs') %>

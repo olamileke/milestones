@@ -35,6 +35,12 @@ form button[type="submit"]:hover
 	display:block;
 }
 
+
+.z--9999
+{
+	z-index:-9999;
+}
+
 input:focus, textarea:focus
 {
 	background:rgba(0,0,0,0.02);

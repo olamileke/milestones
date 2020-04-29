@@ -1,5 +1,6 @@
 const getDB = require('../utils/database').getDB;
 const ObjectId = require('mongodb').ObjectId;
+const Action = require('./action');
 
 class Activity {
 	constructor(name, link, description, imageUrl, created_at, userId, milestones) {
@@ -14,32 +15,44 @@ class Activity {
 
 
 	save() {
+
 		const db = getDB();
 		return db.collection('activities').insertOne(this);
 	}
 
 
 	static getAll(userId) {
+
 		const db = getDB();
 		return db.collection('activities').find({ userId:new ObjectId(userId) }).toArray();
 	}
 
 
 	static findById(id) {
+
 		const db = getDB();
 		return db.collection('activities').findOne({ _id:new ObjectId(id) });
 	}
 
-	static getMilestonesCount(activities) {
 
-		let num;
+	static addMilestone(activity, description, imageUrl, userId) {
 
-		activities.forEach(activity => {
+		const milestone = { description:description,
+		imageUrl:imageUrl,
+		created_at:Date.now()}
 
-			num = num + activity.milestones.length;
+		activity.milestones.push(milestone);
+
+		const db = getDB();
+		return db.collection('activities').updateOne({ _id:activity._id }, { $set:{'milestones':activity.milestones} })
+		.then(() => {
+
+			const action = new Action('Create Milestone', userId, Date.now(), milestone);
+			action.save()
+			.then(() => {
+				return;
+			})
 		})
-
-		return num;
 	}
 }
 

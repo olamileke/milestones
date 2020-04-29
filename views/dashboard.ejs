@@ -5,7 +5,7 @@
 		<div class='flex flex-row mb-3 p-6 rounded' style="background:#f2efea;">
 			<div class='w-4/6 mr-6 flex flex-col'>
 				<p class='m-0 mb-3 text-lg baloo-bhaina' style='color:#8E5572;'>Document the process as you enhance and better yourself</p>
-				<p class='baloo-bhaina text-sm' style='color:#8E5572;'>
+				<p class='quicksand text-sm' style='color:#8E5572;'>
 					Keep track of yourself and your growth journey as you go about the never ending process of improving
 					yourself, your methods and your end products.
 				</p>
@@ -18,10 +18,18 @@
 			<div class='rounded-md quicksand'>
 				<% actions.forEach(action => {  %>
 					<% if(action.name == 'Create Activity') { %>
-						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
 								You created a new activity <a class='lowercase'><%= action.activity.name %></a>
+							</div>
+							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+						</div>
+					<% } else { %>
+						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
+							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
+								You achieved a new milestone in </a>
 							</div>
 							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
