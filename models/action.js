@@ -30,7 +30,7 @@ class Action {
 	static deleteActivityActions(activityId) {
 		const db = getDB();
 		const id = new ObjectId(activityId);
-		return db.collection('actions').deleteMany({ activity:{ _id:id }, milestone:{ activityId:id } });
+		return db.collection('actions').deleteMany({ $or:[{ "activity._id":id }, { "milestone.activityId":id }] });
 	}
 }
 

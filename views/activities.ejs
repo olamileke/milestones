@@ -1,23 +1,33 @@
 <%- include('includes/loggedin-top') %>
 	
-	<div class='w-5/6 col-gap-5 self-center text-gray-00 text-sm'>	  
-		<div class='grid grid-cols-12 col-gap-5'>
-			<% activities.forEach(activity => { %>
-				<div class='hover:ml-1 transition-all duration-300 ease-in col-span-6 flex flex-col mb-5 cursor-pointer'>
-					<div class='relative'>
-						<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
-						<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>
+	<div class='w-5/6 col-gap-5 self-center text-gray-00 text-sm'>	
+
+		<% if(activities.length > 0) { %>
+			<div class='grid grid-cols-12 col-gap-5'>
+				<% activities.forEach(activity => { %>
+					<div class='hover:ml-1 transition-all duration-300 ease-in col-span-6 flex flex-col mb-5 cursor-pointer'>
+						<div class='relative'>
+							<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
+							<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>
+						</div>
+						<div class='border border-color-005 p-4 bg-white'>
+							<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
+							<p class='text-sm mb-1 text-gray-700'><%= activity.description.slice(0,50) %>...</p>
+							<p class='text-sm mb-1 text-gray-700'><%= activity.milestones.length %> milestones</p>
+							<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>more</a>
+						</div>
 					</div>
-					<div class='border border-color-005 p-4 bg-white'>
-						<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
-						<p class='text-sm mb-1 text-gray-700'><%= activity.description.slice(0,50) %>...</p>
-						<p class='text-sm mb-1 text-gray-700'><%= activity.milestones.length %> milestones</p>
-						<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>more</a>
-					</div>
+				<% }) %>
+			</div>		
+		<% } else { %>
+
+			<div class='w-full flex flex-row justify-center items-center' style='height:calc(100vh - 120px)'>
+				<div class='flex flex-col relative' style='top:-15%'>
+					<i class='em em-anguished text-4xl mb-3'></i>
+					<p class='m-0 text-lg baloo-bhaina text-gray-700'>You do not have any activity. <a href="/create/activity" class='underline'>Create</a> one here </p>
 				</div>
-			<% }) %>
-			
-		</div>		
+			</div>
+		<% } %>
 	</div>
 
 <%- include('includes/loggedin-end') %>

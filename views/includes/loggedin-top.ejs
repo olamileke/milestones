@@ -4,6 +4,9 @@
 		<title><%= pageTitle %></title>
 		<%- include('./styles.ejs') %>
 		<link rel="stylesheet" type="text/css" href="/css/auth-index.css">
+		<% if(path == '/activities') { %>
+			<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+		<% } %>
 	</head>
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>

@@ -16,6 +16,7 @@
 		</div>
 		<% if(actions.length > 0) { %>
 			<div class='rounded-md quicksand'>
+				<p class='mt-5 mb-2 baloo-bhaina text-lg text-gray-600'>Recent actions</p>
 				<% actions.forEach(action => {  %>
 					<% if(action.name == 'Create Activity') { %>
 						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
@@ -30,7 +31,7 @@
 						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
-								Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %> </a>
+								Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>. "<%= action.milestone.description.slice(0,25) %>..." </a>
 							</div>
 							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
@@ -48,7 +49,7 @@
 			</div>
 		<% } else { %>
 
-			No actions
+			<p class='m-0 mt-4 baloo-bhaina text-lg text-gray-600'>No recent actions</p>
 		<% } %>
 	</div>
 
