@@ -23,3 +23,34 @@ exports.postNewMilestone = (req, res, next) => {
 		console.log(err);
 	})
 }
+
+exports.postEditMilestone = (req, res, next) => {
+
+	const milestoneId = req.params.milestoneId;
+	const description = req.body.description;
+	let imageUrl = null;
+	req.file ? imageUrl = req.file.path : '';
+
+	Activity.editMilestone(req.session.currentActivity, milestoneId, description, imageUrl)
+	.then(() => {
+		req.flash('message', {class:'success', message:'Milestone edited successfully'});
+		res.back();
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}
+
+exports.postDeleteMilestone = (req, res, next) => {
+
+	const milestoneId = req.params.milestoneId;
+
+	Activity.deleteMilestone(req.session.currentActivity, milestoneId)
+	.then(() => {
+		req.flash('message', {class:'success', message:'Milestone deleted successfully'});
+		res.back();
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}

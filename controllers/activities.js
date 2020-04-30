@@ -75,7 +75,9 @@ exports.getActivities = (req, res, next) => {
 }
 
 exports.getActivity = (req, res, next) => {
+
 	const activityId = req.params.activityId;
+	const messages = req.flash('message');
 
 	Activity.findById(activityId)
 	.then(activity => {
@@ -92,7 +94,8 @@ exports.getActivity = (req, res, next) => {
 		res.render('activity', {
 		pageTitle:activity.name,
 		path:'/activities',
-		activity:activity
+		activity:activity,
+		notification:messages[0]
 		});
 	})
 }

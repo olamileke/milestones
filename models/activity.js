@@ -56,10 +56,12 @@ class Activity {
 		created_at:Date.now()
 		}
 
-		activity.milestones.push(milestone);
+		const milestones = [...activity.milestones];
+
+		milestones.push(milestone);
 
 		const db = getDB();
-		return db.collection('activities').updateOne({ _id:activity._id }, { $set:{'milestones':activity.milestones} })
+		return db.collection('activities').updateOne({ _id:activity._id }, { $set:{'milestones':milestones} })
 		.then(() => {
 
 			milestone['activityId'] = activity._id;
@@ -68,6 +70,36 @@ class Activity {
 			return action.save()
 		})
 
+	}
+
+	static editMilestone(activity, milestoneId, description, imageUrl) {
+
+		const milestones = [...activity.milestones];
+
+		milestones.forEach(milestone => {
+
+			if(milestone._id.toString() === milestoneId.toString()) {
+
+				milestone.description = description;
+				imageUrl ? milestone.imageUrl = imageUrl : '';
+			}
+		})
+
+		const db = getDB();
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} });
+	}
+
+
+	static deleteMilestone(activity, milestoneId) {
+
+		const milestones = [...activity.milestones];
+
+		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString() );
+
+		milestones.splice(idx, 1);
+
+		const db = getDB();
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} });
 	}
 }
 

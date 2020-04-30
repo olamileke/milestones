@@ -13,4 +13,8 @@ router.post('/create/milestone/:activityId', [body('description').isLength({ min
 											  	return true;
 											  })] ,milestonesController.postNewMilestone);
 
+router.post('/edit/milestone/:milestoneId', body('description').isLength({ min:8 }), milestonesController.postEditMilestone);
+
+router.post('/delete/milestone/:milestoneId', milestonesController.postDeleteMilestone);
+
 module.exports = router;
