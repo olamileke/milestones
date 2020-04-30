@@ -10,6 +10,7 @@ module.exports = {
   },
   variants: {
   	margin:['responsive', 'hover', 'focus'],
+    display:['responsive', 'group-hover']
   },
   plugins: [],
 }

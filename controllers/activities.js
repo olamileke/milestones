@@ -24,6 +24,7 @@ exports.getCreateActivity = (req, res, next) => {
 
 	res.render('create', {
 	pageTitle:"Milestones - Create",
+	activity:null,
 	path:'/create/activity',
 	notification:messages[0]
 	});
@@ -93,5 +94,78 @@ exports.getActivity = (req, res, next) => {
 		path:'/activities',
 		activity:activity
 		});
+	})
+}
+
+exports.getEditActivity = (req, res, next) => {
+
+	const activityId = req.params.activityId;
+	const messages = req.flash('message');
+
+	Activity.findById(activityId)
+	.then(activity => {
+		if(!activity) {
+			res.redirect('/dashboard');
+		}
+
+		if(activity.userId.toString() != req.user._id.toString()) {
+			res.redirect('/dashboard');
+		}
+
+		req.session.currentActivity = activity;
+
+		res.render('create', {
+		pageTitle:`Edit ${ activity.name }`,
+		activity:activity,
+		path:'/activities',
+		page:'/edit/activity',
+		notification:messages[0]
+		});
+	})
+}
+
+exports.postEditActivity = (req, res, next) => {
+
+	const errors = validationResult(req);
+
+	if(!errors.isEmpty()) {
+		return res.back();
+	}
+
+	const currentActivity = req.session.currentActivity;
+	currentActivity.name = req.body.name;
+	currentActivity.link = req.body.link;
+	req.file ? currentActivity.imageUrl = req.file.path : '';
+	currentActivity.description = req.body.description;
+
+	Activity.update(currentActivity)
+	.then(() => {
+
+		const action = new Action('Edit Activity', req.session.userId, Date.now(), currentActivity);
+		return action.save();
+	})
+	.then(() => {
+		req.flash('message', {class:'success', message:'Updated successfully'});
+		res.back();
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}
+
+exports.postDeleteActivity = (req, res, next) => {
+
+	const activityId = req.params.activityId;
+
+	Activity.delete(activityId)
+	.then(() => {
+
+		return Action.deleteActivityActions(activityId);
+	})
+	.then(() => {
+		res.redirect('/activities');
+	})
+	.catch(err => {
+		console.log(err);
 	})
 }

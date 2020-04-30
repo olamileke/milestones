@@ -1,8 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 
+html
+{
+	scroll-behavior: smooth;
+}
+
 .nav-active-none
 {
 	background:rgba(0,0,0,0.03);
+}
+
+.nav__options
+{
+	left:calc((100% - 100px)/2);
+}
+
+.nav__options::before
+{
+	position:absolute;
+	top:-25px;
+	content:'';
+	display: block;
+	border:12px solid rgba(0,0,0,0.5);
+	border-right-color:transparent;
+	border-top-color:transparent;
+	border-left-color:transparent;
 }
 
 form button[type="submit"]:hover

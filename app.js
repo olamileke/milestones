@@ -85,6 +85,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
 	res.locals.csrfToken = req.csrfToken();
+	res.locals.page = null;
 
 	if(req.session.userId) {
 		res.locals.user = req.user;

@@ -75,7 +75,7 @@ $(document).ready(() => {
 
 	// add milestone validation logic
 
-	const form = $('form');
+	const form = addMilestoneContainer.find('form');
 	const textarea = $('textarea');
 
 	const validateForm = () => {

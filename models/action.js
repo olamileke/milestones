@@ -18,12 +18,19 @@ class Action {
 
 	static getLastFour(userId) {
 		const db = getDB();
-		return db.collection('actions').find({ userId:new ObjectId(userId) }).limit(4).toArray();
+		return db.collection('actions').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).limit(4).toArray();
 	}
 
 	static getCount(userId) {
 		const db = getDB();
 		return db.collection('actions').find({ userId: new ObjectId(userId) }).count();
+	}
+
+
+	static deleteActivityActions(activityId) {
+		const db = getDB();
+		const id = new ObjectId(activityId);
+		return db.collection('actions').deleteMany({ activity:{ _id:id }, milestone:{ activityId:id } });
 	}
 }
 

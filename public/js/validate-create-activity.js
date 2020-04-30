@@ -57,13 +57,21 @@ $(document).ready(() => {
 		return true;
 	}
 
-
 	name.keyup(validateName);
 	description.keyup(validateDescription);
 
 	form.submit(function(e) {
-		if(!(validateName(true) * validateFile() * validateDescription(true))) {
-			e.preventDefault();
+
+		if(document.URL.includes('create')) {
+
+			if(!(validateName(true) * validateFile() * validateDescription(true))) {
+				e.preventDefault();
+			}
+		}
+		else {
+			if(!(validateName(true) * validateDescription(true))) {
+				e.preventDefault();
+			}
 		}
 	})
 })

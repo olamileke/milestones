@@ -22,4 +22,11 @@ router.get('/activities', activitiesController.getActivities);
 
 router.get('/activity/:activityId', activitiesController.getActivity);
 
+router.get('/edit/activity/:activityId', activitiesController.getEditActivity);
+
+router.post('/edit/activity/:activityId', [ body('name').isLength({ min:5 }),
+											body('description').isLength({ min:10 })], activitiesController.postEditActivity);
+
+router.post('/delete/activity/:activityId', activitiesController.postDeleteActivity);
+
 module.exports = router; 

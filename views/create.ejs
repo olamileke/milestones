@@ -9,40 +9,59 @@
 <div class='w-5/6 self-center create-project-parent text-gray-600'>
 	<div class='mb-2 bg-white border border-color-005 flex flex-row justify-between items-center rounded-lg px-4 h-24'>
 		<div>
-			<p class='m-0 mb-2 text-base'>
+			<% if(activity) { %>
+				<p class="m-0 mb-2 text-base">
+					Edit <%= activity.name %>
+				</p>
+				<p class='m-0 text-sm'>* specify all required details here</p>
+			<% } else { %>
+				<p class='m-0 mb-2 text-base'>
 				create a new activity
-			</p>
-			<p class='m-0 text-sm'>* specify all required details here</p>
+				</p>
+				<p class='m-0 text-sm'>* specify all required details here</p>
+			<% } %>	
 		</div>
 		<div class='h-12 w-12 relative'>
-			<img src="" class='rounded-md project-image transition-all ease-in-out duration-1000 w-0 h-full object-cover'alt=''>
-			<div class='rounded-md absolute transition-all ease-in-out duration-1000 top-0 w-0 h-full' style='background:rgba(0,0,0,0.05);'>
+			<% if(activity) { %>
+				<img src="/<%= activity.imageUrl %>" class='rounded-md project-image transition-all ease-in-out duration-1000 w-full h-full object-cover'alt=''>
+				<div class='rounded-md absolute transition-all ease-in-out duration-1000 top-0 w-full h-full' style='background:rgba(255,255,255,0.3);'>
 			</div>
+			<% } else { %>
+				<img src="" class='rounded-md project-image transition-all ease-in-out duration-1000 w-0 h-full object-cover'alt=''>
+				<div class='rounded-md absolute transition-all ease-in-out duration-1000 top-0 w-0 h-full' style='background:rgba(255,255,255,0.35);'>
+			</div>
+			<% } %>
 		</div>
 	</div>
 
-	<form action='/create/activity?_csrf=<%= csrfToken %>' method='POST' class='border border-color-005 p-6 bg-white mb-4 rounded-lg' enctype='multipart/form-data'>
+	<form action="<%= activity ? '/edit/activity/activity._id' : '/create/activity' %>?_csrf=<%= csrfToken %>" method='POST' class='border border-color-005 p-6 bg-white mb-4 rounded-lg' enctype='multipart/form-data'>
 		<div class='flex flex-col mb-4'>
 			<p class='text-base text-gray-600 m-0 mb-2'>name</p>
-			<input type="text" name='name' class='name capitalize focus:outline-none py-3 px-4 border border-color-005'>
+			<input type="text" name='name' value="<%= activity ? activity.name : '' %>" class='name capitalize focus:outline-none py-3 px-4 border border-color-005'>
 		</div>
 		<div class='flex flex-col mb-4'>
 			<p class='text-base text-gray-600 m-0 mb-2'>link(optional)</p>
-			<input type="text" name='link' class='link lowercase focus:outline-none py-3 px-4 border border-color-005'>
+			<input type="text" name='link' value="<%= activity ? activity.link : '' %>" class='link lowercase focus:outline-none py-3 px-4 border border-color-005'>
 		</div>
 		<div class='mb-4 relative flex flex-col'>
-			<p class='text-gray-600 text-base underline trigger-file z-50' style='cursor:pointer;'>add image</p>
+
+			<% if(activity) { %>
+				<p class='text-gray-600 text-base underline trigger-file z-50' style='cursor:pointer;'>change image</p>
+			<% } else { %>
+				<p class='text-gray-600 text-base underline trigger-file z-50' style='cursor:pointer;'>add image</p>
+			<% } %>
 			<div class='transition-all opacity-0 duration-700 ease-out absolute text-xs z-10 text-white p-2 rounded-md file__notif' style='background:rgba(0,0,0,0.55);'>
 			</div>
 			<input type="file" name="image" class='hidden project-image-picker'>
 		</div>
 		<div class='flex flex-col mb-4'>
 			<p class='text-base text-gray-600 m-0 mb-2'>description</p>
-			<textarea rows='4' name='description' class='description focus:outline-none py-3 px-4 border border-color-005'></textarea>
+			<textarea rows='4' name='description' class='overflow-y-hidden description focus:outline-none py-3 px-4 border border-color-005'><%= activity ? activity.description : '' %>
+			</textarea>
 		</div>
 		<div class='flex flex-row justify-between items-end'>
 			<button type='submit' class='transition-colors ease-in duration-500 focus:outline-none border-2 border-white text-sm p-2 rounded-md text-white bg-palette-200 font-semibold'>
-			Create</button>
+			<%= activity ? 'Update' : 'Create' %></button>
 		</div>
 	</form>
 </div>

@@ -24,7 +24,7 @@ class Activity {
 	static getAll(userId) {
 
 		const db = getDB();
-		return db.collection('activities').find({ userId:new ObjectId(userId) }).toArray();
+		return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).toArray();
 	}
 
 
@@ -35,11 +35,26 @@ class Activity {
 	}
 
 
+	static update(activity) {
+
+		const db = getDB();
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:activity });
+	}
+
+
+	static delete(activityId) {
+
+		const db = getDB();
+		return db.collection('activities').deleteOne({ _id:new ObjectId(activityId) });
+	}
+
 	static addMilestone(activity, description, imageUrl, userId) {
 
-		const milestone = { description:description,
+		const milestone = { _id:new ObjectId(),
+		description:description,
 		imageUrl:imageUrl,
-		created_at:Date.now()}
+		created_at:Date.now()
+		}
 
 		activity.milestones.push(milestone);
 
@@ -47,12 +62,12 @@ class Activity {
 		return db.collection('activities').updateOne({ _id:activity._id }, { $set:{'milestones':activity.milestones} })
 		.then(() => {
 
+			milestone['activityId'] = activity._id;
+			milestone['activityName'] = activity.name;
 			const action = new Action('Create Milestone', userId, Date.now(), milestone);
-			action.save()
-			.then(() => {
-				return;
-			})
+			return action.save()
 		})
+
 	}
 }
 
