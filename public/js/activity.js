@@ -14,7 +14,7 @@ $(document).ready(() => {
 		if(addMilestoneContainer.hasClass('z--9999')) {
 			body.addClass('overflow-y-hidden');
 			addMilestoneContainer.removeClass('z--9999 opacity-0').addClass('z-50 opacity-100');
-			return;
+			return;  
 		}
 
 		addMilestoneContainer.removeClass('z-50 opacity-100').addClass('z--9999 opacity-0');
@@ -124,7 +124,7 @@ $(document).ready(() => {
 
 	// edit milestone logic
 
-	const editBtn = $('.fa-edit');
+	const editBtn = $('.edit');
 	const editMilestoneContainer = $('.edit__milestone__container');	
 	const editClose = editMilestoneContainer.find('.close');	
 	const editForm = editMilestoneContainer.find('form');
@@ -178,6 +178,34 @@ $(document).ready(() => {
 	editForm.submit(function(e) {
 
 		if(!validateForm($(this), true)) {
+			e.preventDefault();
+		}
+	})
+
+
+	// confirm delete activity
+
+	const deleteActivityForm = $('.delete__activiy__form');
+
+	deleteActivityForm.submit(function(e) {
+		
+		const proceed = confirm('Are you sure you want to delete ?');
+
+		if(!proceed) {
+			e.preventDefault();
+		}
+	})
+
+
+	// confirm delete milestone
+
+	const deleteMilestoneForm = $('.delete__milestone__form');
+
+	deleteMilestoneForm.submit(function(e) {
+
+		const proceed = confirm('Are you sure you want to delete ?');
+
+		if(!proceed) {
 			e.preventDefault();
 		}
 	})

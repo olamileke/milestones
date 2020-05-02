@@ -2,26 +2,31 @@
 <%- include('includes/date.ejs') %>
 
 	<% if(notification) { %>
-		<div class='w-5/6 self-center alert alert-<%= notification.class %> mb-3 z-10'>
+		<div class='w-full lg:w-5/6 self-center alert alert-<%= notification.class %> mb-3 z-10'>
 			<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
 		</div>
 	<% } %>
 
-	<div class='w-5/6 self-center z-10'>
+	<div class='w-full lg:w-5/6 self-center z-10 pt-2 sm:pt-8'>
 		<p class='csrf__token hidden'><%= csrfToken %></p>
-		<div class='bg-white border border-color-005 flex flex-row items-center p-4 mb-3 relative'>
-			<img src="/<%= activity.imageUrl %>" alt='<%= activity.name %>' class='object-cover w-16 h-16 rounded mr-5'>
+		<div class='bg-white border border-color-005 flex flex-col sm:flex-row sm:items-center p-4 mb-3 relative'>
+			<div class='flex flex-row items-center justify-between pr-5'>
+				<p class='sm:hidden text-gray-700 text-lg font-semibold mr-5'><%= activity.name %></p>
+				<img src="/<%= activity.imageUrl %>" alt='<%= activity.name %>' class='mt-2 sm:mt-0 object-cover w-16 h-16 rounded mr-0 mb-3 sm:mb-0'>
+			</div>
 			<div class='flex flex-col'>
-				<p class='m-0 mb-2 font-semibold'><%= activity.name %></p>
-				<p class='m-0 mb-1 text-sm text-gray-700'><%= activity.description %></p>
-				<p class='m-0 text-gray-700 text-sm'><%= activity.milestones.length %> milestones</p>
-				<p class='text-xs absolute bottom-0 right-0 mb-2 mr-2 text-gray-600'> <%= getDateString(activity.created_at) %> </p>
+				<p class='hidden sm:inline m-0 mb-1 sm:mb-2 font-semibold text-gray-800'><%= activity.name %></p>
+				<p class='m-0 mb-1 text-sm text-gray-700 sm:text-gray-600'><%= activity.description %></p>
+				<div class='flex flex-row'>
+					<p class='text-sm sm:text-xs relative sm:absolute bottom-0 right-0 sm:mb-2 mr-3 sm:mr-2 text-gray-700 sm:text-gray-600'> <%= getDateString(activity.created_at) %> </p>
+					<p class='m-0 text-gray-700 sm:text-gray-600 text-sm sm:mb-0'><%= activity.milestones.length %> milestones</p>
+				</div>
 			</div>
 		</div>
 		<div class='flex flex-row items-end mb-4'>
 			<a href="#" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1 add__milestone'>Add Milestone</a>
 			<a href="/edit/activity/<%= activity._id %>" class='underline text-sm baloo-bhaina text-gray-800 mr-3'>Edit</a>
-			<form action='/delete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST'>
+			<form action='/delete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__activity__form'>
 				<button type='submit' class='bg-transparent underline text-sm baloo-bhaina text-gray-800 focus:outline-none'>Delete</button>
 			</form>
 		</div>
@@ -29,15 +34,26 @@
 		<div>
 			<% activity.milestones.reverse().forEach(milestone => { %>
 
-				<div class='p-4 flex flex-row items-center bg-white border border-color-005 mb-2 relative group'>
-					<img src="/<%= milestone.imageUrl %>" class='object-cover w-12 h-12 rounded mr-5 milestone__image'>
-					<p class='m-0 text-gray-600 text-sm mr-2 milestone__description' style='width:75%'>
+				<div class='pl-6 sm:px-4 py-4 flex flex-col sm:flex-row odd:items-end sm:items-center bg-white border border-color-005 mb-2 relative group'>
+					<div class='flex flex-row-reverse pr-5 items-center justify-between'>
+						<img src="/<%= milestone.imageUrl %>" class='mb-2 sm:mb-0 object-cover w-12 h-12 rounded mr-5 milestone__image'>
+						<div class='flex flex-row pr-12 text-gray-700 sm:text-gray-600 sm:hidden'>
+							<button class='focus:outline-none mr-3 underline text-sm edit relative' style='top:-2px;'>Edit</button>
+							<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
+								<button type='submit' class='underline text-sm relative focus:outline-none' style='top:-3px'>Delete</button>
+							</form>
+						</div>
+						<p class='hidden milestone__description'>
+						<%= milestone.description %>
+						</p>
+						<p class='milestone__id hidden'><%= milestone._id %></p>
+					</div>
+					<p class='m-0 text-gray-700 sm:text-gray-600 text-sm mr-2 milestone__description sm:w-3/4'>
 						<%= milestone.description %>
 					</p>
-					<p class='milestone__id hidden'><%= milestone._id %></p>
-					<div class='transition-all duration-300 ease-in absolute hidden flex-row top-0 right-0 h-full flex flex-row items-center mr-2 group-hover:flex'>
-						<i class='fas fa-edit text-xs text-gray-600 mr-3 cursor-pointer'></i>
-						<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST'>
+					<div class='transition-all duration-300 ease-in absolute hidden flex-row top-0 right-0 h-full flex flex-row items-center mr-2 sm:group-hover:flex'>
+						<i class='fas fa-edit edit text-xs text-gray-600 mr-3 cursor-pointer'></i>
+						<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
 							<button type='submit' class='focus:outline-none w-6 h-6 rounded-md flex flex-row justify-center items-center' style='background:rgba(0,0,0,0.03)'><i class='fas fa-trash text-xs text-gray-600'></i></button>
 						</form>
 					</div>
@@ -49,7 +65,7 @@
 
 	<div class='transition-all ease-in duration-500 fixed top-0 left-0 h-screen w-screen z--9999 flex flex-row justify-center items-center opacity-0 add__milestone__container' style='background:rgba(0,0,0,0.85)'>
 
-		<div class='bg-white relative rounded-md flex flex-col border border-color-005 pb-3' style='width:400px;top:-10vh;'>
+		<div class='bg-white relative rounded-md flex flex-col border border-color-005 pb-3 activity__dialog'>
 			<div class='flex flex-row justify-between items-center p-4 pb-3 pr-6 border-color-005 border-b'>
 				<p class='m-0 baloo-bhaina mt-1'>New Milestone - <%= activity.name %> </p>
 			</div>
@@ -76,7 +92,7 @@
 
 	<div class='transition-all ease-in duration-500 fixed top-0 left-0 h-screen w-screen z--9999 flex flex-row justify-center items-center opacity-0 edit__milestone__container' style='background:rgba(0,0,0,0.85)'>
 
-		<div class='bg-white relative rounded-md flex flex-col border border-color-005 pb-3' style='width:400px;top:-10vh;'>
+		<div class='bg-white relative rounded-md flex flex-col border border-color-005 pb-3 activity__dialog'>
 			<div class='flex flex-row justify-between items-center p-4 pb-3 pr-6 border-color-005 border-b'>
 				<p class='m-0 baloo-bhaina mt-1'>Edit Milestone</p>
 			</div>

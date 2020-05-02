@@ -27,6 +27,12 @@ html
 	border-left-color:transparent;
 }
 
+.side__motif
+{
+	top:-250px;
+	left:-290px;
+}
+
 form button[type="submit"]:hover
 {
 	border-color:#c5979d;
@@ -63,7 +69,69 @@ form button[type="submit"]:hover
 	z-index:-9999;
 }
 
+.activity__dialog
+{
+	width:400px;
+	top:-10vh;
+}
+
+
 input:focus, textarea:focus
 {
 	background:rgba(0,0,0,0.02);
+}
+
+
+@media(max-width:1025px)
+{
+	.side__motif
+	{
+		top:unset;
+		bottom:-250px;
+		left:-250px;
+	}
+}
+
+
+@media(max-width:1025px)
+{
+	.side__motif
+	{
+		bottom:-375px;
+		left:-250px;
+	}
+}
+
+
+
+@media(max-width:576px)
+{
+	.create__parent
+	{
+		width:90%;
+	}
+
+	.side__motif
+	{
+		bottom:-400px;
+		left:-300px;
+	}
+}
+
+
+@media(max-width:768px)
+{
+	.activity__dialog
+	{
+		width:350px;
+	}
+}
+
+
+@media(max-width:375px)
+{
+	.activity__dialog
+	{
+		width:320px;
+	}
 }

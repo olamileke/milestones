@@ -1,19 +1,19 @@
 <%- include('includes/loggedin-top') %>
 	
-	<div class='w-5/6 col-gap-5 self-center text-gray-00 text-sm'>	
+	<div class='lg:w-5/6 col-gap-5 self-center text-gray-00 text-sm pt-4 sm:pt-8 z-50'>	
 
 		<% if(activities.length > 0) { %>
-			<div class='grid grid-cols-12 col-gap-5'>
+			<div class='grid grid-cols-12 col-gap-8'>
 				<% activities.forEach(activity => { %>
-					<div class='hover:ml-1 transition-all duration-300 ease-in col-span-6 flex flex-col mb-5 cursor-pointer'>
+					<div class='hover:ml-1 transition-all duration-300 ease-in col-span-12 px-5 sm:px-0 sm:col-span-6 flex flex-col mb-8 cursor-pointer'>
 						<div class='relative'>
 							<img src="/<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
 							<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.3)'></div>
 						</div>
 						<div class='border border-color-005 p-4 bg-white'>
 							<p class='text-sm font-semibold mb-1'><%= activity.name %></p>
-							<p class='text-sm mb-1 text-gray-700'><%= activity.description.slice(0,50) %>...</p>
-							<p class='text-sm mb-1 text-gray-700'><%= activity.milestones.length %> milestones</p>
+							<p class='text-sm mb-1 text-gray-600'><%= activity.description.slice(0,50) %>...</p>
+							<p class='text-sm mb-1 text-gray-600'><%= activity.milestones.length %> milestones</p>
 							<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>more</a>
 						</div>
 					</div>

@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
 
 	const allowedExtensions = ['image/png', 'image/jpg', 'image/jpeg'];

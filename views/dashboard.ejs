@@ -1,48 +1,51 @@
 <%- include('includes/loggedin-top.ejs') %>
 <%- include('includes/date.ejs') %>
 
-	<div class='px-6'>
-		<div class='flex flex-row mb-3 p-6 rounded' style="background:#f2efea;">
-			<div class='w-4/6 mr-6 flex flex-col'>
-				<p class='m-0 mb-3 text-lg baloo-bhaina' style='color:#8E5572;'>Document the process as you enhance and better yourself</p>
+	<div class='lg:px-6 sm:pt-24 lg:pt-0 z-50'>
+		<div class='flex flex-row items-center mb-3 p-6 rounded' style="background:#f2efea;">
+			<div class='w-full sm:w-4/6 mr-6 flex flex-col'>
+				<p class='m-0 mb-3 text-md font-semibold' style='color:#8E5572;'>Record the process as you enhance and better yourself</p>
 				<p class='quicksand text-sm' style='color:#8E5572;'>
 					Keep track of yourself and your growth journey as you go about the never ending process of improving
 					yourself, your methods and your end products.
 				</p>
 			</div>
-			<div class='2/6 text-right'>
+			<div class='w-2/6 flex flex-col items-center hidden sm:block'>
 				<img src="/images/auth-index/activity.svg" width="150px">
 			</div>
 		</div>
 		<% if(actions.length > 0) { %>
 			<div class='rounded-md quicksand'>
-				<p class='mt-5 mb-2 baloo-bhaina text-lg text-gray-600'>Recent actions</p>
+				<p class='mt-5 mb-2 baloo-bhaina text-lg text-gray-700'>Recent actions</p>
 				<% actions.forEach(action => {  %>
 					<% if(action.name == 'Create Activity') { %>
 						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
-								You created a new activity <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a>
+								<p class='m-0'>You created a new activity <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
+								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 					<% if(action.name == 'Create Milestone') { %>
 						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
-								Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>. "<%= action.milestone.description.slice(0,25) %>..." </a>
+								<p class='m-0'>Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>. "<%= action.milestone.description.slice(0,25) %>..." </a></p>
+								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 					<% if(action.name == 'Edit Activity') { %>
 						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
-								You edited <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a>
+								<p class='m-0'>You edited <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
+								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 				<% }) %>

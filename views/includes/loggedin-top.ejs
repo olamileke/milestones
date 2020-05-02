@@ -11,8 +11,8 @@
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
-				<div class='py-5 pr-16 quicksand col-span-12 flex flex-row justify-end items-center'>
-					<div class='flex flex-row items-center'>
+				<div class='py-8 lg:py-5 pr-4 sm:pr-16 quicksand col-span-12 flex flex-row justify-end items-center'>
+					<div class='flex flex-row items-center mr-3 lg:mr-0'>
 						<div class='flex flex-row items-center mr-3 relative'>
 							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full' alt='<%= user.name %>'>
 							<p class='m-0 mt-1 text-gray-600 text-xs mr-3 cursor-pointer flex flex-col items-center nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
@@ -26,9 +26,12 @@
 								<a href="/logout" class='outline-none pt-3 pb-4 text-center text-white'>logout</a>
 							</div>
 						</div> 
+						<div class='lg:hidden w-16 h-16 flex flex-row justify-center items-center rounded-full bg-palette-300'>
+							<i class='fas fa-bars text-white'></i>
+						</div>
 					</div>
 				</div>
-				<div class='col-start-1 col-end-4 flex flex-row pt-24 justify-center p-3 mx-2'>
+				<div class='hidden lg:flex col-start-1 col-end-4 flex-row pt-24 justify-center p-3 mx-2'>
 					<ul class='bg-white text-gray-600 z-20 border border-color-005 mt-5 comfortaa w-4/5 py-3' style='height:fit-content; font-size:0.812rem; border-radius:10px 80px 10px 10px;'>
 						<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
 							<i class='fa fa-pager mr-3'></i> <a href='/' class='outline-none'>Dashboard</a>
@@ -47,10 +50,10 @@
 						</li>
 					</ul>
 				</div>
-				<div class='fixed h-64 w-64 flex flex-row items-end justify-end p-32 z-10 box-content rounded-full bg-palette-300 text-white quicksand' style='top:-40%;left:-20%;'>
-					<p class='m-0 text-2xl baloo-bhaina relative' style='left:40px;top:-10px;'>Milestones</p>
+				<div class='fixed h-64 w-64 flex flex-row items-end justify-end p-32 z-10 box-content rounded-full bg-palette-300 text-white quicksand side__motif'>
+					<p class='m-0 text-2xl baloo-bhaina relative' style='left:40px;top:-15px;'>Milestones</p>
 				</div>
-				<div class='col-start-4 col-end-10 quicksand flex flex-col pt-4 relative'>
+				<div class='col-start-2 col-end-12 lg:col-start-4 lg:col-end-10 quicksand flex flex-col justify-center lg:justify-start relative'>
 
 					
 

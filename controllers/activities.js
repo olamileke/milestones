@@ -164,7 +164,7 @@ exports.postDeleteActivity = (req, res, next) => {
 	.then(() => {
 
 		return Action.deleteActivityActions(activityId);
-	})
+	}) 
 	.then(() => {
 		res.redirect('/activities');
 	})
