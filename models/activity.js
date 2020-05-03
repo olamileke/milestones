@@ -42,6 +42,32 @@ class Activity {
 	}
 
 
+	static getStats(userId) {
+
+		const db = getDB();
+		let activities;
+
+		return Activity.getAll(userId)
+				.then(result => {
+					
+					activities =  result;
+				})
+				.then(() => {
+
+					const db = getDB();
+					return db.collection('activities').find({ is_completed:true }).count();
+				})
+				.then(completedCount => {
+
+					const uncompletedCount = activities.length - completedCount;
+					return { activities:activities, completed:completedCount, uncompleted:uncompletedCount };
+				})
+				.catch(err => {
+					console.log(err);
+				})
+	}
+
+
 	static findById(id) {
 
 		const db = getDB();

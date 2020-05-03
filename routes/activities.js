@@ -9,6 +9,7 @@ router.get('/dashboard', authGuard , activitiesController.getDashboard);
 router.get('/create/activity', authGuard ,activitiesController.getCreateActivity);
 
 router.post('/create/activity', [ body('name').isLength({ min:5 }),	
+								  body('link').optional().isURL(),
 								  body('image').custom((value, { req }) => {
 								  	if(!req.file.path) {
 								  		return Promse.reject('select a valid image');

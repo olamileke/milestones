@@ -90,17 +90,17 @@ app.use((req, res, next) => {
 	if(req.session.userId) {
 		res.locals.user = req.user;
 
-		Activity.getAll(req.session.userId)
-		.then(activities => {
-			res.locals.activityCount = activities.length;
-			return activities;
-		})
-		.then(activities => {
-			
+		Activity.getStats(req.session.userId)
+		.then(stats => {
+			res.locals.activityCount = stats.activities.length;
+			res.locals.completedActivityCount = stats.completed;
+			res.locals.uncompletedActivityCount = stats.uncompleted;
+
 			res.locals.milestonesCount = 0;
-			activities.forEach(activity => {
+			stats.activities.forEach(activity => {
 				res.locals.milestonesCount += activity.milestones.length;
 			})
+			return;
 		})
 		.then(() => {
 

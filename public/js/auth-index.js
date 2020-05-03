@@ -61,4 +61,20 @@ $(document).ready(() => {
 		return true;
 	}
 
+
+	// displaying the completed activity percentage
+
+	const activityPercentage = $('.activity__percent');
+	const completedCount = $('.completed__activity__count').text();
+	const uncompletedCount = $('.uncompleted__activity__count').text();
+
+	const setPercentage = () => {
+
+		const total = Number(completedCount) + Number(uncompletedCount);
+		let percent = (completedCount/total) * 100;
+		percent = String(percent) + '%';
+		activityPercentage.css('width', percent);
+	}
+
+	setPercentage();
 })

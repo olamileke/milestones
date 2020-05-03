@@ -57,8 +57,16 @@ $(document).ready(() => {
 		return true;
 	}
 
+	const validateLink = () => {
+
+		let val = link.val().split('https://')[1];
+		val ? val = val : val = '';
+		link.val('https://'+val);
+	}
+
 	name.keyup(validateName);
 	description.keyup(validateDescription);
+	link.keyup(validateLink);
 
 	form.submit(function(e) {
 
