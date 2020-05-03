@@ -29,4 +29,6 @@ router.post('/edit/activity/:activityId', [ body('name').isLength({ min:5 }),
 
 router.post('/delete/activity/:activityId', activitiesController.postDeleteActivity);
 
+router.post('/complete/activity/:activityId', activitiesController.postCompleteActivity);
+
 module.exports = router; 

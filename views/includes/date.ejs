@@ -10,9 +10,15 @@
 		hours = dt.getHours();
 		minutes = dt.getMinutes();
 
-		if(hours == 0) {
-			hours = 00;
-		} 
+		if(String(hours).length == 1) {
+
+			hours = '0' + String(hours);
+		}
+
+		if(String(minutes).length == 1) {
+
+			minutes = '0' + String(minutes);
+		}
 
 		return `${day} ${date} ${month}, ${hours}:${minutes}`;
 	}

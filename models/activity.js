@@ -3,11 +3,12 @@ const ObjectId = require('mongodb').ObjectId;
 const Action = require('./action');
 
 class Activity {
-	constructor(name, link, description, imageUrl, created_at, userId, milestones) {
+	constructor(name, link, description, imageUrl , created_at, userId, milestones) {
 		this.name = name;
 		this.link = link;
 		this.description = description;
 		this.imageUrl = imageUrl;
+		this.is_completed = false;
 		this.created_at = created_at;
 		this.userId = userId;
 		this.milestones = milestones;
@@ -18,6 +19,19 @@ class Activity {
 
 		const db = getDB();
 		return db.collection('activities').insertOne(this);
+	}
+
+
+	static complete(id, incomplete) {
+
+		const db = getDB();
+
+		if(incomplete) {
+		
+			return db.collection('activities').updateOne({ _id:new ObjectId(id) }, { $set:{is_completed:false} });
+		}
+
+		return db.collection('activities').updateOne({ _id:new ObjectId(id) }, { $set:{is_completed:true} });
 	}
 
 

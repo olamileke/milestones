@@ -172,3 +172,17 @@ exports.postDeleteActivity = (req, res, next) => {
 		console.log(err);
 	})
 }
+
+exports.postCompleteActivity = (req, res, next) => {
+
+	const activityId = req.params.activityId;
+	const incomplete = req.query.incomplete;
+
+	Activity.complete(activityId, incomplete)
+	.then(() => {
+		res.back();
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}

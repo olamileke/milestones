@@ -23,27 +23,43 @@
 				</div>
 			</div>
 		</div>
-		<div class='flex flex-row items-end mb-4'>
-			<a href="#" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1 add__milestone'>Add Milestone</a>
-			<a href="/edit/activity/<%= activity._id %>" class='underline text-sm baloo-bhaina text-gray-800 mr-3'>Edit</a>
-			<form action='/delete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__activity__form'>
-				<button type='submit' class='bg-transparent underline text-sm baloo-bhaina text-gray-800 focus:outline-none'>Delete</button>
-			</form>
+		<div>
+			<div class='flex flex-row items-end mb-4'>
+				<% if(activity.milestones.length > 0) { %>
+					<% if(!activity.is_completed) { %>
+						<form action='/complete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='mr-auto'>
+							<button type='submit' class='bg-transparent underline text-sm baloo-bhaina text-gray-800 focus:outline-none'>Mark Complete</button>
+						</form>	
+					<% } else { %>
+						<form action='/complete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>&incomplete=true' method='POST' class='mr-auto'>
+							<button type='submit' class='bg-transparent underline text-sm baloo-bhaina text-gray-800 focus:outline-none'>Completed</button>
+						</form>	
+					<% } %>
+				<% } %>
+				<% if(!activity.is_completed) { %>
+					<a href="#" class='underline text-sm baloo-bhaina text-gray-800 mr-3 ml-1 add__milestone'>Add Milestone</a>
+				<% } %>
+				<a href="/edit/activity/<%= activity._id %>" class='underline text-sm baloo-bhaina text-gray-800 mr-3'>Edit</a>
+				<form action='/delete/activity/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__activity'>
+					<button type='submit' class='bg-transparent underline text-sm baloo-bhaina text-gray-800 focus:outline-none'>Delete</button>
+				</form>
+			</div>
 		</div>
 
 		<div>
-			<% activity.milestones.reverse().forEach(milestone => { %>
+			<% if(activity.milestones.length > 0) { %>
+				<% activity.milestones.reverse().forEach(milestone => { %>
 
-				<div class='pl-6 sm:px-4 py-4 flex flex-col sm:flex-row odd:items-end sm:items-center bg-white border border-color-005 mb-2 relative group'>
+				<div class='pl-6 sm:px-4 py-4 flex flex-col sm:flex-row sm:items-center bg-white border border-color-005 mb-2 relative group'>
 					<div class='flex flex-row-reverse pr-5 items-center justify-between'>
-						<img src="/<%= milestone.imageUrl %>" class='mb-2 sm:mb-0 object-cover w-12 h-12 rounded mr-5 milestone__image'>
+						<img src="/<%= milestone.imageUrl %>" class='mb-2 sm:mb-0 object-cover w-12 h-12 rounded mr-5 sm:mr-0 milestone__image'>
 						<div class='flex flex-row pr-12 text-gray-700 sm:text-gray-600 sm:hidden'>
 							<button class='focus:outline-none mr-3 underline text-sm edit relative' style='top:-2px;'>Edit</button>
 							<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
 								<button type='submit' class='underline text-sm relative focus:outline-none' style='top:-3px'>Delete</button>
 							</form>
 						</div>
-						<p class='hidden milestone__description'>
+						<p class='hidden milestone__description__sm'>
 						<%= milestone.description %>
 						</p>
 						<p class='milestone__id hidden'><%= milestone._id %></p>
@@ -59,7 +75,15 @@
 					</div>
 				</div>
 				<p class='text-xs mb-2 text-gray-600 text-right pr-2'> <%= getDateString(milestone.created_at) %> </p>
-			<% }) %>
+				<% }) %>
+			<% } else { %>
+				<!-- <div class='pt-16 flex flex-row justify-center'>
+					<div class='flex flex-col items-start'>
+						<img src="/images/activity/clock.svg" width='30px' class='mb-2'>
+						<p class='m-0  text-sm comfortaa text-gray-700'>Tick tock goes the clock. Get achieving and start recording</p>
+					</div>
+				</div> -->
+			<% } %>
 		</div>
 	</div>
 

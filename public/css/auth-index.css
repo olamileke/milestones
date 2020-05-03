@@ -75,6 +75,11 @@ form button[type="submit"]:hover
 	top:-10vh;
 }
 
+.empty__activities__message
+{
+	top:-15%;
+}
+
 
 input:focus, textarea:focus
 {
@@ -115,6 +120,11 @@ input:focus, textarea:focus
 	{
 		bottom:-400px;
 		left:-300px;
+	}
+
+	.empty__activities__message
+	{
+		top:-18%;
 	}
 }
 

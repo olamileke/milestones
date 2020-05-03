@@ -138,7 +138,8 @@ $(document).ready(() => {
 		const milestoneId = milestone.find('.milestone__id').text();
 		const csrfToken = $('.csrf__token').text();
 		const action = 	`/edit/milestone/${milestoneId}?_csrf=${csrfToken}`;
-		const description = milestone.find('.milestone__description').text().trim();
+		let description;
+		screen.width <= 576 ?  description = milestone.find('.milestone__description__sm').text().trim() : description = milestone.find('.milestone__description').text().trim() 
 		const imageUrl =  milestone.find('.milestone__image').attr('src');
 
 		editMilestoneContainer.find('textarea').val(description);
@@ -185,9 +186,9 @@ $(document).ready(() => {
 
 	// confirm delete activity
 
-	const deleteActivityForm = $('.delete__activiy__form');
+	const deleteActivity= $('.delete__activity');
 
-	deleteActivityForm.submit(function(e) {
+	deleteActivity.submit(function(e) {
 		
 		const proceed = confirm('Are you sure you want to delete ?');
 
