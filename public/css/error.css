@@ -1,0 +1,26 @@
+
+.error__parent
+{
+	top:-4vh;
+}
+
+
+.side__motif
+{
+	bottom:-180px;
+	left:-100px;
+}
+
+@media(max-width:576px)
+{
+	.error__parent
+	{
+		top:0;
+	}
+
+	.side__motif
+	{
+		bottom:-130px;
+		left:-92px;
+	}	
+}

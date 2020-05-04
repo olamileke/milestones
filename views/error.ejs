@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= pageTitle %></title>
+		<link rel="stylesheet" type="text/css" href="/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+		<link rel="stylesheet" type="text/css" href="/css/error.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	</head>
+	<body>
+		<div class='w-screen h-screen' style='background:#FBFBFB'>
+			<div class='grid grid-cols-12 h-full flex flex-row items-center'>
+				<div class='col-start-2 col-end-12 lg:col-start-3 lg:col-end-11 flex flex-col-reverse sm:flex-row items-center relative error__parent'>
+					<div class='w-full sm:w-3/6 flex flex-col px-4 sm:pr-8 sm:pl-0 lg:pr-10'>
+						<p class='m-0 my-4 sm:my-0 comfortaa text-4xl sm:text-6xl font-semibold text-center sm:text-left'><%= pageTitle %></p>
+						<p class='m-0 mb-3 baloo-bhaina text-2xl text-center sm:text-left'>Something wrong happened and you ended up here. Don't fret however, simply head on <a href='/'>home</a>.</p>
+					</div>
+					<div class='w-4/6 sm:w-3/6 mb-8 sm:mb-0'>
+						<img src="/images/error/road-sign.svg" class='w-full'>
+					</div>
+				</div>
+			</div>
+
+			<div class='fixed p-24 sm:p-32 text-white rounded-full text-lg baloo-bhaina bg-palette-300 side__motif'>
+			</div>
+		</div>
+	</body>
+</html>

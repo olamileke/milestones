@@ -1,5 +1,6 @@
 const Activity = require('../models/activity');
 const Action = require('../models/action');
+const errorsController = require('./errors');
 const { validationResult } = require('express-validator');
 
 exports.postNewMilestone = (req, res, next) => {
@@ -20,7 +21,7 @@ exports.postNewMilestone = (req, res, next) => {
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -37,7 +38,7 @@ exports.postEditMilestone = (req, res, next) => {
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -51,6 +52,6 @@ exports.postDeleteMilestone = (req, res, next) => {
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }

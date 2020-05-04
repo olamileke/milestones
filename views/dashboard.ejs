@@ -10,8 +10,8 @@
 					yourself, your methods and your end products.
 				</p>
 			</div>
-			<div class='w-2/6 flex flex-col items-center hidden sm:block'>
-				<img src="/images/auth-index/activity.svg" width="150px">
+			<div class='w-2/6 flex flex-col items-end hidden sm:block'>
+				<img src="/images/auth-index/activity.svg" class='relative' width="150px" style='left:calc((100% - 150px)/2)'>
 			</div>
 		</div>
 		<% if(actions.length > 0) { %>
@@ -25,7 +25,7 @@
 								<p class='m-0'>You created a new activity <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
 								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden sm:inline md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 					<% if(action.name == 'Create Milestone') { %>
@@ -35,7 +35,7 @@
 								<p class='m-0'>Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>. "<%= action.milestone.description.slice(0,25) %>..." </a></p>
 								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden sm:inline md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 					<% if(action.name == 'Edit Activity') { %>
@@ -45,7 +45,7 @@
 								<p class='m-0'>You edited <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
 								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
-							<p class='m-0 hidden md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
+							<p class='m-0 hidden sm:inline md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 						</div>
 					<% } %>
 				<% }) %>

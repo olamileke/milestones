@@ -57,16 +57,22 @@ $(document).ready(() => {
 		return true;
 	}
 
-	const validateLink = () => {
+	// const validateLink = () => {
 
-		let val = link.val().split('https://')[1];
-		val ? val = val : val = '';
-		link.val('https://'+val);
-	}
+	// 	const val = link.val();
+
+	// 	if(val.length > 0 && val != 'https://') {
+
+	// 		let url = val.split('https://')[1];
+
+	// 		if(!url && )
+	// 		link.val('https://' + url);
+	// 	}
+	// }
 
 	name.keyup(validateName);
 	description.keyup(validateDescription);
-	link.keyup(validateLink);
+	// link.keyup(validateLink);
 
 	form.submit(function(e) {
 

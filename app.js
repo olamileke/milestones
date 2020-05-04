@@ -18,6 +18,7 @@ const authRoutes = require('./routes/auth');
 const activityRoutes = require('./routes/activities');
 const userRoutes = require('./routes/user');
 const milestoneRoutes = require('./routes/milestones');
+const errorController = require('./controllers/errors');
 
 app = express();
 
@@ -75,7 +76,7 @@ app.use((req, res, next) => {
 			next();
 		})
 		.catch(err => {
-			console.log(err);
+			errorsController.throwError(err, next);
 		})
 	}
 	else {
@@ -111,7 +112,7 @@ app.use((req, res, next) => {
 			})
 		})
 		.catch(err => {
-			console.log(err);
+			errorsController.throwError(err, next);
 		})
 	} else {
 		next();
@@ -123,6 +124,14 @@ app.use(authRoutes);
 app.use(activityRoutes);
 app.use(userRoutes);
 app.use(milestoneRoutes);
+
+// 404 routes
+app.use('/', errorController.get404);
+
+app.use((error, req, res, next) => {
+	
+	res.status(500).render('error', {pageTitle:'500'});
+})
 
 mongoConnect(() => {
 	app.listen(3000);

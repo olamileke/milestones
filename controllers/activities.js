@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
+const errorsController = require('./errors');
 const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
@@ -14,7 +15,7 @@ exports.getDashboard = (req, res, next) => {
 		});
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 
 }
@@ -55,7 +56,7 @@ exports.postCreateActivity = (req, res, next) => {
 		})
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -70,7 +71,7 @@ exports.getActivities = (req, res, next) => {
 		});
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -98,6 +99,9 @@ exports.getActivity = (req, res, next) => {
 		notification:messages[0]
 		});
 	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
 }
 
 exports.getEditActivity = (req, res, next) => {
@@ -124,6 +128,9 @@ exports.getEditActivity = (req, res, next) => {
 		page:'/edit/activity',
 		notification:messages[0]
 		});
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -169,7 +176,7 @@ exports.postDeleteActivity = (req, res, next) => {
 		res.redirect('/activities');
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -183,6 +190,6 @@ exports.postCompleteActivity = (req, res, next) => {
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }

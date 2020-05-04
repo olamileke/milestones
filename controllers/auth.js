@@ -1,6 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check'); 
+const errorsController = require('./errors');
 const User = require('../models/user');
 const rootDirectory = require('../utils/path').rootDirectory;
 
@@ -58,7 +59,7 @@ exports.postSignup = (req, res, next) => {
 		})
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
@@ -118,7 +119,7 @@ exports.postLogin = (req, res, next) => {
 		})
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
