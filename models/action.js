@@ -26,11 +26,15 @@ class Action {
 		return db.collection('actions').find({ userId: new ObjectId(userId) }).count();
 	}
 
+	static deleteMilestoneActions(milestoneId) {
+		const db = getDB();
+		return db.collection('actions').deleteMany({ 'milestone._id':new ObjectId(milestoneId) });
+	}
 
 	static deleteActivityActions(activityId) {
 		const db = getDB();
 		const id = new ObjectId(activityId);
-		return db.collection('actions').deleteMany({ $or:[{ "activity._id":id }, { "milestone.activityId":id }] });
+		return db.collection('actions').deleteMany({ $or:[{ "activity._id":new ObjectId(id) }, { "milestone.activityId":new ObjectId(id) }] });
 	}
 }
 

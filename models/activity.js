@@ -3,7 +3,9 @@ const ObjectId = require('mongodb').ObjectId;
 const Action = require('./action');
 
 class Activity {
+
 	constructor(name, link, description, imageUrl , created_at, userId, milestones) {
+
 		this.name = name;
 		this.link = link;
 		this.description = description;
@@ -116,17 +118,24 @@ class Activity {
 
 		const milestones = [...activity.milestones];
 
-		milestones.forEach(milestone => {
+		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString());
 
-			if(milestone._id.toString() === milestoneId.toString()) {
+		if(typeof idx == "number") {
 
-				milestone.description = description;
-				imageUrl ? milestone.imageUrl = imageUrl : '';
-			}
-		})
+			milestones[idx].description = description;
+			imageUrl ? milestone.imageUrl = imageUrl : '';
+		}
 
 		const db = getDB();
-		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} });
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} })
+		.then(() => {
+
+			const milestone = milestones[idx];
+			milestone['activityId'] = activity._id;
+			milestone['activityName'] = activity.name;
+			const action = new Action('Edit Milestone', activity.userId, Date.now(), milestone);
+			return action.save();
+		})
 	}
 
 
@@ -139,7 +148,11 @@ class Activity {
 		milestones.splice(idx, 1);
 
 		const db = getDB();
-		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} });
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} })
+		.then(() => {
+
+			return Action.deleteMilestoneActions(milestoneId);
+		})
 	}
 }
 
