@@ -67,12 +67,14 @@
 					<p class='m-0 text-gray-700 sm:text-gray-600 text-sm mr-2 milestone__description sm:w-3/4'>
 						<%= milestone.description %>
 					</p>
-					<div class='transition-all duration-300 ease-in absolute hidden flex-row top-0 right-0 h-full flex flex-row items-center mr-2 sm:group-hover:flex'>
-						<i class='fas fa-edit edit text-xs text-gray-600 mr-3 cursor-pointer'></i>
-						<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
-							<button type='submit' class='focus:outline-none w-6 h-6 rounded-md flex flex-row justify-center items-center' style='background:rgba(0,0,0,0.03)'><i class='fas fa-trash text-xs text-gray-600'></i></button>
-						</form>
-					</div>
+					<% if(!activity.is_completed) { %>
+						<div class='transition-all duration-300 ease-in absolute hidden sm:block lg:hidden flex-row top-0 right-0 h-full flex flex-row items-center mr-2 sm:group-hover:flex'>
+							<i class='fas fa-edit edit text-xs text-gray-600 mr-3 cursor-pointer'></i>
+							<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
+								<button type='submit' class='focus:outline-none w-6 h-6 rounded-md flex flex-row justify-center items-center' style='background:rgba(0,0,0,0.03)'><i class='fas fa-trash text-xs text-gray-600'></i></button>
+							</form>
+						</div>
+					<% } %>
 				</div>
 				<p class='text-xs mb-2 text-gray-600 text-right pr-2'> <%= getDateString(milestone.created_at) %> </p>
 				<% }) %>

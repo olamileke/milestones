@@ -38,6 +38,11 @@ form button[type="submit"]:hover
 	border-color:#c5979d;
 }
 
+.scale
+{
+	transform:scale(70);
+}
+
 .file__notif
 {
 	top:-30px;

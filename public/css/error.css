@@ -11,6 +11,17 @@
 	left:-100px;
 }
 
+
+@media(max-width:1024px)
+{
+	.side__motif
+	{
+		bottom:-150px;
+		left:-70px;
+	}	
+}
+
+
 @media(max-width:576px)
 {
 	.error__parent

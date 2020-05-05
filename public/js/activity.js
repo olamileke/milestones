@@ -22,7 +22,7 @@ $(document).ready(() => {
 
 	addClose.click(function() {
 
-		addMilestoneContainer.removeClass('z-50 opacity-100').addClass('z-0 opacity-0');
+		addMilestoneContainer.removeClass('z-50 opacity-100').addClass('z--9999 opacity-0');
 		body.removeClass('overflow-y-hidden');
 	})
 

@@ -77,4 +77,19 @@ $(document).ready(() => {
 	}
 
 	setPercentage();
+
+
+	const navToggle = $('.nav__toggle');
+	const navigation = $('.navigation__sm');
+
+	navToggle.click(function() {
+
+		if(navigation.hasClass('w-0')) {
+
+			navigation.removeClass('w-0 h-0 hidden').addClass('w-screen h-screen fixed');
+			return;
+		}
+
+		navigation.removeClass('w-screen h-screen fixed').addClass('w-0 h-0 hidden');
+	})
 })

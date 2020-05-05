@@ -11,11 +11,30 @@
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
-				<div class='py-8 lg:py-5 pr-4 sm:pr-16 quicksand col-span-12 flex flex-row justify-end items-center'>
+				<div class='hidden w-0 h-0 navigation__sm top-0 right-0 z-40 flex flex-row justify-center items-center' style='background:#FBFBFB'>
+					<ul class='baloo-bhaina text-2xl sm:text-4xl text-center'>
+						<li class='mb-8'>
+							<a href="/dashboard" class="<%= path == '/dashboard' ? 'text-palette-300 font-semibold' : '' %>">Dashboard</a>
+						</li>
+						<li class='mb-8'>
+							<a href="/create/activity" class="<%= path == '/create/activity' ? 'text-palette-300 font-semibold' : '' %>">Create Activity</a>
+						</li>
+						<li class='mb-8'>
+							<a href="/activities" class="<%= path == '/activities' ? 'text-palette-300 font-semibold' : '' %>">Activities</a>
+						</li>
+						<li class='mb-8'>
+							<a href="#">Visualizations</a>
+						</li>
+						<li class='mb-8'>
+							<a href="#">File Downloads</a>
+						</li>
+					</ul>
+				</div>
+				<div class='py-8 lg:py-5 pr-4 sm:pr-8 quicksand col-span-12 flex flex-row justify-end items-center'>
 					<div class='flex flex-row items-center mr-3 lg:mr-0'>
 						<div class='flex flex-row items-center mr-3 relative'>
 							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full' alt='<%= user.name %>'>
-							<p class='m-0 mt-1 text-gray-600 text-sm sm:text-xs mr-3 cursor-pointer flex flex-col items-center nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
+							<p class='m-0 mt-1 text-gray-600 text-sm lg:text-xs mr-3 cursor-pointer flex flex-col items-center nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
 							<i class='mt-1 fa fa-caret-down text-gray-600 nav__options__toggle'></i>
 							<div class='absolute transition-all duration-500 ease-in-out px-2 mt-20 opacity-0 rounded-lg flex flex-col items-center bg-white text-sm nav__options text-gray-600 z-50 border border-color-005' style='top:1px;background:rgba(0,0,0,0.5); border-top-color:transparent;'>
 								<a href='#' class='outline-none pt-4 pb-0 text-center text-white file__trigger'>change picture</a>
@@ -26,7 +45,7 @@
 								<a href="/logout" class='outline-none pt-3 pb-4 text-center text-white'>logout</a>
 							</div>
 						</div> 
-						<div class='lg:hidden w-12 h-12 flex flex-row justify-center items-center rounded-full bg-palette-300'>
+						<div class='lg:hidden w-12 h-12 flex flex-row justify-center items-center rounded-full bg-palette-300 nav__toggle z-40'>
 							<i class='fas fa-bars text-white'></i>
 						</div>
 					</div>
@@ -54,6 +73,7 @@
 					<p class='m-0 text-2xl baloo-bhaina relative' style='left:40px;top:-15px;'>Milestones</p>
 				</div>
 				<div class='col-start-2 col-end-12 lg:col-start-4 lg:col-end-10 quicksand flex flex-col justify-center lg:justify-start relative'>
+
 
 					
 

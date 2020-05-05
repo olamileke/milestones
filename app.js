@@ -9,10 +9,8 @@ const csrf = require('csurf');
 const multer = require('multer');
 const config = require('./utils/config');
 const res_back = require('express-back');
-const User = require('./models/user');
-const Activity = require('./models/activity');
-const Action = require('./models/action');
 
+const middlewares = require('./middlewares/middlewares');
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const activityRoutes = require('./routes/activities');
@@ -24,39 +22,9 @@ app = express();
 
 const store = new MongoDBStore({uri:config.connectionString, collection:'sessions'});
 const csrfProtection = csrf();
-const fileStorage = multer.diskStorage({
-	destination:(req, file, cb) => {
-		const url = req.url;
-
-		if(url.includes('avatar')) {
-			cb(null, path.join('images','users'));
-		}
-
-		if(url.includes('activity')) {
-			cb(null, path.join('images','activities'));
-		}
-
-		if(url.includes('milestone')) {
-			cb(null, path.join('images','milestones'));
-		}
-	},
-	filename:(req, file, cb) => {
-		cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);		
-	}
-})
-
-const fileFilter = (req, file, cb) => {
-	const mimeType = file.mimetype.toLowerCase();
-
-	if(mimeType == 'image/png' || mimeType == 'image/jpg' || mimeType == 'image/jpeg') {
-		return cb(null, true);
-	}
-
-	return cb(null, false);
-}
 
 app.use(bodyParser.urlencoded({ extended:false }));
-app.use(multer({ storage:fileStorage, fileFilter:fileFilter }).single('image'));
+app.use(multer({ storage:middlewares.fileStorage, fileFilter:middlewares.fileFilter }).single('image'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:config.secretString, saveUninitialized:false, resave:false, store:store}));
@@ -68,57 +36,12 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // setting the authenticated user in the request object
-app.use((req, res, next) => {
-	if(req.session.userId) {
-		User.findById(req.session.userId)
-		.then(user => {
-			req.user = user;
-			next();
-		})
-		.catch(err => {
-			errorsController.throwError(err, next);
-		})
-	}
-	else {
-		next();
-	}
-})
+app.use(middlewares.setUser);
 
-app.use((req, res, next) => {
-	res.locals.csrfToken = req.csrfToken();
-	res.locals.page = null;
+// fetching data to be sent to every view
+app.use(middlewares.fetchData);
 
-	if(req.session.userId) {
-		res.locals.user = req.user;
-
-		Activity.getStats(req.session.userId)
-		.then(stats => {
-			res.locals.activityCount = stats.activities.length;
-			res.locals.completedActivityCount = stats.completed;
-			res.locals.uncompletedActivityCount = stats.uncompleted;
-
-			res.locals.milestonesCount = 0;
-			stats.activities.forEach(activity => {
-				res.locals.milestonesCount += activity.milestones.length;
-			})
-			return;
-		})
-		.then(() => {
-
-			Action.getCount(req.session.userId)
-			.then(result => {
-				res.locals.actionCount = result;
-				next();
-			})
-		})
-		.catch(err => {
-			errorsController.throwError(err, next);
-		})
-	} else {
-		next();
-	}
-})
-
+// app routes
 app.use(indexRoutes);
 app.use(authRoutes);
 app.use(activityRoutes);
@@ -129,7 +52,7 @@ app.use(milestoneRoutes);
 app.use('/', errorController.get404);
 
 app.use((error, req, res, next) => {
-	
+	console.log(error);	
 	res.status(500).render('error', {pageTitle:'500'});
 })
 
