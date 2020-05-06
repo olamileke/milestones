@@ -3,23 +3,22 @@
 
 	<div class='lg:px-6 sm:pt-24 lg:pt-0 z-30'>
 		<div class='flex flex-row items-center mb-3 p-6 sm:rounded' style="background:#f2efea;">
-			<div class='w-full sm:w-4/6 mr-6 flex flex-col'>
-				<p class='m-0 mb-3 text-md font-semibold' style='color:#8E5572;'>Record the process as you enhance and better yourself</p>
-				<p class='quicksand text-sm' style='color:#8E5572;'>
-					Keep track of yourself and your growth journey as you go about the never ending process of improving
-					yourself, your methods and your end products.
+			<div class='w-full sm:w-4/6 mr-6 flex flex-col comfortaa'>
+				<p class='m-0 mb-3' style='color:#8E5572;font-size:0.925rem;'>Record the process as you enhance and better yourself</p>
+				<p style='color:#8E5572; font-size:0.84rem'>
+					Keep track of yourself and your growth journey as you go about the never ending process of improving yourself and your processes.
 				</p>
 			</div>
 			<div class='w-2/6 flex flex-col items-end hidden sm:block'>
-				<img src="/images/auth-index/activity.svg" class='relative' width="150px" style='left:calc((100% - 150px)/2)'>
+				<img src="/images/auth-index/activity.svg" class='relative' width="120px" style='left:calc((100% - 120px)/2)'>
 			</div>
 		</div>
 		<% if(actions.length > 0) { %>
-			<div class='sm:rounded-md quicksand'>
-				<p class='mt-5 mb-2 baloo-bhaina text-lg text-gray-700'>Recent actions</p>
+			<div class='quicksand'>
+				<p class='mt-5 mb-2 comfortaa text-sm text-gray-700'>Recent actions</p>
 				<% actions.forEach(action => {  %>
 					<% if(action.name == 'Create Activity') { %>
-						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-3'>
 							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-700 sm:text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
 								<p class='m-0'>You created a new activity <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
@@ -29,7 +28,7 @@
 						</div>
 					<% } %>
 					<% if(action.name == 'Create Milestone') { %>
-						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-3'>
 							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-700 sm:text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
 								<p class='m-0'>Milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>.</a> "<%= action.milestone.description.slice(0,25) %>..."</p>
@@ -39,7 +38,7 @@
 						</div>
 					<% } %>
 					<% if(action.name == 'Edit Activity') { %>
-						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-3'>
 							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-700 sm:text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
 								<p class='m-0'>You edited <a href='/activity/<%= action.activity._id %>'><%= action.activity.name %></a></p>
@@ -49,10 +48,10 @@
 						</div>
 					<% } %>
 					<% if(action.name == 'Edit Milestone') { %>
-						<div class='bg-white rounded-md border border-color-005 flex flex-row items-center p-4 relative mb-2'>
+						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
 							<div class='text-gray-700 sm:text-gray-600 mr-5 mt-1' style='font-size:0.92rem;'>
-								<p class='m-0'>Milestone edited in<a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>.</a> "<%= action.milestone.description.slice(0,25) %>..."</p>
+								<p class='m-0'>Milestone edited in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName %>.</a> "<%= action.milestone.description.slice(0,25) %>..."</p>
 								<p class='m-0 md:hidden text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>
 							</div>
 							<p class='m-0 hidden sm:inline md:absolute top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p>

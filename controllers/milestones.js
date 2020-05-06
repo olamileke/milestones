@@ -35,8 +35,12 @@ exports.postEditMilestone = (req, res, next) => {
 	Activity.editMilestone(req.session.currentActivity, milestoneId, description, imageUrl)
 	.then(() => {
 
+		return Action.updateMilestone(milestoneId, description, imageUrl);
+	})
+	.then(() => {
+		
 		req.flash('message', {class:'success', message:'Milestone edited successfully'});
-		res.back();
+		res.back();  
 	})
 	.catch(err => {
 		errorsController.throwError(err, next);

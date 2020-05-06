@@ -10,7 +10,7 @@ class Action {
 		this.created_at = created_at;
 		name.toLowerCase().includes('activity') ? this.activity = action : this.milestone = action;
 	}
-
+ 
 	save() {
 		const db = getDB();
 		return db.collection('actions').insertOne(this);
@@ -26,6 +26,30 @@ class Action {
 		return db.collection('actions').find({ userId: new ObjectId(userId) }).count();
 	}
 
+	static updateActivity(activity) {
+		const db = getDB();
+		return db.collection('actions')
+		.updateMany({ "activity._id":new ObjectId(activity._id) } , { $set:{ activity:activity } })
+		.then(() => {
+
+			return db.collection('actions')
+			.updateMany({ "milestone.activityId":new ObjectId(activity._id) }, { $set:{'milestone.activityName':activity.name} });
+		})
+	}
+
+	static updateMilestone(milestoneId, description, imageUrl) {
+
+		const db = getDB();
+
+		if(imageUrl) {
+			return db.collection('actions')
+			.updateMany({ "milestone._id":new ObjectId(milestoneId) }, { $set:{ "milestone.description":description, "milestone.imageUrl":imageUrl } });
+		}
+
+		return db.collection('actions')
+		.updateMany({ "milestone._id":new ObjectId(milestoneId) }, { $set:{ "milestone.description":description } });
+	}
+
 	static deleteMilestoneActions(milestoneId) {
 		const db = getDB();
 		return db.collection('actions').deleteMany({ 'milestone._id':new ObjectId(milestoneId) });
@@ -36,6 +60,7 @@ class Action {
 		const id = new ObjectId(activityId);
 		return db.collection('actions').deleteMany({ $or:[{ "activity._id":new ObjectId(id) }, { "milestone.activityId":new ObjectId(id) }] });
 	}
+
 }
 
 

@@ -135,7 +135,7 @@ exports.getEditActivity = (req, res, next) => {
 }
 
 exports.postEditActivity = (req, res, next) => {
-
+ 
 	const errors = validationResult(req);
 
 	if(!errors.isEmpty()) {
@@ -155,11 +155,16 @@ exports.postEditActivity = (req, res, next) => {
 		return action.save();
 	})
 	.then(() => {
+		
+		return Action.updateActivity(currentActivity);
+	})
+	.then(() => {
+
 		req.flash('message', {class:'success', message:'Updated successfully'});
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 }
 
