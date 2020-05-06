@@ -1,6 +1,7 @@
 const getDB = require('../utils/database').getDB;
 const ObjectId = require('mongodb').ObjectId;
 const Action = require('./action');
+const file = require('../utils/file');
 
 class Activity {
 
@@ -50,23 +51,20 @@ class Activity {
 		let activities;
 
 		return Activity.getAll(userId)
-				.then(result => {
-					
-					activities =  result;
-				})
-				.then(() => {
+		.then(result => {
+			
+			activities =  result;
+		})
+		.then(() => {
 
-					const db = getDB();
-					return db.collection('activities').find({ is_completed:true }).count();
-				})
-				.then(completedCount => {
+			const db = getDB();
+			return db.collection('activities').find({ is_completed:true }).count();
+		})
+		.then(completedCount => {
 
-					const uncompletedCount = activities.length - completedCount;
-					return { activities:activities, completed:completedCount, uncompleted:uncompletedCount };
-				})
-				.catch(err => {
-					console.log(err);
-				})
+			const uncompletedCount = activities.length - completedCount;
+			return { activities:activities, completed:completedCount, uncompleted:uncompletedCount };
+		})
 	}
 
 
@@ -84,10 +82,19 @@ class Activity {
 	}
 
 
-	static delete(activityId) {
+	static delete(activity) {
 
 		const db = getDB();
-		return db.collection('activities').deleteOne({ _id:new ObjectId(activityId) });
+
+		const imagePaths = activity.milestones.map(milestone => milestone.imageUrl);
+
+		imagePaths.push(activity.imageUrl);
+
+		// deleting the activity and milestone images 
+
+		file.deleteFiles(imagePaths);
+
+		return db.collection('activities').deleteOne({ _id:new ObjectId(activity._id) });
 	}
 
 	static addMilestone(activity, description, imageUrl, userId) {

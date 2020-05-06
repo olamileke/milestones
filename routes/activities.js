@@ -32,4 +32,6 @@ router.post('/delete/activity/:activityId', activitiesController.postDeleteActiv
 
 router.post('/complete/activity/:activityId', activitiesController.postCompleteActivity);
 
+router.get('/download', activitiesController.getFileDownloads);
+
 module.exports = router; 

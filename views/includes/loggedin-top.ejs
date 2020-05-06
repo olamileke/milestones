@@ -26,7 +26,7 @@
 							<a href="#">Visualizations</a>
 						</li>
 						<li class='mb-8'>
-							<a href="#">File Downloads</a>
+							<a href="/download" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : '' %>">File Downloads</a>
 						</li>
 					</ul>
 				</div>
@@ -64,8 +64,8 @@
 						<li class='<%= path === "/visualizations" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
 							<i class='fa fa-wave-square mr-3'></i> <a href='/visualizations' class='outline-none'>Visualizations</a>
 						</li>
-						<li class='<%= path === "/file" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
-							<i class='fa fa-file mr-5'></i> <a href='/logout' class='outline-none'>File Downloads</a>
+						<li class='<%= path === "/download" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<i class='fa fa-file mr-5'></i> <a href='/download' class='outline-none'>File Downloads</a>
 						</li>
 					</ul>
 				</div>

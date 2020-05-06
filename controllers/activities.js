@@ -172,7 +172,7 @@ exports.postDeleteActivity = (req, res, next) => {
 
 	const activityId = req.params.activityId;
 
-	Activity.delete(activityId)
+	Activity.delete(req.session.currentActivity)
 	.then(() => {
 
 		return Action.deleteActivityActions(activityId);
@@ -198,3 +198,21 @@ exports.postCompleteActivity = (req, res, next) => {
 		errorsController.throwError(err, next);
 	})
 }
+
+exports.getFileDownloads = (req, res, next) => {
+
+	Activity.getAll(req.user._id)
+	.then(activities => {
+
+		res.render('file-download', {
+		pageTitle:'Download',
+		path:'/download',
+		activities:activities
+		});
+	})
+	.catch(err => {
+
+		throwError(err, next);
+	})
+}
+	

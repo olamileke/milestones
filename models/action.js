@@ -60,7 +60,6 @@ class Action {
 		const id = new ObjectId(activityId);
 		return db.collection('actions').deleteMany({ $or:[{ "activity._id":new ObjectId(id) }, { "milestone.activityId":new ObjectId(id) }] });
 	}
-
 }
 
 
