@@ -162,7 +162,7 @@ $(document).ready(() => {
 
 	editClose.click(function() {
 
-		editMilestoneContainer.removeClass('z-50 opacity-100').addClass('z-0 opacity-0');
+		editMilestoneContainer.removeClass('z-50 opacity-100').addClass('z--9999 opacity-0');
 		body.removeClass('overflow-y-hidden');
 	})
 

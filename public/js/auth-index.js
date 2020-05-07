@@ -77,19 +77,22 @@ $(document).ready(() => {
 	}
 
 	setPercentage();
-
+ 
 
 	const navToggle = $('.nav__toggle');
 	const navigation = $('.navigation__sm');
+	const body = $('body');
 
 	navToggle.click(function() {
 
-		if(navigation.hasClass('w-0')) {
+		if(navigation.hasClass('opacity-0')) {
 
-			navigation.removeClass('w-0 h-0 hidden').addClass('w-screen h-screen fixed');
+			navigation.removeClass('opacity-0 z--9999').addClass('opacity-100 z-40');
+			body.addClass('overflow-y-hidden');
 			return;
 		}
 
-		navigation.removeClass('w-screen h-screen fixed').addClass('w-0 h-0 hidden');
+		navigation.removeClass('opacity-100 z-40').addClass('opacity-0 z--9999');
+		body.removeClass('overflow-y-hidden');
 	})
 })

@@ -37,7 +37,7 @@ exports.postEditMilestone = (req, res, next) => {
 
 		return Action.updateMilestone(milestoneId, description, imageUrl);
 	})
-	.then(() => {
+	.then(() => { 
 		
 		req.flash('message', {class:'success', message:'Milestone edited successfully'});
 		res.back();  

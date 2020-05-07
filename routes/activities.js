@@ -34,4 +34,6 @@ router.post('/complete/activity/:activityId', activitiesController.postCompleteA
 
 router.get('/download', activitiesController.getFileDownloads);
 
+router.post('/download', activitiesController.postFileDownloads);
+
 module.exports = router; 

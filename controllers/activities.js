@@ -2,6 +2,10 @@ const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
 const errorsController = require('./errors');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+const path = require('path');
+const file = require('../utils/file');
 const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
@@ -202,7 +206,9 @@ exports.postCompleteActivity = (req, res, next) => {
 exports.getFileDownloads = (req, res, next) => {
 
 	Activity.getAll(req.user._id)
-	.then(activities => {
+	.then(result => {
+
+		const activities = result.filter(activity => activity.milestones.length > 0);
 
 		res.render('file-download', {
 		pageTitle:'Download',
@@ -215,4 +221,17 @@ exports.getFileDownloads = (req, res, next) => {
 		throwError(err, next);
 	})
 }
-	
+
+exports.postFileDownloads = (req, res, next) => {
+
+	const activityId = req.body.activityId;
+
+	Activity.findById(activityId)
+	.then(activity => {
+
+		return file.download(activity, req, res);
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
+}

@@ -2,7 +2,7 @@
 <%- include('includes/date.ejs') %>
 
 	<% if(notification) { %>
-		<div class='w-full lg:w-5/6 self-center alert alert-<%= notification.class %> mb-3 z-20'>
+		<div class='w-full lg:w-5/6 self-center alert alert-<%= notification.class %> z-20'>
 			<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
 		</div>
 	<% } %>

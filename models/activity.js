@@ -130,7 +130,12 @@ class Activity {
 		if(typeof idx == "number") {
 
 			milestones[idx].description = description;
-			imageUrl ? milestone.imageUrl = imageUrl : '';
+			if(imageUrl) {
+
+				const prevImage = milestones[idx].imageUrl;
+				file.deleteFiles([prevImage]);
+				milestones[idx].imageUrl = imageUrl;
+			}
 		}
 
 		const db = getDB();
@@ -151,6 +156,8 @@ class Activity {
 		const milestones = [...activity.milestones];
 
 		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString() );
+
+		file.deleteFiles([milestones[idx].imageUrl]);
 
 		milestones.splice(idx, 1);
 
