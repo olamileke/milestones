@@ -65,9 +65,10 @@ exports.postSignup = (req, res, next) => {
 
 exports.getLogin = (req, res, next) => {
 	const messages = req.flash('message');
+	console.log(messages);
 	let oldInput = {email:'', password:''};
 
-	if(messages.length > 0) {
+	if(messages.length > 0 && !messages[0].message.includes('session')) {
 		oldInput = messages[1];
 	}
 	res.render('auth/login',{
@@ -112,8 +113,8 @@ exports.postLogin = (req, res, next) => {
 			}
 
 			req.session.regenerate(() => {
-				console.log(user);
 				req.session.userId = user._id;
+				req.session.cookieExpiry = new Date().getTime() + 86400000;
 				return res.redirect('/dashboard');
 			})
 		})

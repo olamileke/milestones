@@ -1,6 +1,6 @@
 <%- include('includes/loggedin-top.ejs') %>
 
-<div class='w-screen flex flex-row justify-center sm:block sm:w-5/6 self-center sm:pt-24 lg:pt-0 z-30'>
+<div class='w-screen flex flex-row justify-center sm:block sm:w-5/6 self-center sm:pt-24 lg:pt-0 z-20'>
 	<% if(notification) { %>
 		<div class='col-span-12 alert alert-<%= notification.class %>'>
 			<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>

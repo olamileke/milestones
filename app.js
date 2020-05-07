@@ -24,16 +24,28 @@ const store = new MongoDBStore({uri:config.connectionString, collection:'session
 const csrfProtection = csrf();
 
 app.use(bodyParser.urlencoded({ extended:false }));
+
 app.use(multer({ storage:middlewares.fileStorage, fileFilter:middlewares.fileFilter }).single('image'));
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:config.secretString, saveUninitialized:false, resave:false, store:store}));
+
+app.use(session({secret:config.secretString, saveUninitialized:false,
+resave:false, store:store, cookie:{ expiry:86400000 }}));
+
 app.use(csrfProtection);
+
 app.use(flash());
+
 app.use(res_back());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+
+// checking if the session has expired
+app.use(middlewares.checkSessionExpiry);
 
 // setting the authenticated user in the request object
 app.use(middlewares.setUser);
@@ -57,5 +69,5 @@ app.use((error, req, res, next) => {
 })
 
 mongoConnect(() => {
-	app.listen(5000);
+	app.listen(3000);
 })

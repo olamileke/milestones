@@ -2,12 +2,12 @@
 <%- include('includes/date.ejs') %>
 
 	<% if(notification) { %>
-		<div class='w-full lg:w-5/6 self-center alert alert-<%= notification.class %> mb-3 z-10'>
+		<div class='w-full lg:w-5/6 self-center alert alert-<%= notification.class %> mb-3 z-20'>
 			<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
 		</div>
 	<% } %>
 
-	<div class='w-full lg:w-5/6 self-center z-10 pt-2 sm:pt-8'>
+	<div class='w-full lg:w-5/6 self-center z-10 pt-2 sm:pt-8 z-20'>
 		<p class='csrf__token hidden'><%= csrfToken %></p>
 		<div class='bg-white border border-color-005 flex flex-col sm:flex-row sm:items-center p-4 mb-3 relative'>
 			<div class='flex flex-row items-center justify-between pr-5'>

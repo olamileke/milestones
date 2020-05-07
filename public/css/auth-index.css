@@ -33,15 +33,18 @@ html
 	left:-290px;
 }
 
+.side__motif__error
+{
+	top:unset;
+	bottom:-400px;
+	left:-270px;
+}
+
 form button[type="submit"]:hover
 {
 	border-color:#c5979d;
 }
 
-.scale
-{
-	transform:scale(70);
-}
 
 .file__notif
 {
@@ -68,6 +71,10 @@ form button[type="submit"]:hover
 	display:block;
 }
 
+.error__parent
+{
+	top:-4vh;
+}
 
 .z--9999
 {
@@ -94,7 +101,7 @@ input:focus, textarea:focus
 
 @media(max-width:1025px)
 {
-	.side__motif
+	.side__motif, .side__motif__error
 	{
 		top:unset;
 		bottom:-250px;
@@ -105,31 +112,10 @@ input:focus, textarea:focus
 
 @media(max-width:1025px)
 {
-	.side__motif
+	.side__motif, .side__motif__error
 	{
 		bottom:-375px;
 		left:-250px;
-	}
-}
-
-
-
-@media(max-width:576px)
-{
-	.create__parent
-	{
-		width:90%;
-	}
-
-	.side__motif
-	{
-		bottom:-400px;
-		left:-300px;
-	}
-
-	.empty__activities__message
-	{
-		top:-18%;
 	}
 }
 
@@ -139,6 +125,30 @@ input:focus, textarea:focus
 	.activity__dialog
 	{
 		width:350px;
+	}
+}
+
+@media(max-width:576px)
+{
+	.error__parent
+	{
+		top:0;
+	}
+
+	.create__parent
+	{
+		width:90%;
+	}
+
+	.side__motif, .side__motif__error
+	{
+		bottom:-400px;
+		left:-300px;
+	}
+
+	.empty__activities__message
+	{
+		top:-18%;
 	}
 }
 
