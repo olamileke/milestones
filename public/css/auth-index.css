@@ -50,12 +50,13 @@ form button[type="submit"]:hover
 {
 	top:-30px;
 	left:-3%;
+	background:rgba(0,0,0,0.55);
 }
 
 .file__notif.visible
 {
 	opacity:1;
-	top:-35px;
+	top:-39px;
 }
 
 .file__notif::after
@@ -69,6 +70,17 @@ form button[type="submit"]:hover
 	border-left-color:transparent;
 	border-bottom-color:transparent;
 	display:block;
+}
+
+
+.file__notif.activity.visible
+{
+	top:-37px;
+}
+
+.file__notif.activity::after
+{
+	left:40%;
 }
 
 .error__parent

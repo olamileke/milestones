@@ -10,6 +10,11 @@
 		border-color: rgba(0,0,0,0.05);
 		font-family:'Baloo Bhaina 2', cursive;
 	}
+
+	.file__notif
+	{
+		@apply transition-all opacity-0 duration-500 ease-in absolute text-xs z-10 text-white p-2 rounded-md;	
+	}
 }
 
 @tailwind utilities;

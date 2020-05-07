@@ -8,6 +8,7 @@ $(document).ready(() => {
 	const addMilestone = $('.add__milestone');
 	const addMilestoneContainer = $('.add__milestone__container');
 	const addClose = addMilestoneContainer.find('.close');
+	const addFileNotif = addMilestoneContainer.find('.file__notif');
 
 	addMilestone.click(function() {
 
@@ -40,12 +41,12 @@ $(document).ready(() => {
 
 	addMilestoneFileInput.change(() => {
 
-		previewImage(addMilestoneFileInput, addMilestonePreview);
+		previewImage(addMilestoneFileInput, addMilestonePreview, addFileNotif);
 	})
 
-	const previewImage = (fileInput, image) => {
+	const previewImage = (fileInput, image, notif) => {
 
-		if(validateFile(fileInput, image)) {
+		if(validateFile(fileInput, image, notif)) {
 			const reader = new FileReader();
 
 			reader.onload = e => {
@@ -57,7 +58,7 @@ $(document).ready(() => {
 		}
 	}
 
-	const validateFile = (fileInput, image) => {
+	const validateFile = (fileInput, image, notif) => {
 
 		const files = fileInput.prop('files');
 
@@ -68,14 +69,18 @@ $(document).ready(() => {
 		if(!allowedExtensions.includes(files[0].type.toLowerCase())) {
 			fileInput.val('');
 			image.addClass('w-0 h-6').removeClass('w-12 h-12  mr-3');
+			notif.removeClass('opacity-0').addClass('opacity-100 visible').text('Invalid file format');
 			return false;
 		}
 
 		if(files[0].size > 6000000) {
 			fileInput.val('');
 			image.addClass('w-0 h-6').removeClass('w-12 h-12  mr-3');
+			notif.removeClass('opacity-0').addClass('opacity-100 visible').text('Image too large!');
 			return false;
 		}
+
+		notif.removeClass('opacity-100 visible').addClass('opacity-0');
 
 		return true;
 	}
@@ -131,6 +136,7 @@ $(document).ready(() => {
 	const editTrigger = editMilestoneContainer.find('.milestone__trigger')
 	const editMilestoneFileInput = editMilestoneContainer.find('.milestone__file__input');
 	const editMilestonePreview= editMilestoneContainer.find('.milestone__preview');
+	const editFileNotif = editMilestoneContainer.find('.file__notif');
 
 	const setMilestoneDetails = element => {
 
@@ -173,7 +179,7 @@ $(document).ready(() => {
 
 	editMilestoneFileInput.change(() => {
 
-		previewImage(editMilestoneFileInput, editMilestonePreview);
+		previewImage(editMilestoneFileInput, editMilestonePreview, editFileNotif);
 	})
 
 	editForm.submit(function(e) {

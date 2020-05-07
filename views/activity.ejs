@@ -98,8 +98,10 @@
 			<form  action='/create/milestone/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='py-3 px-5' enctype='multipart/form-data'>
 				<div class='flex flex-row items-end mb-3'>
 					<img src="" class='rounded-md w-0 h-8 object-cover milestone__preview'>
-					<div>
+					<div class='relative w-32'>
 						<a href="#" class='underline text-gray-700 baloo-bhaina milestone__trigger'>add image</a>
+						<div class='file__notif activity'>
+						</div>
 					</div>
 					<input type="file" name="image" class='hidden milestone__file__input'>
 				</div>
@@ -125,8 +127,10 @@
 			<form  action='/edit/milestone/<%= activity._id %>?_csrf=<%= csrfToken %>' method='POST' class='py-3 px-5' enctype='multipart/form-data'>
 				<div class='flex flex-row items-end mb-3'>
 					<img src="" class='rounded-md w-12 h-12 mr-3 object-cover milestone__preview'>
-					<div>
+					<div class='relative w-32'>
 						<a href="#" class='underline text-gray-700 baloo-bhaina milestone__trigger'>change image</a>
+						<div class='file__notif activity'>
+						</div>
 					</div>
 					<input type="file" name="image" class='hidden milestone__file__input'>
 				</div>

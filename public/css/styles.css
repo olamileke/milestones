@@ -634,6 +634,22 @@ video {
   font-family:'Baloo Bhaina 2', cursive;
 }
 
+.file__notif
+	{
+  transition-property: all;
+  opacity: 0;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  position: absolute;
+  font-size: 0.75rem;
+  z-index: 10;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
@@ -21472,6 +21488,22 @@ video {
     border-radius: 0.25rem;
     border-color: rgba(0,0,0,0.05);
     font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .sm\:file__notif
+	{
+    transition-property: all;
+    opacity: 0;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    position: absolute;
+    font-size: 0.75rem;
+    z-index: 10;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    padding: 0.5rem;
+    border-radius: 0.375rem;
   }
 
   .sm\:space-y-0 > :not(template) ~ :not(template) {
@@ -42315,6 +42347,22 @@ video {
     font-family:'Baloo Bhaina 2', cursive;
   }
 
+  .md\:file__notif
+	{
+    transition-property: all;
+    opacity: 0;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    position: absolute;
+    font-size: 0.75rem;
+    z-index: 10;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+  }
+
   .md\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
@@ -63156,6 +63204,22 @@ video {
     font-family:'Baloo Bhaina 2', cursive;
   }
 
+  .lg\:file__notif
+	{
+    transition-property: all;
+    opacity: 0;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    position: absolute;
+    font-size: 0.75rem;
+    z-index: 10;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+  }
+
   .lg\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
@@ -83995,6 +84059,22 @@ video {
     border-radius: 0.25rem;
     border-color: rgba(0,0,0,0.05);
     font-family:'Baloo Bhaina 2', cursive;
+  }
+
+  .xl\:file__notif
+	{
+    transition-property: all;
+    opacity: 0;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    position: absolute;
+    font-size: 0.75rem;
+    z-index: 10;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    padding: 0.5rem;
+    border-radius: 0.375rem;
   }
 
   .xl\:space-y-0 > :not(template) ~ :not(template) {

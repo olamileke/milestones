@@ -20,7 +20,7 @@ exports.deleteFiles = paths => {
 
 exports.download = (activity, req, res) => {
 
-	const filename = req.user.name + '-' + activity.name + '.pdf';
+	const filename = req.user.name.toLowerCase().replace(' ', '_') + '_' + activity.name.toLowerCase().replace(' ', '_') + '.pdf';
 	res.setHeader('Content-Disposition', 'attachment; filename="'+ filename + '"');
 	const fontPath = path.join('fonts', 'Quicksand.ttf');
 

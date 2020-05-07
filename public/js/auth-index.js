@@ -51,10 +51,12 @@ $(document).ready(() => {
 	const validateFile = file => {
 
 		if(!allowedExtensions.includes(file.type.toLowerCase())) {
+			navOptionsToggle.text('Invalid file format!');
 			return false;
 		}
 
 		if(file.size > 6000000) {
+			navOptionsToggle.text('Image too large!');
 			return false;
 		}
 
