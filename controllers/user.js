@@ -1,12 +1,17 @@
 const User = require('../models/user');
+const errorsController = require('./errors');
 
 exports.postChangeAvatar = (req, res, next) => {
-	User.updateAvatar(req.user._id, req.file.path)
+
+	const user = new User(req.user.name, req.user.email, req.user.password, req.file.path,
+	 req.user.activation_token, req.user.created_at, req.user._id);
+
+	user.save()
 	.then(result => {
 		res.back();
 	})
 	.catch(err => {
-		console.log(err);
+		errorsController.throwError(err, next);
 	})
 
 }

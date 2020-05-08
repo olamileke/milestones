@@ -27,6 +27,8 @@ router.get('/login', guards.guestGuard, authController.getLogin);
 router.post('/login', [body('email').isEmail(),
 					  body('password').isLength({ min:8 })], authController.postLogin);
 
+router.get('/account/activate/:token', authController.getActivate);
+
 router.get('/logout', guards.authGuard , authController.getLogout);
 
 module.exports = router;
