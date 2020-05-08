@@ -57,22 +57,8 @@ $(document).ready(() => {
 		return true;
 	}
 
-	// const validateLink = () => {
-
-	// 	const val = link.val();
-
-	// 	if(val.length > 0 && val != 'https://') {
-
-	// 		let url = val.split('https://')[1];
-
-	// 		if(!url && )
-	// 		link.val('https://' + url);
-	// 	}
-	// }
-
 	name.keyup(validateName);
 	description.keyup(validateDescription);
-	// link.keyup(validateLink);
 
 	form.submit(function(e) {
 

@@ -25,11 +25,6 @@ input:focus
 	background:rgba(0,0,0,0.1);
 }
 
-button
-{
-	background:#8E5572;
-}
-
 button:active
 {
 	background:#673759;

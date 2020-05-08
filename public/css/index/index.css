@@ -8,16 +8,6 @@
 	height:calc(100vh - 72px);
 }
 
-.get__started
-{
-	background:#8E5572;
-}
-
-.get__started:active
-{
-	background:#673759;
-}
-
 
 @media(max-width:1024px)
 {

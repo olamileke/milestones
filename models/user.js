@@ -37,6 +37,31 @@ class User {
 		const db = getDB();
 		return db.collection('users').findOne({ email:email });
 	}
+
+	static findByResetToken(token) {
+		const db = getDB();
+		return db.collection('passwordresets').findOne({ token:token });
+	}
+
+	static createResetToken(id, token, date) {
+		const db = getDB();
+		const expiry = date.getTime();
+
+		return db.collection('passwordresets').insertOne({ userId:new ObjectId(id), token:token, expiry:expiry  });
+	}
+
+	static deleteResetToken(id) {
+		const db = getDB();
+		return db.collection('passwordresets').deleteOne({ userId:new ObjectId(id) });
+	}
+
+	static resetPassword(id, password) {
+		const db = getDB();
+		return db.collection('users').updateOne({ _id:new ObjectId(id) }, { $set:{password:password} })
+		.then(() => {
+			return User.deleteResetToken(id);
+		})
+	}
 }
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= pageTitle %></title>
+		<%- include('styles.ejs') %>
+
+		<style type="text/css">
+			input:focus
+			{
+				background:rgba(0,0,0,0.02);
+			}
+
+			.side__motif__error
+			{
+				top:unset;
+				bottom:-400px;
+				left:-270px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='w-screen h-screen' style='background:#FBFBFB'>
+			<div class='grid grid-cols-12 flex flex-row items-center h-full'>
+				<p class='font-bold quicksand fixed top-0 left-0 m-5 sm:text-xl xl:text-base xl:mt-7 xl:ml-8'><a href='/'>Milestones</a></p>
+				<div class='col-start-2 col-end-12 sm:col-start-3 sm:col-end-11 lg:col-start-5 lg:col-end-9 relative flex flex-col' style='top:-8vh;'>
+					<% if(notification) { %>
+						<div class='alert alert-<%= notification.class %> mb-4'>
+							<i class="fa fa-<%= notification.class === 'danger' ? 'exclamation-circle' : 'check-circle' %>"></i> <%= notification.message %>
+						</div>
+					<% } %>

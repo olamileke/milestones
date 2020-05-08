@@ -6,7 +6,7 @@ $(document).ready(() => {
 	const form = $('form');
 	const auth_action = $('#auth-action').val();
 
-	const validateName = function() {
+	const validateName = () => {
 		let text = name.val();
 		$('.name-notif').remove();
 		const [fname, lname] = text.split(' ');
@@ -33,7 +33,7 @@ $(document).ready(() => {
 		return true;
 	}
 
-	const validateEmail = function() {
+	const validateEmail = () => {
 		$('.email-notif').remove();
 		let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		let text = email.val();
@@ -50,7 +50,7 @@ $(document).ready(() => {
 		return true;
 	}
 
-	const validatePassword = function() {
+	const validatePassword = () => {
 		$('.password-notif').remove();
 		let text = password.val();
 

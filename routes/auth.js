@@ -29,6 +29,14 @@ router.post('/login', [body('email').isEmail(),
 
 router.get('/account/activate/:token', authController.getActivate);
 
+router.get('/confirm/email', authController.getConfirmEmail);
+
+router.post('/confirm/email', body('email').isEmail() , authController.postConfirmEmail);
+
+router.get('/password/reset/:token', authController.getResetPassword);
+
+router.post('/password/reset/:token', body('password').isLength({ min:8 }) , authController.postResetPassword);
+
 router.get('/logout', guards.authGuard , authController.getLogout);
 
 module.exports = router;

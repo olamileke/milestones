@@ -70,8 +70,11 @@ exports.postSignup = (req, res, next) => {
 				user.save()
 				.then(() => {
 					const mailTemplatePath = path.join('public', 'mail', 'activate.html');
-					const mailData = { path:mailTemplatePath, subject:'Activate your account', user:user, req:req, res:res };
+					const mailData = { path:mailTemplatePath, subject:'Activate your account',
+									   name:user.name.split(' ')[1], token:token};
 					mail(mailData);
+					req.flash('message', {class:'success', message:'Registration successful. Check your email'});
+					res.redirect('/signup');
 				})
 			})
 		})
@@ -87,19 +90,17 @@ const mail = data => {
 	const mail = {...config.mail};
 	mail.subject = data.subject;
 	ejs.renderFile(data.path, {
-		name:data.user.name.split(' ')[1],
+		name:data.name,
 		appRoot:config.appRoot,
-		token:data.user.activation_token
+		token:data.token,
+		expiry: data.expiry ? data.expiry : null 
 	}, (err, str) => {
 
 		mail.html = str;
 		mailgun.messages().send(mail, (err, body) => {
-		if(err) {
-			throw err;
-		}
-
-		data.req.flash('message', {class:'success', message:'Registration successful. Check your email'});
-		data.res.redirect('/signup');
+			if(err) {
+				throw err;
+			}
 		})
 	})
 }
@@ -197,6 +198,135 @@ exports.getActivate = (req, res, next) => {
 	.then(() => {
 
 		req.flash('message', {class:'success', message:'Account activated successfully'});
+		res.redirect('/login');
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
+}
+
+exports.getConfirmEmail = (req, res, next) => {
+
+	const messages = req.flash('message');
+	let notification = null;
+	let oldInput = {email:''};
+
+	if(messages.length > 0) {
+		notification = messages[0];
+	}
+
+	if(messages.length  == 2) {
+		oldInput = messages[1];
+	}
+
+	res.render('auth/confirm_email', { 
+	pageTitle:'Confirm Email',
+	notification:notification,
+	oldInput:oldInput
+	});
+}
+
+exports.postConfirmEmail = (req, res, next) => {
+
+	const errors = validationResult(req);
+	const email = req.body.email;
+
+	if(!errors.isEmpty()) {
+
+		return res.redirect('/confirm/email');
+	}
+
+	User.findByEmail(email)
+	.then(user => {
+		if(!user) {
+			req.flash('message', {class:'danger', message:'User does not exist for that email'});
+			req.flash('message', {email:email});
+			return res.redirect('/confirm/email');
+		}
+
+		crypto.randomBytes(32, (err, buffer) => {
+			if(err) {
+				return err;
+			}
+
+			const token = buffer.toString('hex');
+			const date = new Date(Date.now() + (30 * 60000));
+			const expiry = `${date.getHours()}:${date.getMinutes()}`; 
+			const mailTemplatePath = path.join('public', 'mail', 'reset.html');
+			const mailData = { path:mailTemplatePath, subject:'Activate your account',
+						  	   name:user.name.split(' ')[1], token:token, expiry:expiry,
+						       };
+
+			User.createResetToken(user._id, token, date)
+			.then(() => {
+				mail(mailData);
+				req.flash('message', {class:'success', message:'Check your email.'});
+				res.redirect('/confirm/email');
+			})
+
+		})
+	})
+}
+
+exports.getResetPassword = (req, res, next) => {
+
+	const messages = req.flash('message');
+	let notification = null;
+	let oldInput = {email:''};
+
+	if(messages.length > 0) {
+		notification = messages[0];
+	}
+
+	if(messages.length  == 2) {
+		oldInput = messages[1];
+	}
+
+	const token = req.params.token;
+
+	User.findByResetToken(token)
+	.then(reset => {
+		if(!reset) {
+			req.flash('message', {class:'danger', message:'Invalid reset token'});
+			return res.redirect('/confirm/email');
+		}
+
+		if(Date.now() > reset.expiry) {
+			return User.deleteResetToken(reset.userId)
+			.then(() => {
+				req.flash('message', {class:'danger', message:'Reset token has expired!'});
+				res.redirect('/confirm/email');
+			})
+		}		
+
+		res.render('auth/reset_password', {
+		pageTitle:'Reset Password',
+		notification:null,
+		userId:reset.userId,
+		token:token
+		});
+	})
+}
+
+exports.postResetPassword = (req, res, next) => {
+	
+	const errors = validationResult(req);
+	const token = req.params.token;
+	const userId = req.body.userId;
+	const password = req.body.password;
+
+	console.log(userId);
+
+	if(!errors.isEmpty()) {
+		res.redirect(`/password/reset/${token}`);
+	}
+
+	bcrypt.hash(password, 12)
+	.then(hashedPassword => {
+		return User.resetPassword(userId, hashedPassword);
+	})
+	.then(() => {
+		req.flash('message', {class:'success', message:'Password changed successfully'});
 		res.redirect('/login');
 	})
 	.catch(err => {
