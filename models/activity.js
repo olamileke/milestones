@@ -17,13 +17,11 @@ class Activity {
 		this.milestones = milestones;
 	}
 
-
 	save() {
 
 		const db = getDB();
 		return db.collection('activities').insertOne(this);
 	}
-
 
 	static complete(id, incomplete) {
 
@@ -37,13 +35,11 @@ class Activity {
 		return db.collection('activities').updateOne({ _id:new ObjectId(id) }, { $set:{is_completed:true} });
 	}
 
-
 	static getAll(userId) {
 
 		const db = getDB();
 		return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).toArray();
 	}
-
 
 	static getStats(userId) {
 
@@ -67,20 +63,17 @@ class Activity {
 		})
 	}
 
-
 	static findById(id) {
 
 		const db = getDB();
 		return db.collection('activities').findOne({ _id:new ObjectId(id) });
 	}
 
-
 	static update(activity) {
 
 		const db = getDB();
 		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:activity });
 	}
-
 
 	static delete(activity) {
 
@@ -149,7 +142,6 @@ class Activity {
 			return action.save();
 		})
 	}
-
 
 	static deleteMilestone(activity, milestoneId) {
 

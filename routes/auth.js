@@ -6,7 +6,7 @@ const { body } = require('express-validator/check');
 
 router.get('/signup', guards.guestGuard , authController.getSignup);
 
-router.post('/signup',[body('name')
+router.post('/signup', guards.guestGuard , [body('name')
 					   .isLength({ min:5 })
 					   .custom((value, { req }) => {
 					   		let [fname, lname] = value.split(' ');
@@ -24,18 +24,18 @@ router.post('/signup',[body('name')
 
 router.get('/login', guards.guestGuard, authController.getLogin);
 
-router.post('/login', [body('email').isEmail(),
+router.post('/login', guards.guestGuard , [body('email').isEmail(),
 					  body('password').isLength({ min:8 })], authController.postLogin);
 
-router.get('/account/activate/:token', authController.getActivate);
+router.get('/account/activate/:token', guards.guestGuard , authController.getActivate);
 
-router.get('/confirm/email', authController.getConfirmEmail);
+router.get('/confirm/email', guards.guestGuard , authController.getConfirmEmail);
 
-router.post('/confirm/email', body('email').isEmail() , authController.postConfirmEmail);
+router.post('/confirm/email', guards.guestGuard , body('email').isEmail() , authController.postConfirmEmail);
 
-router.get('/password/reset/:token', authController.getResetPassword);
+router.get('/password/reset/:token', guards.guestGuard , authController.getResetPassword);
 
-router.post('/password/reset/:token', body('password').isLength({ min:8 }) , authController.postResetPassword);
+router.post('/password/reset/:token', guards.guestGuard , body('password').isLength({ min:8 }) , authController.postResetPassword);
 
 router.get('/logout', guards.authGuard , authController.getLogout);
 

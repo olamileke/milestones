@@ -17,32 +17,21 @@ exports.deleteFiles = paths => {
 	})
 }
 
-
 exports.download = (activity, req, res) => {
 
 	const filename = req.user.name.toLowerCase().replace(' ', '_') + '_' + activity.name.toLowerCase().replace(' ', '_') + '.pdf';
 	res.setHeader('Content-Disposition', 'attachment; filename="'+ filename + '"');
 	const fontPath = path.join('fonts', 'Quicksand.ttf');
-
 	const pdf = new PDFDocument();
 	pdf.pipe(res);
 
 	pdf.image(activity.imageUrl, 72, 72, {fit:[150, 150]});
-
 	pdf.font(fontPath).fontSize(15).text(activity.name, 250, 75);
-
 	pdf.moveDown(0.5);
-
-	pdf.fontSize(12).text(activity.description, {
-		lineGap:5
-	});
-
+	pdf.fontSize(12).text(activity.description);
 	pdf.moveDown(0.25);
-
 	pdf.text(`${activity.milestones.length} milestones. Created ${date.getDateString(activity.created_at)}`);
-
 	let yCursor = 200;
-
 	pdf.text('', 72, yCursor);
 
 	activity.milestones.forEach(milestone => {

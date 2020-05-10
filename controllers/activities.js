@@ -2,10 +2,6 @@ const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
 const errorsController = require('./errors');
-const PDFDocument = require('pdfkit');
-const fs = require('fs');
-const path = require('path');
-const file = require('../utils/file');
 const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {

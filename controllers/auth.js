@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check'); 
 const errorsController = require('./errors');
 const User = require('../models/user');
-const rootDirectory = require('../utils/path').rootDirectory;
 const ejs = require('ejs');
 const crypto = require('crypto');
 const config = require('../utils/config');
@@ -151,12 +150,12 @@ exports.postLogin = (req, res, next) => {
 				req.flash('message', {class:'danger', message:'Invalid email or password'});
 				req.flash('message', {email:email, password:password});
 				console.log('wrong password');
-				return res.redirect('/login');
+				return res.redirect('/login'); 
 			}
 
 			req.session.regenerate(() => {
 				req.session.userId = user._id;
-				req.session.cookieExpiry = new Date().getTime() + 86400000;
+				req.session.cookieExpiry = new Date().getTime() + (30 * 86400000);
 				return res.redirect('/dashboard');
 			})
 		})

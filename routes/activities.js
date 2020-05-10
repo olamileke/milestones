@@ -19,21 +19,21 @@ router.post('/create/activity', [ body('name').isLength({ min:5 }),
 								  }),
 								  body('description').isLength({ min:10 }) ] ,activitiesController.postCreateActivity);
 
-router.get('/activities', activitiesController.getActivities);
+router.get('/activities', authGuard , activitiesController.getActivities);
 
-router.get('/activity/:activityId', activitiesController.getActivity);
+router.get('/activity/:activityId', authGuard , activitiesController.getActivity);
 
-router.get('/edit/activity/:activityId', activitiesController.getEditActivity);
+router.get('/edit/activity/:activityId', authGuard , activitiesController.getEditActivity);
 
-router.post('/edit/activity/:activityId', [ body('name').isLength({ min:5 }),
+router.post('/edit/activity/:activityId', authGuard , [ body('name').isLength({ min:5 }),
 											body('description').isLength({ min:10 })], activitiesController.postEditActivity);
 
-router.post('/delete/activity/:activityId', activitiesController.postDeleteActivity);
+router.post('/delete/activity/:activityId', authGuard , activitiesController.postDeleteActivity);
 
-router.post('/complete/activity/:activityId', activitiesController.postCompleteActivity);
+router.post('/complete/activity/:activityId', authGuard , activitiesController.postCompleteActivity);
 
-router.get('/download', activitiesController.getFileDownloads);
+router.get('/download', authGuard , activitiesController.getFileDownloads);
 
-router.post('/download', activitiesController.postFileDownloads);
+router.post('/download', authGuard , activitiesController.postFileDownloads);
 
 module.exports = router; 

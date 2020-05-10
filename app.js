@@ -32,7 +32,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({secret:config.secretString, saveUninitialized:false,
-resave:false, store:store, cookie:{ expiry:86400000 }}));
+resave:false, store:store, cookie:{ maxAge:(30 * 86400000) }}));
 
 app.use(csrfProtection);
 
@@ -43,6 +43,11 @@ app.use(res_back());
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+// prevents the browser from caching content
+app.use((req, res, next) => {
+	res.set('Cache-Control', 'no-store');
+	next();
+})
 
 // checking if the session has expired
 app.use(middlewares.checkSessionExpiry);
