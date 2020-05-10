@@ -8,7 +8,6 @@
 	height:calc(100vh - 72px);
 }
 
-
 @media(max-width:1024px)
 {
 	.initial-content

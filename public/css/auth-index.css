@@ -72,7 +72,6 @@ form button[type="submit"]:hover
 	display:block;
 }
 
-
 .file__notif.activity.visible
 {
 	top:-37px;

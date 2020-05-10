@@ -1,10 +1,4 @@
 
-.page-container
-{
-	background:#F8F8F8;
-	/*background:#EBBAC1*/
-}
-
 .form-container
 {
 	width:350px;
@@ -24,12 +18,6 @@ input:focus
 {
 	background:rgba(0,0,0,0.1);
 }
-
-button:active
-{
-	background:#673759;
-}
-
 
 @media(max-width:576px)
 {

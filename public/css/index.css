@@ -21,60 +21,63 @@
 
 @responsive
 {
-	.alert-danger
+	@variants focus, hover, active
 	{
-		background:#FCE8E8;
-		color:#EE8A8A;
-	}
+		.alert-danger
+		{
+			background:#FCE8E8;
+			color:#EE8A8A;
+		}
 
-	.alert-success
-	{
-		background:#DFF0D8;
-		color:#468847;
-	}
+		.alert-success
+		{
+			background:#DFF0D8;
+			color:#468847;
+		}
 
-	.comfortaa
-	{
-		font-family:'Comfortaa', sans-serif;
-	}
+		.comfortaa
+		{
+			font-family:'Comfortaa', sans-serif;
+		}
 
-	.quicksand
-	{
-		font-family:'Quicksand', sans-serif;
-	}
+		.quicksand
+		{
+			font-family:'Quicksand', sans-serif;
+		}
 
-	.baloo-bhaina
-	{
-		font-family:'Baloo Bhaina 2', cursive;
-	}
+		.baloo-bhaina
+		{
+			font-family:'Baloo Bhaina 2', cursive;
+		}
 
-	.border-color-005
-	{
-		border-color:rgba(0,0,0,0.05);
-	}
+		.border-color-005
+		{
+			border-color:rgba(0,0,0,0.05);
+		}
 
-	.bg-palette-100
-	{
-		background:#EBBAC1;
-	}
+		.bg-palette-100
+		{
+			background:#EBBAC1;
+		}
 
-	.bg-palette-200
-	{
-		background:#C5979D;
-	}
+		.bg-palette-200
+		{
+			background:#C5979D;
+		}
 
-	.bg-palette-300
-	{
-		background:#8E5572;
-	}
+		.bg-palette-300
+		{
+			background:#8E5572; 
+		}
 
-	.bg-palette-400
-	{
-		background:#673759;
-	}
+		.bg-palette-400
+		{
+			background:#673759;
+		}
 
-	.text-palette-300
-	{
-		color:#8E5572;
+		.text-palette-300
+		{
+			color:#8E5572;
+		}
 	}
 }
