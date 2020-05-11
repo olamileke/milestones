@@ -26,6 +26,11 @@ class Action {
 		return db.collection('actions').find({ userId: new ObjectId(userId) }).count();
 	}
 
+	static getCreatedInDateCount(userId, date) {
+		const db = getDB();
+		return db.collection('actions').find({ userId: new ObjectId(userId), created_at:{$gt:date} }).count();
+	}
+
 	static updateActivity(activity) {
 		const db = getDB();
 		return db.collection('actions')

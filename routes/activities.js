@@ -32,7 +32,7 @@ router.post('/delete/activity/:activityId', authGuard , activitiesController.pos
 
 router.post('/complete/activity/:activityId', authGuard , activitiesController.postCompleteActivity);
 
-router.get('/visualizations', authGuard, activitiesController.getVisualizations);
+router.get('/metrics', authGuard, activitiesController.getMetrics);
 
 router.get('/download', authGuard , activitiesController.getFileDownloads);
 

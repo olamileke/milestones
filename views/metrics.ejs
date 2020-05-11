@@ -1,0 +1,32 @@
+
+<%- include('includes/loggedin-top.ejs') %>
+
+    <div class='w-full lg:w-5/6 self-center flex flex-col pt-12 sm:pt-24 lg:pt-0 z-20'>
+        <div class='hidden'>
+            <% chartDataKeys.forEach(key => { %>
+                <p class='chart__key'><%= key %>-<%= chartData[key] %></p>
+            <% }) %>
+        </div>
+        <div class='p-4 bg-white border border-color-005 mb-2 rounded-md'>
+            <form method='POST' action=''>
+                <select class='w-full focus:outline-none bg-transparent hover:bg-white border border-color-005 p-3 text-sm text-gray-600'>
+                    <option <%= displayType == 'last week' ? 'selected' : '' %> >Last week</option>
+                    <option <%= displayType == 'last 2 weeks' ? 'selected' : '' %> >Last two weeks</option>
+                    <option <%= displayType == 'last month' ? 'selected' : '' %> >Last month</option>
+                </select>
+            </form>
+        </div> 
+        <div class='flex flex-col p-6 mb-2 bg-white border border-color-005 rounded-md'>
+            <div class='flex flex-col'>
+                <p class='m-0 mb-2 text-gray-600 self-center'>Milestones in the <%= displayType %></p>
+                <canvas id="chart" class='mb-8'></canvas>
+                <div class='text-sm text-gray-600'>
+                    <p class='m-0 mb-3'><%= activitiesCreatedCount %> activities created in the <%= displayType %></p>
+                    <p class='m-0 mb-3'><%= achievedMilestonesCount %> milestones achieved in the <%= displayType %></p>
+                    <p class='m-0'><%= actionsCreatedCount %> actions in the <%= displayType %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('includes/loggedin-end.ejs') %>

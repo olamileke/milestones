@@ -204,19 +204,81 @@ exports.postCompleteActivity = (req, res, next) => {
 
 	Activity.complete(activityId, incomplete)
 	.then(() => {
-		res.back();
+		res.back(); 
 	})
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})
 }
 
-exports.getVisualizations = (req, res, next) => {
+exports.getMetrics = (req, res, next) => {
 
-	res.render('visualizations', {
-	pageTitle:'Visualizations',
-	path:'/visualizations'
-	});
+	const type = req.query.type;
+	let num, displayType;
+
+	switch(type) {
+		case undefined:
+			num = 7;
+			displayType = 'last week';
+			break;
+		case '1week':
+			num = 7;
+			displayType = 'last week';
+			break;
+		case '2week':
+			num = 14;
+			displayType = 'last 2 weeks';
+			break;
+		case '1month':
+			num = 30;
+			displayType = 'last month';
+			break;
+		default:
+			num = 7;
+			displayType = 'last week';
+			break;
+	}
+
+	const now = new Date().getTime();
+	const date = now - (num * 86400000);
+	let activitiesCreatedCount, chartData, achievedMilestonesCount, chartDataKeys;
+
+	Activity.getAll(req.user._id)
+	.then(activities => {
+		activitiesCreatedCount = activities.filter(activity => activity.created_at >= date).length;
+		[ chartData, achievedMilestonesCount ] = getMetricMilestones(activities, date);
+		chartDataKeys = Object.keys(chartData);
+		
+		return Action.getCreatedInDateCount(req.user._id, date);
+	})
+	.then(actionsCreatedCount => {
+		res.render('metrics', {
+			pageTitle:'Metrics',
+			path:'/metrics',
+			actionsCreatedCount:actionsCreatedCount,
+			activitiesCreatedCount:activitiesCreatedCount,
+			achievedMilestonesCount:achievedMilestonesCount,
+			chartData:chartData,
+			chartDataKeys:chartDataKeys,
+			displayType:displayType
+		});
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
+}
+
+const getMetricMilestones = (activities, date) => {
+	const data = {};
+	let achievedMilestonesCount = 0;
+
+	activities.forEach(activity => {
+		const count = activity.milestones.filter(milestone => milestone.created_at >= date).length;
+		count > 0 ? data[activity.name.slice(0,8) + '...'] = count : '';
+		achievedMilestonesCount += count;
+	})
+
+	return [ data, achievedMilestonesCount ];
 }
 
 exports.getFileDownloads = (req, res, next) => {
