@@ -1,5 +1,6 @@
 
-exports.connectionString = "mongodb+srv://olamileke:Arsenalfc1886@milestones-cluster-2hezc.mongodb.net/milestones?retryWrites=true&w=majority";
+
+exports.connectionString = "mongodb+srv://olamileke:Arsenalfc1886@milestones-cluster-2hezc.mongodb.net/milestones?authSource=admin&replicaSet=milestones-cluster-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true";
 
 exports.secretString = "yWkKdUHeKGQGDA2JEK3BTMHZJZFuncJL";
 

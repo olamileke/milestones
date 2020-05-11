@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
+const file = require('../utils/file');
 const errorsController = require('./errors');
 const { validationResult } = require('express-validator');
 
@@ -90,6 +91,7 @@ exports.getActivity = (req, res, next) => {
 			res.redirect('/dashboard');
 		}
 
+		activity = sortMilestones(activity);
 		req.session.currentActivity = activity;
 
 		res.render('activity', {
@@ -99,9 +101,19 @@ exports.getActivity = (req, res, next) => {
 		notification:messages[0]
 		});
 	})
-	.catch(err => {
+	.catch(err => {lo
 		errorsController.throwError(err, next);
 	})
+}
+
+const sortMilestones = activity => {
+	const milestones = [...activity.milestones];
+	const sortedMilestones = milestones.sort((a,b) => {
+		return b.created_at - a.created_at
+	})
+
+	activity.milestones = sortedMilestones;
+	return activity;
 }
 
 exports.getEditActivity = (req, res, next) => {
@@ -197,6 +209,14 @@ exports.postCompleteActivity = (req, res, next) => {
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})
+}
+
+exports.getVisualizations = (req, res, next) => {
+
+	res.render('visualizations', {
+	pageTitle:'Visualizations',
+	path:'/visualizations'
+	});
 }
 
 exports.getFileDownloads = (req, res, next) => {

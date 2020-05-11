@@ -148,7 +148,7 @@ class Activity {
 		const milestones = [...activity.milestones];
 
 		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString() );
-
+		
 		file.deleteFiles([milestones[idx].imageUrl]);
 
 		milestones.splice(idx, 1);
