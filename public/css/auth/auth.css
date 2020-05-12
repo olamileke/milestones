@@ -16,7 +16,7 @@ input
 
 input:focus
 {
-	background:rgba(0,0,0,0.1);
+	background:rgba(0,0,0,0.02);
 }
 
 @media(max-width:576px)

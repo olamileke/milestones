@@ -44,6 +44,15 @@
 							<!-- <p class='m-0 top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p> -->
 						</div>
 					<% } %>
+					<% if(action.name == 'Complete Activity') { %>
+						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-3'>
+							<img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
+							<div class='text-gray-700 sm:text-gray-600 mt-1' style='font-size:0.92rem;'>
+								<p class='m-0'>you completed <a href='/activity/<%= action.activity._id %>'><%= action.activity.name.toLowerCase()%></a></p>
+							</div>
+							<!-- <p class='m-0 top-0 mt-2 right-0 text-xs quicksand text-gray-600 mr-2'><%= getDateString(action.created_at) %></p> -->
+						</div>
+					<% } %>
 					<% if(action.name == 'Edit Milestone') { %>
 						<div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-2'>
 							<img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>

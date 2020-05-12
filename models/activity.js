@@ -23,16 +23,22 @@ class Activity {
 		return db.collection('activities').insertOne(this);
 	}
 
-	static complete(id, incomplete) {
+	static complete(activity, incomplete) {
 
 		const db = getDB();
 
-		if(incomplete) {
-		
-			return db.collection('activities').updateOne({ _id:new ObjectId(id) }, { $set:{is_completed:false} });
+		if(incomplete) { 
+			return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{is_completed:false} })
+			.then(() => {
+				return Action.deleteCompleteActivity(activity._id);
+			})
 		}
 
-		return db.collection('activities').updateOne({ _id:new ObjectId(id) }, { $set:{is_completed:true} });
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{is_completed:true} })
+		.then(() => {
+			const action = new Action('Complete Activity', activity.userId, Date.now(), activity);
+			return action.save();
+		})
 	}
 
 	static getAll(userId) {

@@ -36,14 +36,17 @@ class Action {
 		return db.collection('actions')
 		.updateMany({ "activity._id":new ObjectId(activity._id) } , { $set:{ activity:activity } })
 		.then(() => {
-
 			return db.collection('actions')
 			.updateMany({ "milestone.activityId":new ObjectId(activity._id) }, { $set:{'milestone.activityName':activity.name} });
 		})
 	}
 
-	static updateMilestone(milestoneId, description, imageUrl) {
+	static deleteCompleteActivity(activityId) {
+		const db = getDB();
+		return db.collection('actions').deleteOne({ "activity._id":activityId, name:'Complete Activity' });
+	}
 
+	static updateMilestone(milestoneId, description, imageUrl) {
 		const db = getDB();
 
 		if(imageUrl) {

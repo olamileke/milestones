@@ -195,14 +195,13 @@ exports.postDeleteActivity = (req, res, next) => {
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})
-}
+} 
 
 exports.postCompleteActivity = (req, res, next) => {
 
-	const activityId = req.params.activityId;
 	const incomplete = req.query.incomplete;
 
-	Activity.complete(activityId, incomplete)
+	Activity.complete(req.session.currentActivity, incomplete)
 	.then(() => {
 		res.back(); 
 	})
