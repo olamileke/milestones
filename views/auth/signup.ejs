@@ -9,9 +9,10 @@
 		<p class="text-gray-600 mb-2 text-sm">Email</p>
 		<input type="email" name="email" value="<%= oldInput.email %>" class='focus:outline-none text-gray-600 p-3 w-full' id='email'>
 	</div>
-	<div class='mb-5 flex flex-col'>
+	<div class='mb-5 flex flex-col relative'>
 		<p class="text-gray-600 mb-2 text-sm">Password</p>
 		<input type="password" name="password" value="<%= oldInput.password %>" class='focus:outline-none text-gray-600 p-3 w-full' id='password'>
+		<i class='fa fa-unlock password__icon cursor-pointer invisible absolute top-0 right-0 mr-3 text-gray-800' style='top:45px;'></i>
 	</div>
 	<div class='text-right mb-3'>
 		<button type='submit' class='text-white p-2 rounded sm:rounded-md bg-palette-300 active:bg-palette-400 active:outline-none focus:outline-none'>signup</button>

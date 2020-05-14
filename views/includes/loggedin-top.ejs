@@ -12,7 +12,7 @@
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
 				<div class='transition-opacity ease-in duration-500 fixed w-screen h-screen opacity-0 z--9999 navigation__sm flex flex-row justify-center items-center' style='background:#FBFBFB'>
-					<ul class='baloo-bhaina text-2xl sm:text-4xl text-center'>
+					<ul class='baloo-bhaina text-2xl sm:text-4xl text-center pt-16'>
 						<li class='mb-8'>
 							<a href="/dashboard" class="<%= path == '/dashboard' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Dashboard</a>
 						</li>
@@ -27,6 +27,12 @@
 						</li>
 						<li class='mb-8'>
 							<a href="/download" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">File Downloads</a>
+						</li>
+						<li class='mb-8'>
+							<a href="/actions" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Actions</a>
+						</li>
+						<li>
+							<a href="/download" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Milestones</a>
 						</li>
 					</ul>
 				</div>
