@@ -1,7 +1,7 @@
 
 <%- include('includes/loggedin-top.ejs') %>
 
-    <div class='w-full lg:w-5/6 self-center flex flex-col pt-12 sm:pt-24 lg:pt-0 z-20'>
+    <div class='w-full lg:w-5/6 self-center flex flex-col pt-6 sm:pt-24 lg:pt-0 z-20'>
         <div class='hidden'>
             <% chartDataKeys.forEach(key => { %>
                 <p class='chart__key'><%= key %>-<%= chartData[key] %></p>

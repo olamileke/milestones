@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
 
-	Action.getLastFour(req.user._id)
+	Action.get(req.user._id, null, 4)
 	.then(actions => {
 		res.render('dashboard', {
 		pageTitle:'Milestones',
@@ -18,7 +18,6 @@ exports.getDashboard = (req, res, next) => {
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})
-
 }
 
 exports.getCreateActivity = (req, res, next) => {
@@ -307,6 +306,74 @@ exports.postFileDownloads = (req, res, next) => {
 	.then(activity => {
 
 		return file.download(activity, req, res);
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
+}
+
+exports.getActions = (req, res, next) => {
+
+	let start = 0;
+	let limit = 8;
+	let activePage = 1;
+	const pageLimit = 8;
+	const page = req.query.page;
+
+	if(page && typeof(Number(page)) == 'number') {
+		start = (page - 1) * pageLimit;
+		limit = page * pageLimit;
+		activePage = page;
+	}
+
+	Action.get(req.user._id, start, limit)
+	.then(actions => {
+		res.render('actions', {
+		pageTitle:'Actions',
+		path:'/dashboard',
+		altPath:'/actions',
+		actions:actions,
+		pages:Math.round(res.locals.actionCount/pageLimit),
+		activePage:activePage
+		});
+	})
+	.catch(err => {
+		errorsController.throwError(err, next);
+	})
+}
+
+exports.getMilestones = (req, res, next) => {
+	
+	let milestones = [];
+	let activePage = 1;
+	let limit = 8;
+	let pageLimit = 8;
+	let start = 0;
+	const page = req.query.page;
+
+	if(page && typeof(Number(page)) == 'number') {
+		start = (page - 1) * pageLimit;
+		limit = page * pageLimit;
+		activePage = page;
+	}
+
+	Activity.getAll(req.user._id)
+	.then(activities => {
+		activities.forEach(activity => {
+			milestones.push(...activity.milestones);
+		})
+
+		return milestones;
+	})
+	.then(milestones => {
+		res.render('milestones', {
+		pageTitle:'Milestones',
+		path:'/dashboard',
+		altPath:'/milestones',
+		milestones:milestones.slice(start, limit),
+		pages:Math.round(milestones.length/pageLimit),
+		activePage:activePage
+		})
 	})
 	.catch(err => {
 		errorsController.throwError(err, next);

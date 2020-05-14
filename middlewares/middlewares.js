@@ -75,6 +75,7 @@ exports.fetchData = (req, res, next) => {
 
 	res.locals.csrfToken = req.csrfToken();
 	res.locals.page = null;
+	res.locals.altPath = null;
 
 	if(req.session.userId) {
 		res.locals.user = req.user;

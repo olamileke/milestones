@@ -38,4 +38,8 @@ router.get('/download', authGuard , activitiesController.getFileDownloads);
 
 router.post('/download', authGuard , activitiesController.postFileDownloads);
 
+router.get('/actions', authGuard, activitiesController.getActions);
+
+router.get('/milestones', authGuard, activitiesController.getMilestones);
+
 module.exports = router; 

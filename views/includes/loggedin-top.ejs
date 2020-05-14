@@ -14,25 +14,25 @@
 				<div class='transition-opacity ease-in duration-500 fixed w-screen h-screen opacity-0 z--9999 navigation__sm flex flex-row justify-center items-center' style='background:#FBFBFB'>
 					<ul class='baloo-bhaina text-2xl sm:text-4xl text-center pt-16'>
 						<li class='mb-8'>
-							<a href="/dashboard" class="<%= path == '/dashboard' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Dashboard</a>
+							<a href="/dashboard" class="<%= path == '/dashboard' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Dashboard</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/create/activity" class="<%= path == '/create/activity' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Create Activity</a>
+							<a href="/create/activity" class="<%= path == '/create/activity' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Create Activity</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/activities" class="<%= path == '/activities' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Activities</a>
+							<a href="/activities" class="<%= path == '/activities' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Activities</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/metrics" class="<%= path == '/metrics' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Metrics</a>
+							<a href="/metrics" class="<%= path == '/metrics' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Metrics</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/download" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">File Downloads</a>
+							<a href="/download" class="<%= path == '/download' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">File Downloads</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/actions" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Actions</a>
+							<a href="/actions" class="<%= altPath == '/actions' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Actions</a>
 						</li>
 						<li>
-							<a href="/download" class="<%= path == '/download' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Milestones</a>
+							<a href="/milestones" class="<%= altPath == '/milestones' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Milestones</a>
 						</li>
 					</ul>
 				</div>
