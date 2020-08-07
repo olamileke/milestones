@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
 
-	Action.get(req.user._id, null, 4)
+	Action.get(req.user._id, 0, 4)
 	.then(actions => {
 		res.render('dashboard', {
 		pageTitle:'Milestones',
@@ -318,13 +318,13 @@ exports.getActions = (req, res, next) => {
 	let limit = 8;
 	let activePage = 1;
 	const pageLimit = 8;
-	const page = req.query.page;
+    const page = req.query.page;
 
 	if(page && typeof(Number(page)) == 'number') {
 		start = (page - 1) * pageLimit;
 		limit = page * pageLimit;
 		activePage = page;
-	}
+    }
 
 	Action.get(req.user._id, start, limit)
 	.then(actions => {
@@ -333,7 +333,7 @@ exports.getActions = (req, res, next) => {
 		path:'/dashboard',
 		altPath:'/actions',
 		actions:actions,
-		pages:Math.round(res.locals.actionCount/pageLimit),
+		pages:Math.ceil(res.locals.actionCount/pageLimit),
 		activePage:activePage
 		});
 	})
@@ -371,7 +371,7 @@ exports.getMilestones = (req, res, next) => {
 		path:'/dashboard',
 		altPath:'/milestones',
 		milestones:milestones.slice(start, limit),
-		pages:Math.round(milestones.length/pageLimit),
+		pages:Math.ceil(milestones.length/pageLimit),
 		activePage:activePage
 		})
 	})
