@@ -9,7 +9,7 @@
                 <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-8'>
                     <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
                     <div class='text-gray-700 sm:text-gray-600 mt-1' style='font-size:0.92rem;'>
-                        <p class='m-0'>you created a new activity <a href='/activity/<%= action.activity._id %>'><%= action.activity.name.toLowerCase() %></a></p>
+                        <p class='m-0'>new activity created.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase() %>"</a></p>
                     </div>
                     <p class='absolute m-0 bottom-0 mt-2 right-0 text-xs quicksand text-gray-600' style='bottom:-25px;'><%= getDateString(action.created_at) %></p>
                 </div>
@@ -27,7 +27,7 @@
                 <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-8'>
                     <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 sm:text-gray-600 mt-1' style='font-size:0.92rem;'>
-                        <p class='m-0'>you edited <a href='/activity/<%= action.activity._id %>'><%= action.activity.name.toLowerCase()%></a></p>
+                        <p class='m-0'>activity edited.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                     </div>
                     <p class='absolute m-0 right-0 text-xs quicksand text-gray-600 mr-2' style='bottom:-25px;'><%= getDateString(action.created_at) %></p>
                 </div>
@@ -36,7 +36,7 @@
                 <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-8'>
                     <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 sm:text-gray-600 mt-1' style='font-size:0.92rem;'>
-                        <p class='m-0'>you completed <a href='/activity/<%= action.activity._id %>'><%= action.activity.name.toLowerCase()%></a></p>
+                        <p class='m-0'>activity completed. <a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                     </div>
                     <p class='absolute m-0 right-0 text-xs quicksand text-gray-600 mr-2' style='bottom:-25px;'><%= getDateString(action.created_at) %></p>
                 </div>
@@ -50,12 +50,11 @@
                     <p class='absolute m-0 right-0 text-xs quicksand text-gray-600 mr-2' style='bottom:-25px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
-            
         <% }) %>
         <div class='flex flex-row comfortaa mb-6 mt-10'>
             <%  for(let i = 1; i <= pages; i++) { %>
                 <div class='mb-4 <%= i == activePage ? "bg-palette-200 text-white text-sm" : "bg-white md:bg-transparent text-black text-sm md:text-base" %> rounded-full h-10 w-10 flex flex-row items-center justify-center mr-3'>
-                    <a href='/milestones?page=<%= i %>'><%= i %></a>
+                    <a href='/actions?page=<%= i %>'><%= i %></a>
                 </div>
             <% } %>
         </div>

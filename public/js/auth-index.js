@@ -79,7 +79,6 @@ $(document).ready(() => {
 	}
 
 	setPercentage();
- 
 
 	const navToggle = $('.nav__toggle');
 	const navigation = $('.navigation__sm');
@@ -90,11 +89,13 @@ $(document).ready(() => {
 		if(navigation.hasClass('opacity-0')) {
 
 			navigation.removeClass('opacity-0 z--9999').addClass('opacity-100 z-40');
-			body.addClass('overflow-y-hidden');
+            body.addClass('overflow-y-hidden');
+            navToggle.removeClass('rounded-full').addClass('shadow');
 			return;
 		}
 
-		navigation.removeClass('opacity-100 z-40').addClass('opacity-0 z--9999');
+        navigation.removeClass('opacity-100 z-40').addClass('opacity-0 z--9999');
+        navToggle.addClass('rounded-full').removeClass('shadow');
 		body.removeClass('overflow-y-hidden');
 	})
 })

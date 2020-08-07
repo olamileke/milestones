@@ -11,28 +11,28 @@
 	<body class="overflow-x-hidden">
 		<div class='w-screen min-h-screen' style='background:#fbfbfb;'>
 			<div class='grid grid-cols-12'>
-				<div class='transition-opacity ease-in duration-500 fixed w-screen h-screen opacity-0 z--9999 navigation__sm flex flex-row justify-center items-center' style='background:#FBFBFB'>
-					<ul class='baloo-bhaina text-2xl sm:text-4xl text-center pt-16'>
+				<div class='transition-opacity ease-in duration-500 fixed w-screen h-screen opacity-0 z--9999 navigation__sm bg-palette-300 flex flex-row justify-center items-center'>
+					<ul class='baloo-bhaina text-xl sm:text-2xl md:text-3xl text-center pt-16'>
 						<li class='mb-8'>
-							<a href="/dashboard" class="<%= path == '/dashboard' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Dashboard</a>
+							<a href="/dashboard" class="<%= path == '/dashboard' && !altPath ? 'text-white underline italic' : 'text-white' %>">Dashboard</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/create/activity" class="<%= path == '/create/activity' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Create Activity</a>
+							<a href="/create/activity" class="<%= path == '/create/activity' && !altPath ? 'text-white underline italic' : 'text-white' %>">Create Activity</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/activities" class="<%= path == '/activities' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Activities</a>
+							<a href="/activities" class="<%= path == '/activities' && !altPath ? 'text-white underline italic' : 'text-white' %>">Activities</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/metrics" class="<%= path == '/metrics' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Metrics</a>
+							<a href="/metrics" class="<%= path == '/metrics' && !altPath ? 'text-white underline italic' : 'text-white' %>">Metrics</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/download" class="<%= path == '/download' && !altPath ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">File Downloads</a>
+							<a href="/download" class="<%= path == '/download' && !altPath ? 'text-white underline italic' : 'text-white' %>">File Downloads</a>
 						</li>
 						<li class='mb-8'>
-							<a href="/actions" class="<%= altPath == '/actions' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Actions</a>
+							<a href="/actions" class="<%= altPath == '/actions' ? 'text-white underline italic' : 'text-white' %>">Actions</a>
 						</li>
 						<li>
-							<a href="/milestones" class="<%= altPath == '/milestones' ? 'text-palette-300 font-semibold' : 'text-gray-800' %>">Milestones</a>
+							<a href="/milestones" class="<%= altPath == '/milestones' ? 'text-white underline italic' : 'text-white' %>">Milestones</a>
 						</li>
 					</ul>
 				</div>
@@ -40,7 +40,7 @@
 					<div class='flex flex-row items-center mr-3 lg:mr-0'>
 						<div class='flex flex-row items-center mr-3 relative'>
 							<img src="/<%= user.avatar %>" class='user__image w-8 h-8 object-cover mr-3 rounded-full' alt='<%= user.name %>'>
-							<p class='m-0 mt-1 text-gray-600 text-sm lg:text-xs mr-3 cursor-pointer flex flex-col items-center nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
+							<p class='m-0 mt-1 text-gray-600 text-sm lg:text-xs mr-3 flex flex-col items-center nav__options__toggle comfortaa'><%= user.name.slice(0,15) %>...</p>
 							<i class='mt-1 fa fa-caret-down text-gray-600'></i>
 							<div class='absolute transition-all duration-500 ease-in-out px-2 mt-20 opacity-0 rounded-lg flex flex-col items-center bg-white text-sm nav__options text-gray-600 z-30 border border-color-005' style='top:1px;background:rgba(0,0,0,0.5); border-top-color:transparent;'>
 								<a href='#' class='outline-none pt-4 pb-0 text-center text-white file__trigger'>change picture</a>
@@ -51,7 +51,7 @@
 								<a href="/logout" class='outline-none pt-3 pb-4 text-center text-white'>logout</a>
 							</div>
 						</div> 
-						<div class='lg:hidden w-12 h-12 flex flex-row justify-center items-center rounded-full bg-palette-300 nav__toggle z-40'>
+						<div class='transition-all duration-300 ease-in-out lg:hidden w-12 h-12 flex flex-row justify-center items-center rounded-full bg-palette-300 nav__toggle z-40'>
 							<i class='fas fa-bars text-white'></i>
 						</div>
 					</div>
@@ -59,19 +59,19 @@
 				<div class='hidden lg:flex col-start-1 col-end-4 flex-row pt-24 justify-center py-3 z-40'>
 					<div class='w-4/5 px-4'>
 						<ul class='bg-white text-gray-600 z-20 border border-color-005 mt-5 comfortaa py-3' style='height:fit-content; font-size:0.812rem; border-radius:13px;'>
-							<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
+							<li class='<%= path === "/dashboard" ? "font-semibold text-palette-300" : "hover:ml-2" %> transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
 								<i class='fa fa-pager mr-3'></i> <a href='/' class='outline-none'>Dashboard</a>
 							</li>
-							<li class='<%= path === "/create/activity" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
+							<li class='<%= path === "/create/activity" ? "font-semibold text-palette-300" : "hover:ml-2" %> transition-all ease-in duration-500 py-4 px-8 mr-4 w-full'>
 								<i class='fa fa-plus-circle mr-3'></i> <a href='/create/activity' class='outline-none'>Create Activity</a>
 							</li>
-							<li class='<%= path === "/activities" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<li class='<%= path === "/activities" ? "font-semibold text-palette-300" : "hover:ml-2" %> transition-all ease-in duration-500 py-4 px-8 mr-4'>
 								<i class='fa fa-calendar-week mr-3'></i> <a href='/activities' class='outline-none'>Activities</a>
 							</li>
-							<li class='<%= path === "/metrics" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<li class='<%= path === "/metrics" ? "font-semibold text-palette-300" : "hover:ml-2" %> transition-all ease-in duration-500 py-4 px-8 mr-4'>
 								<i class='fa fa-wave-square mr-3'></i> <a href='/metrics' class='outline-none'>Metrics</a>
 							</li>
-							<li class='<%= path === "/download" ? "font-semibold text-palette-300" : "hover:ml-2" %> cursor-pointer transition-all ease-in duration-500 py-4 px-8 mr-4'>
+							<li class='<%= path === "/download" ? "font-semibold text-palette-300" : "hover:ml-2" %> transition-all ease-in duration-500 py-4 px-8 mr-4'>
 								<i class='fa fa-file mr-5'></i> <a href='/download' class='outlin b n me-none'>File Downloads</a>
 							</li>
 						</ul>

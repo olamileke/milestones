@@ -17,12 +17,8 @@ class Action {
 	}
 
 	static get(userId, start, limit) {
-		const db = getDB();
-		if(start) {
-			return db.collection('actions').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).skip(start).limit(limit).toArray();
-		}
-
-		return db.collection('actions').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).limit(limit).toArray();
+        const db = getDB();
+        return db.collection('actions').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).skip(start).limit(limit).toArray();
 	}
 
 	static getCount(userId) {

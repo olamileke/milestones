@@ -11,15 +11,16 @@ form
 
 input
 {
-	background:#F0F0F0;
+	background:rgba(0,0,0,0.02);
 }
 
 input:focus
 {
-	background:rgba(0,0,0,0.02);
+	background:rgba(0,0,0,0.03);
 }
 
-@media(max-width:576px)
+
+@media(max-width:610px)
 {
 	form
 	{
