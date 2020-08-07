@@ -15,4 +15,4 @@ exports.mail = {
     to:'olamileke.dev@gmail.com',
     subject:'',
     html:''
-};
+}; 

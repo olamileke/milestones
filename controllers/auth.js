@@ -88,10 +88,10 @@ const mail = data => {
 
 	const mail = {...config.mail};
 	mail.subject = data.subject;
-	ejs.renderFile(data.path, {
+	ejs.renderFile(data.path, { 
 		name:data.name,
 		appRoot:config.appRoot,
-		token:data.token,
+		token:data.token, 
 		expiry: data.expiry ? data.expiry : null 
 	}, (err, str) => {
 
