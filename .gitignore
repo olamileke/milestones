@@ -3,4 +3,7 @@
 node_modules
 
 # App configuration
-./utils/config.js
+/utils/config.js
+
+# VS CODE 
+.vscode
