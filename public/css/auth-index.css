@@ -12,7 +12,8 @@ html
 
 .nav__options
 {
-	left:calc((100% - 100px)/2);
+    width:120px;
+	left:calc((100% - 120px)/2);
 }
 
 .nav__options::before

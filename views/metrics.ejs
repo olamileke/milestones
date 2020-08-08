@@ -7,14 +7,10 @@
                 <p class='chart__key'><%= key %>-<%= chartData[key] %></p>
             <% }) %>
         </div>
-        <div class='p-4 bg-white border border-color-005 mb-2 rounded-md'>
-            <form method='POST' action=''>
-                <select class='w-full focus:outline-none bg-transparent hover:bg-white border border-color-005 p-3 text-sm text-gray-600'>
-                    <option <%= displayType == 'last week' ? 'selected' : '' %> >Last week</option>
-                    <option <%= displayType == 'last 2 weeks' ? 'selected' : '' %> >Last two weeks</option>
-                    <option <%= displayType == 'last month' ? 'selected' : '' %> >Last month</option>
-                </select>
-            </form>
+        <div class='p-4 bg-white flex flex-row border border-color-005 mb-2 rounded-md'>
+            <a href='/metrics?type=1week' class='<%= displayType == "last week" ? "underline" : "" %> mr-3 text-gray-600'>last week</a>
+            <a href='/metrics?type=2week' class='<%= displayType == "last 2 weeks" ? "underline" : "" %> mr-3 text-gray-600'>last two weeks</a>
+            <a href='/metrics?type=1month' class='<%= displayType == "last month" ? "underline" : "" %> text-gray-600'>last month</a>
         </div> 
         <div class='flex flex-col p-6 mb-2 bg-white border border-color-005 rounded-md'>
             <div class='flex flex-col'>

@@ -17,7 +17,7 @@ $(document).ready(() => {
                 }]
             },
             options: {scales:{
-                yAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", fontFamily:'Quicksand'}}],
+                yAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", precision:0, suggestedMax:10, beginAtZero: true, fontFamily:'Quicksand'}}],
                 xAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", fontFamily:'Quicksand'}}],
             }, legend:{display:false}}
         })
@@ -35,26 +35,4 @@ $(document).ready(() => {
 
     createChart(labels, data);
 
-    // triggering page reload on select change
-    const select = $('select');
-
-    select.change(() => {
-        const val = select.val();
-        let type;
-
-        switch(val) {
-            case 'Last week':
-                type = '1week';
-                break;
-            case 'Last two weeks':
-                type = '2week';
-                break;
-            case 'Last month':
-                type = '1month';
-                break;
-        }
-
-        const metricsUrl = `http://localhost:4000/metrics?type=${type}`;
-        window.location.href = metricsUrl;
-    })
 })
