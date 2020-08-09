@@ -25,7 +25,7 @@ const csrfProtection = csrf();
 
 app.use(bodyParser.urlencoded({ extended:false }));
 
-app.use(multer({ storage:middlewares.fileStorage, fileFilter:middlewares.fileFilter }).single('image'));
+app.use(multer({ storage:multer.memoryStorage(), fileFilter:middlewares.fileFilter }).single('image'));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

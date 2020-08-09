@@ -42,19 +42,21 @@ exports.postCreateActivity = (req, res, next) => {
 	const name = req.body.name;
 	let link;
 	req.body.link.length == 0 ? link = undefined : link = req.body.link;
-	const imageUrl = req.file.path;
 	const description = req.body.description;
 
-	const activity = new Activity(name, link, description, imageUrl, Date.now() , req.user._id, []);
-	activity.save()
-	.then(result => {
-		const action = new Action('Create Activity', req.user._id, Date.now() , result.ops[0]);
-		action.save()
-		.then(() => {
-			req.flash('message', {class:'success', 'message':'Activity created successfully'});
-			res.redirect('/create/activity');
-		})
-	})
+    file.upload(req, res, next, 'activities', imageUrl => {
+
+        const activity = new Activity(name, link, description, imageUrl, Date.now() , req.user._id, []);
+        activity.save()
+        .then(result => {
+            const action = new Action('Create Activity', req.user._id, Date.now() , result.ops[0]);
+            action.save()
+            .then(() => {
+                req.flash('message', {class:'success', 'message':'Activity created successfully'});
+                res.redirect('/create/activity');
+            })
+        })
+    })
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})
@@ -156,12 +158,25 @@ exports.postEditActivity = (req, res, next) => {
 	const currentActivity = req.session.currentActivity;
 	currentActivity.name = req.body.name;
 	currentActivity.link = req.body.link;
-	req.file ? currentActivity.imageUrl = req.file.path : '';
-	currentActivity.description = req.body.description;
+    currentActivity.description = req.body.description;
+    
+    if(req.file) {
+        return file.delete(currentActivity.imageUrl, next)
+        .then(() => {
+            file.upload(req, res, next, 'activities', imageUrl => {
+                updateActivity(currentActivity, req, res, next, imageUrl)
+            })
+        })
+    }
 
-	Activity.update(currentActivity)
+    updateActivity(currentActivity, req, res, next);
+}
+
+function updateActivity(currentActivity, req, res, next, imageUrl = null) {
+
+    imageUrl ? currentActivity.imageUrl = imageUrl : '';
+    Activity.update(currentActivity)
 	.then(() => {
-
 		const action = new Action('Edit Activity', req.session.userId, Date.now(), currentActivity);
 		return action.save();
 	})
@@ -181,16 +196,19 @@ exports.postEditActivity = (req, res, next) => {
 
 exports.postDeleteActivity = (req, res, next) => {
 
-	const activityId = req.params.activityId;
+    const activityId = req.params.activityId;
+    
+    return file.delete(req.session.currentActivity.imageUrl, next)
+    .then(() => {
+        Activity.delete(req.session.currentActivity, next)
+        .then(() => {
 
-	Activity.delete(req.session.currentActivity)
-	.then(() => {
-
-		return Action.deleteActivityActions(activityId);
-	}) 
-	.then(() => {
-		res.redirect('/activities');
-	})
+            return Action.deleteActivityActions(activityId);
+        }) 
+        .then(() => {
+            res.redirect('/activities');
+        })
+    })
 	.catch(err => {
 		errorsController.throwError(err, next);
 	})

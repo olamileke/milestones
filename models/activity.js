@@ -81,17 +81,17 @@ class Activity {
 		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:activity });
 	}
 
-	static delete(activity) {
+	static delete(activity, next) {
 
 		const db = getDB();
 
 		const imagePaths = activity.milestones.map(milestone => milestone.imageUrl);
 
-		imagePaths.push(activity.imageUrl);
-
 		// deleting the activity and milestone images 
 
-		file.deleteFiles(imagePaths);
+        imagePaths.forEach(path => {
+            file.delete(path, next);
+        })
 
 		return db.collection('activities').deleteOne({ _id:new ObjectId(activity._id) });
 	}
@@ -120,28 +120,13 @@ class Activity {
 
 	}
 
-	static editMilestone(activity, milestoneId, description, imageUrl) {
+	static editMilestone(activity, idx) {
 
-		const milestones = [...activity.milestones];
-
-		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString());
-
-		if(typeof idx == "number") {
-
-			milestones[idx].description = description;
-			if(imageUrl) {
-
-				const prevImage = milestones[idx].imageUrl;
-				file.deleteFiles([prevImage]);
-				milestones[idx].imageUrl = imageUrl;
-			}
-		}
-
-		const db = getDB();
-		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':milestones} })
+        const db = getDB();
+		return db.collection('activities').updateOne({ _id:new ObjectId(activity._id) }, { $set:{'milestones':activity.milestones} })
 		.then(() => {
 
-			const milestone = milestones[idx];
+			const milestone = activity.milestones[idx];
 			milestone['activityId'] = activity._id;
 			milestone['activityName'] = activity.name;
 			const action = new Action('Edit Milestone', activity.userId, Date.now(), milestone);
@@ -155,8 +140,6 @@ class Activity {
 
 		const idx = milestones.findIndex(milestone => milestone._id.toString() === milestoneId.toString() );
 		
-		file.deleteFiles([milestones[idx].imageUrl]);
-
 		milestones.splice(idx, 1);
 
 		const db = getDB();

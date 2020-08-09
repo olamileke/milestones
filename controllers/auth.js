@@ -64,8 +64,8 @@ exports.postSignup = (req, res, next) => {
 
 			return bcrypt.hash(password, 12)
 			.then(hashedPassword => {
-				const anonImage = path.join('images', 'users', 'anon.png');
-				const user =  new User(name, email, hashedPassword, anonImage, token, Date.now());
+				const avatar = config.s3_file_link + 'users/anon.png';
+				const user =  new User(name, email, hashedPassword, avatar, token, Date.now());
 				user.save()
 				.then(() => {
 					const mailTemplatePath = path.join('public', 'mail', 'activate.html');

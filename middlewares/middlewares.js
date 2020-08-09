@@ -2,8 +2,6 @@ const User = require('../models/user');
 const Activity = require('../models/activity');
 const Action = require('../models/action');
 const errorController = require('../controllers/errors');
-const multer = require('multer');
-const path = require('path');
 
 exports.fileFilter = (req, file, cb) => {
 
@@ -15,30 +13,6 @@ exports.fileFilter = (req, file, cb) => {
 
 	return cb(null, false);
 }
-
-exports.fileStorage = multer.diskStorage({
-
-	destination:(req, file, cb) => {
-
-		const url = req.url;
-
-		if(url.includes('avatar')) {
-			cb(null, path.join('images','users'));
-		}
-
-		if(url.includes('activity')) {
-			cb(null, path.join('images','activities'));
-		}
-
-		if(url.includes('milestone')) {
-			cb(null, path.join('images','milestones'));
-		}
-	},
-
-	filename:(req, file, cb) => {
-		cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);		
-	}
-})
 
 exports.checkSessionExpiry = (req, res, next) => {
 
