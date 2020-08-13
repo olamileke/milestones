@@ -323,7 +323,7 @@ exports.postFileDownloads = (req, res, next) => {
 	Activity.findById(activityId)
 	.then(activity => {
 
-		return file.download(activity, req, res);
+		return file.download(activity, req, res, next);
 	})
 	.catch(err => {
 		errorsController.throwError(err, next);

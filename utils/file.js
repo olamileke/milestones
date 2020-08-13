@@ -3,12 +3,15 @@ const AWS = require('aws-sdk');
 const path = require('path');
 const date = require('./date');
 const PDFDocument = require('pdfkit');
+const request = require('request');
+const errorController = require('../controllers/errors');
 
 const s3bucket = new AWS.S3({
     accessKeyId:config.aws_access_key_id,
     secretAccessKey:config.aws_secret_key,
     region:config.aws_region
 })
+
 
 exports.upload = async function upload(req, res, next, folder, cb) {
     const file = req.file;
@@ -55,32 +58,63 @@ exports.delete = async function deleteImage(filePath, next) {
     })
 }
 
-exports.download = (activity, req, res) => {
+exports.download = async function download(activity, req, res, next) {
 
 	const filename = req.user.name.toLowerCase().replace(' ', '_') + '_' + activity.name.toLowerCase().replace(' ', '_') + '.pdf';
 	res.setHeader('Content-Disposition', 'attachment; filename="'+ filename + '"');
-	const fontPath = path.join('fonts', 'Quicksand.ttf');
-	const pdf = new PDFDocument();
-	pdf.pipe(res);
+    const fontPath = path.join('fonts', 'Quicksand.ttf');
+    const pdf = new PDFDocument();
+    pdf.pipe(res);
 
-	pdf.image(activity.imageUrl, 72, 72, {fit:[150, 150]});
-	pdf.font(fontPath).fontSize(15).text(activity.name, 250, 75);
-	pdf.moveDown(0.5);
-	pdf.fontSize(12).text(activity.description);
-	pdf.moveDown(0.25);
-	pdf.text(`${activity.milestones.length} milestones. Created ${date.getDateString(activity.created_at)}`);
-	let yCursor = 200;
-	pdf.text('', 72, yCursor);
+    await request({ url:activity.imageUrl, encoding:null }, (error, response, body) => {
+        
+        if(response.statusCode == 200) {
+            const image = new Buffer(body, 'base64');
+            pdf.image(image, 72, 72, {fit:[150, 150]});
+            
+            pdf.font(fontPath).fontSize(15).text(activity.name, 240, 75);
+            pdf.moveDown(0.5);
+            pdf.fontSize(12).text(activity.description);
+            pdf.moveDown(0.25);
+            pdf.text(`${activity.milestones.length} milestones. Created ${date.getDateString(activity.created_at)}`);
+            let yCursor = 200;
+            pdf.text('', 72, yCursor);
+            
+            addMilestones(pdf, activity, yCursor)
+            .then(() => {
+                pdf.end();
+            })
+        }
+    })
+}
 
-	activity.milestones.forEach(milestone => {
+async function addMilestones(pdf, activity, yCursor) {
 
-		pdf.image(milestone.imageUrl, { fit:[90, 90] });
-		pdf.fontSize(12).text(milestone.description, 175, yCursor + 3)
-		pdf.moveDown(0.4);
-		pdf.fontSize(10).text(`${date.getDateString(milestone.created_at)}`);
-		yCursor = yCursor + 75;
-		pdf.text('', 72, yCursor);
-	})	
+    return new Promise(async function(resolve, reject) {
 
-	pdf.end();
+        let count = 0;
+
+        for(let i=0; i < activity.milestones.length; i++) {
+
+            let yC = yCursor + (i * 75);
+            console.log(yC);
+            const milestone = activity.milestones[i];
+            await request({ url: milestone.imageUrl, encoding: null }, (error, response, body) => {
+                
+                if (response.statusCode == 200) {
+                    const milestoneImage = new Buffer(body, 'base64');
+                    pdf.image(milestoneImage, { fit: [90, 90] });
+                    pdf.fontSize(12).text(milestone.description, 180, yC);
+                    pdf.moveDown(0.4);
+                    pdf.fontSize(10).text(`${date.getDateString(milestone.created_at)}`);
+                    pdf.text('', 72, yC);
+                    count++;
+
+                    if(count == activity.milestones.length) {
+                        resolve('completed');
+                    }
+                }
+            })
+        }
+    })
 }
