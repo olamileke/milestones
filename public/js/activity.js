@@ -140,7 +140,8 @@ $(document).ready(() => {
 
 	const setMilestoneDetails = element => {
 
-		const milestone = element.parent().parent();
+        let milestone;
+        screen.width > 500 ? milestone = element.parent().prev() : milestone = element.parent().parent(); 
 		const milestoneId = milestone.find('.milestone__id').text();
 		const csrfToken = $('.csrf__token').text();
 		const action = 	`/edit/milestone/${milestoneId}?_csrf=${csrfToken}`;

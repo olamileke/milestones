@@ -96,7 +96,7 @@ exports.getActivity = (req, res, next) => {
 		req.session.currentActivity = activity;
 
 		res.render('activity', {
-		pageTitle:activity.name,
+		pageTitle:`Milestones - ${activity.name}`,
 		path:'/activities',
 		activity:activity,
 		notification:messages[0]

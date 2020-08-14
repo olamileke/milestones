@@ -97,7 +97,6 @@ async function addMilestones(pdf, activity, yCursor) {
         for(let i=0; i < activity.milestones.length; i++) {
 
             let yC = yCursor + (i * 75);
-            console.log(yC);
             const milestone = activity.milestones[i];
             await request({ url: milestone.imageUrl, encoding: null }, (error, response, body) => {
                 

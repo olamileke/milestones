@@ -18,7 +18,7 @@ $(document).ready(() => {
             },
             options: {scales:{
                 yAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", precision:0, suggestedMax:10, beginAtZero: true, fontFamily:'Quicksand'}}],
-                xAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", fontFamily:'Quicksand'}}],
+                xAxes:[{gridLines:{zeroLineColor:'transparent', display:false}, ticks:{fontColor: "rgba(0,0,0,0.8)", beginAtZero: true, fontFamily:'Quicksand'}}],
             }, legend:{display:false}}
         })
     }
