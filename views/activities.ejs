@@ -13,9 +13,9 @@
 						</div>
 						<div class='border border-color-005 p-4 bg-white' style='font-size:1.04em'>
 							<p class='font-semibold mb-1'><%= activity.name %></p>
-							<p class='mb-1 text-gray-600'><%= activity.description.slice(0,50) %>...</p>
-							<p class='mb-1 text-gray-600'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
-							<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>more</a>
+							<p class='mb-1 text-md text-gray-700'><%= activity.description.slice(0,50) %>...</p>
+							<p class='mb-1 text-sm text-gray-700'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
+							<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>view</a>
 
 							<% if(activity.is_completed) { %>
 								<div class='absolute bottom-0 right-0 mb-4 mr-8 sm:mr-4'>

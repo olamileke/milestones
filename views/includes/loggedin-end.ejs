@@ -47,10 +47,15 @@
 					</div>
 				</div>	
 			</div>
-		</div>
+        </div>
+        
+        <div class='transition-opacity ease-in duration-300 image__view fixed top-0 left-0 p-2 lg:p-4 z--9999 opacity-0 w-full h-full' style='background:rgba(0,0,0,0.8)'>
+            <img src='' class='object-cover w-full h-full'>
+        </div>
 
 		<script type="text/javascript" src='/js/jquery.js'></script>
-		<script type="text/javascript" src='/js/auth-index.js'></script>
+        <script type="text/javascript" src='/js/auth-index.js'></script>
+        <script type="text/javascript" src='/js/image.js'></script>
 		<% if(path == '/create/activity' || page == '/edit/activity') { %>
 			<script type="text/javascript" src='/js/create-activity.js'></script>
 			<script type="text/javascript" src='/js/validate-create-activity.js'></script>

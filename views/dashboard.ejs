@@ -1,8 +1,8 @@
 <%- include('includes/loggedin-top.ejs') %>
 <%- include('includes/date.ejs') %>
 
-	<div class='lg:px-6 sm:pt-24 lg:pt-0 z-20'>
-		<div class='flex flex-row items-center mb-3 p-6 sm:rounded' style="background:#f2efea;">
+	<div class='lg:px-6 bsm:pt-24 lg:pt-0 sm:mt-12 bsm:mt-0 z-20'>
+		<div class='flex flex-row items-center mb-3 p-6 bsm:rounded' style="background:#f2efea;">
 			<div class='w-full sm:w-4/6 mr-6 flex flex-col quicksand'>
 				<p class='m-0 mb-2 baloo-bhaina' style='color:#8E5572;font-size:1rem;'>Record the process as you enhance and better yourself</p>
 				<p style='color:#8E5572; font-size:0.86rem'>
@@ -19,7 +19,7 @@
 				<% actions.forEach(action => {  %>
                     <% if(action.name == 'Create Activity') { %>
                         <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
-                            <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-3'>
+                            <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-3'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
                                 <p class='m-0'>new activity created.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase() %>"</a></p>
                             </div>
@@ -28,7 +28,7 @@
                     <% } %>
                     <% if(action.name == 'Create Milestone') { %>
                         <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
-                            <img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
+                            <img src="<%= action.milestone.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
                                 <p class='m-0'>milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase()%>.</a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
                             </div>
@@ -37,7 +37,7 @@
                     <% } %>
                     <% if(action.name == 'Edit Activity') { %>
                         <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
-                            <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
+                            <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
                                 <p class='m-0'>activity edited.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                             </div>
@@ -46,7 +46,7 @@
                     <% } %>
                     <% if(action.name == 'Complete Activity') { %>
                         <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
-                            <img src="<%= action.activity.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
+                            <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
                                 <p class='m-0'>activity completed. <a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                             </div>
@@ -55,7 +55,7 @@
                     <% } %>
                     <% if(action.name == 'Edit Milestone') { %>
                         <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
-                            <img src="<%= action.milestone.imageUrl %>" class='rounded object-cover w-8 h-8 mr-4'>
+                            <img src="<%= action.milestone.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
                                 <p class='m-0'>milestone edited in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase() %>.</a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
                             </div>
