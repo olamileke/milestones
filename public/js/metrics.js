@@ -33,6 +33,11 @@ $(document).ready(() => {
         data.push(value);
     })
 
+    if(labels.length == 1) {
+        labels.push('');
+        data.push(0);
+    }
+
     createChart(labels, data);
 
 })

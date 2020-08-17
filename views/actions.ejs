@@ -3,51 +3,51 @@
 <%- include('includes/date.ejs') %>
 
 	<div class='lg:px-6 sm:pt-0 md:pt-16 lg:pt-0 z-20'>
-        <p class='mb-5 text-gray-700 lowercase text-lg'>Actions</p>
+        <p class='mb-5 text-gray-700 baloo-bhaina lowercase text-lg'>actions</p>
         <% actions.forEach(action => {  %>
             <% if(action.name == 'Create Activity') { %>
-                <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
+                <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                     <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-3'>
                     <div class='text-gray-700 mt-1' style='font-size:0.92rem;'>
                         <p class='m-0'>new activity created.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase() %>"</a></p>
                     </div>
-                    <p class='absolute m-0 bottom-0 mt-2 right-0 text-xs quicksand text-gray-600' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
+                    <p class='absolute m-0 right-0 text-sm quicksand lowercase text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
             <% if(action.name == 'Create Milestone') { %>
-                <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
+                <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                     <img src="<%= action.milestone.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 mt-1' style='font-size:0.92rem;'>
                         <p class='m-0'>milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase()%>.</a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
                     </div>
-                    <p class='absolute m-0 right-0 text-sm quicksand text-gray-600 mr-2' style='bottom:-29px;'><%= getDateString(action.created_at) %></p>
+                    <p class='absolute m-0 right-0 text-sm quicksand lowercase text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
             <% if(action.name == 'Edit Activity') { %>
-                <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
+                <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                     <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 mt-1' style='font-size:0.92rem;'>
                         <p class='m-0'>activity edited.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                     </div>
-                    <p class='absolute m-0 right-0 text-sm quicksand text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
+                    <p class='absolute m-0 right-0 text-sm quicksand lowercase text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
             <% if(action.name == 'Complete Activity') { %>
-                <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
+                <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                     <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 mt-1' style='font-size:0.92rem;'>
                         <p class='m-0'>activity completed. <a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                     </div>
-                    <p class='absolute m-0 right-0 text-sm quicksand text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
+                    <p class='absolute m-0 right-0 text-sm quicksand lowercase text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
             <% if(action.name == 'Edit Milestone') { %>
-                <div class='bg-white border border-color-005 flex flex-row items-center p-4 relative mb-10'>
+                <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                     <img src="<%= action.milestone.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                     <div class='text-gray-700 mt-1' style='font-size:0.92rem;'>
                         <p class='m-0'>milestone edited in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase() %>.</a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
                     </div>
-                    <p class='absolute m-0 right-0 text-sm quicksand text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
+                    <p class='absolute m-0 right-0 text-sm quicksand lowercase text-gray-600 mr-2' style='bottom:-32px;'><%= getDateString(action.created_at) %></p>
                 </div>
             <% } %>
         <% }) %>

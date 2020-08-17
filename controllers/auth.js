@@ -69,11 +69,14 @@ exports.postSignup = (req, res, next) => {
 				user.save()
 				.then(() => {
 					const mailTemplatePath = path.join('public', 'mail', 'activate.html');
-					const mailData = { path:mailTemplatePath, subject:'Activate your account',
+					const mailData = { path:mailTemplatePath, subject:'Confirm your email',
 									   name:user.name.split(' ')[1], token:token};
-					mail(mailData);
-					req.flash('message', {class:'success', message:'Registration successful. Check your email'});
-					res.redirect('/signup');
+                    mail(mailData)
+                    .then(() => {
+                        req.flash('message', {class:'success', message:'Registration successful. Check your email'});
+					    res.redirect('/signup');
+                    })
+					
 				})
 			})
 		})
@@ -84,7 +87,7 @@ exports.postSignup = (req, res, next) => {
 }
 
 
-const mail = data => {
+async function mail(data) {
 
 	const mail = {...config.mail};
 	mail.subject = data.subject;
@@ -249,10 +252,12 @@ exports.postConfirmEmail = (req, res, next) => {
 			}
 
 			const token = buffer.toString('hex');
-			const date = new Date(Date.now() + (30 * 60000));
-			const expiry = `${date.getHours()}:${date.getMinutes()}`; 
+            const date = new Date(Date.now() + (30 * 60000));
+            let minutes;
+            String(date.getMinutes()).length == 1 ? minutes = '0' + String(date.getMinutes()) : minutes = String(date.getMinutes());
+			const expiry = `${date.getHours()}:${minutes}`; 
 			const mailTemplatePath = path.join('public', 'mail', 'reset.html');
-			const mailData = { path:mailTemplatePath, subject:'Activate your account',
+			const mailData = { path:mailTemplatePath, subject:'Change your password',
 						  	   name:user.name.split(' ')[1], token:token, expiry:expiry,
 						       };
 

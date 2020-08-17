@@ -37,7 +37,7 @@ exports.setUser = (req, res, next) => {
 			next();
 		})
 		.catch(err => {
-			errorsController.throwError(err, next);
+			errorController.throwError(err, next);
 		})
 	}
 	else {
@@ -52,7 +52,7 @@ exports.fetchData = (req, res, next) => {
 	res.locals.altPath = null;
 
 	if(req.session.userId) {
-		res.locals.user = req.user;
+		res.locals.user = req.user; 
 
 		Activity.getStats(req.session.userId)
 		.then(stats => {
@@ -75,7 +75,7 @@ exports.fetchData = (req, res, next) => {
 			})
 		})
 		.catch(err => {
-			errorsController.throwError(err, next);
+			errorController.throwError(err, next);
 		})
 	} else {
 		next();

@@ -19,7 +19,7 @@ $(document).ready(() => {
 
 
 	// Auto displaying the uploaded profile image in the browser
-
+ 
 	const allowedExtensions = ['image/png', 'image/jpg', 'image/jpeg'];
 	const fileTrigger = $('.file__trigger');
 	const userImage = $('.user__image');
@@ -72,9 +72,9 @@ $(document).ready(() => {
 
 	const setPercentage = () => {
 
-		const total = Number(completedCount) + Number(uncompletedCount);
+        const total = Number(completedCount) + Number(uncompletedCount);
 		let percent = (completedCount/total) * 100;
-		percent = String(percent) + '%';
+        percent = String(percent) + '%';
 		activityPercentage.css('width', percent);
 	}
 

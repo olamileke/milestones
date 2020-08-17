@@ -1,20 +1,20 @@
 <%- include('includes/loggedin-top') %>
 <%- include('includes/date.ejs') %>
 	
-	<div class='lg:w-5/6 col-gap-5 self-center text-gray-00 text-sm pt-4 sm:pt-8 z-20'>	
+	<div class='lg:w-5/6 col-gap-5 self-center text-gray-00 text-sm pt-4 sm:pt-8 lg:pt-4 z-20'>	
 
 		<% if(activities.length > 0) { %>
 			<div class='grid grid-cols-12 col-gap-8'>
 				<% activities.forEach(activity => { %>
-					<div class='hover:ml-1 transition-all duration-300 ease-in col-span-12 px-5 sm:px-0 sm:col-span-6 flex flex-col mb-8 cursor-pointer relative'>
+					<div class='hover:ml-1 transition-all duration-300 ease-in col-span-12 sm:col-span-6 flex flex-col mb-8 cursor-pointer relative'>
 						<div class='relative'>
 							<img src="<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
 							<div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.14)'></div>
 						</div>
-						<div class='border border-color-005 p-4 bg-white' style='font-size:1.04em'>
-							<p class='font-semibold mb-1'><%= activity.name %></p>
-							<p class='mb-1 text-md text-gray-700'><%= activity.description.slice(0,50) %>...</p>
-							<p class='mb-1 text-sm text-gray-700'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
+						<div class='shadow-lg p-4 bg-white' style='font-size:1.06em'>
+							<p class='font-semibold mb-1 lowercase'><%= activity.name %></p>
+							<p class='mb-1 text-gray-700'><%= activity.description.slice(0,50) %>...</p>
+							<p class='mb-1 text-gray-700 lowercase'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
 							<a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>view</a>
 
 							<% if(activity.is_completed) { %>

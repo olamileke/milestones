@@ -41,18 +41,24 @@ class Activity {
 		})
 	}
 
-	static getAll(userId) {
+	static get(userId, limit=null) {
 
-		const db = getDB();
-		return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).toArray();
-	}
+        const db = getDB();
+
+        if(limit)
+        {
+		    return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).limit(limit).toArray();
+        }
+
+        return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).toArray();
+    }
 
 	static getStats(userId) {
 
 		const db = getDB();
 		let activities;
 
-		return Activity.getAll(userId)
+		return Activity.get(userId)
 		.then(result => {
 			
 			activities =  result;
@@ -60,7 +66,7 @@ class Activity {
 		.then(() => {
 
 			const db = getDB();
-			return db.collection('activities').find({ is_completed:true }).count();
+			return db.collection('activities').find({ $and:[{ userId:new ObjectId(userId) }, { is_completed:true }]}).count();
 		})
 		.then(completedCount => {
 

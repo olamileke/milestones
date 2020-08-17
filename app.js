@@ -69,8 +69,9 @@ app.use(milestoneRoutes);
 app.use('/', errorController.get404);
 
 app.use((error, req, res, next) => {
-	console.log(error);	
-	res.status(500).render('error', {pageTitle:'500'});
+    console.log(error);	
+    const statusCode = error.statusCode || 500;
+	res.status(statusCode).render('error', {pageTitle:statusCode});
 })
 
 mongoConnect(() => {

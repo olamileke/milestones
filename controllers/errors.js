@@ -6,7 +6,5 @@ exports.get404 = (req, res, next) => {
 
 exports.throwError = (err, next) => {
 
-	const error = new Error(err);
-	error.httpStatusCode = 500;
-	return next(error);
+	return next(err);
 }

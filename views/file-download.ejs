@@ -1,24 +1,33 @@
 <%- include('includes/loggedin-top.ejs') %>
-	
-	<div class='w-full lg:w-5/6 self-center pt-12 sm:pt-24 lg:pt-8 z-20'>
-		<div class='mb-2 bg-white border border-color-005 flex flex-col justify-center text-gray-600 sm:rounded-lg px-4 h-24'>
-			<p class='m-0 mb-3'>download activity information</p>
-			<p class='m-0 text-sm'>* activities with at least a single milestone</p>
-		</div>
+    
+    <div class='w-full lg:w-5/6 self-center pt-12 sm:pt-24 lg:pt-8 z-20'>
+        <% if(activities.length > 0) { %>
+            <div class='mb-2 bg-white border border-color-005 flex flex-col justify-center text-gray-600 sm:rounded-lg px-4 h-24'>
+                <p class='m-0 mb-3'>download activity information</p>
+                <p class='m-0 text-sm'>* activities with at least a single milestone</p>
+            </div>
 
-		<form  action='/download?_csrf=<%= csrfToken %>' method='POST' class='bg-white p-6 border border-color-005 sm:rounded-lg'>
-			<div class='flex flex-col mb-3'>
-				<p class='m-0 mb-3 text-gray-600 text-sm sm:text-md'>activity</p>
-				<select name='activityId' class='focus:outline-none py-3 px-4 border border-color-005 text-black text-gray-700'>
-					<% activities.forEach(activity => { %>
-						<option value="<%= activity._id %>"><%= activity.name %></option>
-					<% }) %>
-				</select>
-			</div>
-			<div class='flex flex-row'>
-				<button type='submit' class='transition-colors ease-in duration-500 focus:outline-none border-2 border-white text-sm p-2 rounded-md text-white bg-palette-200 firefox__font font-semibold' <%= activities.length == 0 ? disabled : '' %>>Download</button>
-			</div>
-		</form>
+            <form  action='/download?_csrf=<%= csrfToken %>' method='POST' class='bg-white p-6 border border-color-005 sm:rounded-lg'>
+                <div class='flex flex-col mb-3'>
+                    <p class='m-0 mb-3 text-gray-600 text-sm sm:text-md'>activity</p>
+                    <select name='activityId' class='focus:outline-none py-3 px-4 border border-color-005 text-black text-gray-700'>
+                        <% activities.forEach(activity => { %>
+                            <option value="<%= activity._id %>"><%= activity.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class='flex flex-row'>
+                    <button type='submit' class='transition-colors ease-in duration-500 focus:outline-none border-2 border-white text-sm p-2 rounded-md text-white bg-palette-200 firefox__font font-semibold' <%= activities.length == 0 ? disabled : '' %>>Download</button>
+                </div>
+            </form>
+        <% } else { %>
+            <div class='w-full flex flex-row justify-center items-center' style='height:calc(100vh - 120px)'>
+                <div class='px-4 sm:px-0 flex flex-col relative empty__activities__message'>
+                    <i class='em em-anguished text-4xl mb-3'></i>
+                    <p class='m-0  text-lg baloo-bhaina text-gray-700'>You do not have any activity. Create one <a href='/create/activity' class='underline'>here</a> </p>
+                </div>
+            </div>
+        <% } %>
 	</div>
 
 <%- include('includes/loggedin-end.ejs') %>

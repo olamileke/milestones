@@ -7,11 +7,18 @@ const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
 
-	Action.get(req.user._id, 0, 4)
+    let activities;
+
+    Activity.get(req.user._id, 2)
+    .then(result => {
+        activities = result;
+        return Action.get(req.user._id, 0, 5);
+    })
 	.then(actions => {
 		res.render('dashboard', {
 		pageTitle:'Milestones',
-		path:'/dashboard',
+        path:'/dashboard',
+        activities:activities,
 		actions:actions
 		});
 	})
@@ -64,7 +71,7 @@ exports.postCreateActivity = (req, res, next) => {
 
 exports.getActivities = (req, res, next) => {
 	
-	Activity.getAll(req.user._id)
+	Activity.get(req.user._id)
 	.then(activities => {
 		res.render('activities', {
 			pageTitle:'Activities',
@@ -85,24 +92,40 @@ exports.getActivity = (req, res, next) => {
 	Activity.findById(activityId)
 	.then(activity => {
 		if(!activity) {
-			res.redirect('/dashboard');
+            const error = new Error('activity does not exist');
+            error.statusCode = 404;
+            throw error;
 		}
 
 		if(activity.userId.toString() != req.user._id.toString()) {
-			res.redirect('/dashboard');
+			return res.redirect('/dashboard');
 		}
 
-		activity = sortMilestones(activity);
-		req.session.currentActivity = activity;
+        activity = sortMilestones(activity);
+        req.session.currentActivity = activity;
+        let milestones = activity.milestones;
+        let pages;
+        let page = 1;
+
+        if(activity.milestones.length > 5) {
+            page = req.query.page;
+            const start = (page - 1) * 5;
+            const end = page * 5;
+            milestones = [...activity.milestones].slice(start, end);
+            pages = Math.ceil(activity.milestones.length/5);
+        }
 
 		res.render('activity', {
 		pageTitle:`Milestones - ${activity.name}`,
 		path:'/activities',
-		activity:activity,
+        activity:activity,
+        milestones:milestones,
+        activePage:page,
+        pages:pages,
 		notification:messages[0]
 		});
 	})
-	.catch(err => {lo
+	.catch(err => {
 		errorsController.throwError(err, next);
 	})
 }
@@ -259,7 +282,7 @@ exports.getMetrics = (req, res, next) => {
 	const date = now - (num * 86400000);
 	let activitiesCreatedCount, chartData, achievedMilestonesCount, chartDataKeys;
 
-	Activity.getAll(req.user._id)
+	Activity.get(req.user._id)
 	.then(activities => {
 		activitiesCreatedCount = activities.filter(activity => activity.created_at >= date).length;
 		[ chartData, achievedMilestonesCount ] = getMetricMilestones(activities, date);
@@ -299,7 +322,7 @@ const getMetricMilestones = (activities, date) => {
 
 exports.getFileDownloads = (req, res, next) => {
 
-	Activity.getAll(req.user._id)
+	Activity.get(req.user._id)
 	.then(result => {
 
 		const activities = result.filter(activity => activity.milestones.length > 0);
@@ -318,9 +341,9 @@ exports.getFileDownloads = (req, res, next) => {
 
 exports.postFileDownloads = (req, res, next) => {
 
-	const activityId = req.body.activityId;
+    const activityId = req.body.activityId;
 
-	Activity.findById(activityId)
+	Activity.findById(activityId) 
 	.then(activity => {
 
 		return file.download(activity, req, res, next);
@@ -375,7 +398,7 @@ exports.getMilestones = (req, res, next) => {
 		activePage = page;
 	}
 
-	Activity.getAll(req.user._id)
+	Activity.get(req.user._id)
 	.then(activities => {
 		activities.forEach(activity => {
 			milestones.push(...activity.milestones);
