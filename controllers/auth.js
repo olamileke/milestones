@@ -156,7 +156,7 @@ exports.postLogin = (req, res, next) => {
 				return res.redirect('/login'); 
 			}
 
-			req.session.regenerate(() => {
+			return req.session.regenerate(() => {
 				req.session.userId = user._id;
 				req.session.cookieExpiry = new Date().getTime() + (30 * 86400000);
 				return res.redirect('/dashboard');

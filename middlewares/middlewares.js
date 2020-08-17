@@ -18,7 +18,7 @@ exports.checkSessionExpiry = (req, res, next) => {
 
 	if(new Date().getTime() >= req.session.cookieExpiry) {
 
-		req.session.regenerate(() => {
+		return req.session.regenerate(() => {
 			
 			req.flash('message', {class:'danger', message:'Your session has expired'});
 			return res.redirect('/login');

@@ -104,11 +104,11 @@ exports.getActivity = (req, res, next) => {
         activity = sortMilestones(activity);
         req.session.currentActivity = activity;
         let milestones = activity.milestones;
-        let pages;
+        let pages = 1;
         let page = 1;
 
         if(activity.milestones.length > 5) {
-            page = req.query.page;
+            page = req.query.page || 1;
             const start = (page - 1) * 5;
             const end = page * 5;
             milestones = [...activity.milestones].slice(start, end);

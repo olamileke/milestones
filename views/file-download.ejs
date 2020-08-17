@@ -1,6 +1,6 @@
 <%- include('includes/loggedin-top.ejs') %>
     
-    <div class='w-full lg:w-5/6 self-center pt-12 sm:pt-24 lg:pt-8 z-20'>
+    <div class='<%= activities.length > 0 ? "lg:pt-8" : "lg:pt-4" %> w-full lg:w-5/6 self-center pt-12 sm:pt-24 z-20'>
         <% if(activities.length > 0) { %>
             <div class='mb-2 bg-white border border-color-005 flex flex-col justify-center text-gray-600 sm:rounded-lg px-4 h-24'>
                 <p class='m-0 mb-3'>download activity information</p>
