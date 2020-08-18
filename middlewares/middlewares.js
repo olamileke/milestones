@@ -16,7 +16,7 @@ exports.fileFilter = (req, file, cb) => {
 
 exports.checkSessionExpiry = (req, res, next) => {
 
-	if(new Date().getTime() >= req.session.cookieExpiry) {
+	if(new Date().getTime() >= req.session.cookieExpiry) { 
 
 		return req.session.regenerate(() => {
 			
@@ -26,6 +26,12 @@ exports.checkSessionExpiry = (req, res, next) => {
 	}
 
 	next();
+}
+
+exports.refreshSessionExpiry = (req, res, next) => {
+    
+    req.session.cookieExpiry = new Date().getTime() + (30 * 60 * 1000);
+    next();
 }
 
 exports.setUser = (req, res, next) => {

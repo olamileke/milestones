@@ -70,12 +70,25 @@ exports.postCreateActivity = (req, res, next) => {
 }
 
 exports.getActivities = (req, res, next) => {
-	
-	Activity.get(req.user._id)
+
+    let page = 1;
+    let numActivities, pages;
+    req.query.page ? page = Number(req.query.page) : page = page;
+    const start = (page - 1) * 6;
+    const end = page * 6;
+
+    Activity.count(req.user._id)
+    .then(count => {
+        numActivities = count;
+        pages = Math.ceil(numActivities / 6);
+        return Activity.get(req.user._id, end, start);
+    })
 	.then(activities => {
 		res.render('activities', {
 			pageTitle:'Activities',
-			path:'/activities',
+            path:'/activities',
+            activePage:page,
+            pages:pages,
 			activities:activities,
 		});
 	})

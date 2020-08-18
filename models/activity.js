@@ -39,15 +39,27 @@ class Activity {
 			const action = new Action('Complete Activity', activity.userId, Date.now(), activity);
 			return action.save();
 		})
-	}
-
-	static get(userId, limit=null) {
+    }
+    
+    static count(userId) {
 
         const db = getDB();
 
-        if(limit)
+        return db.collection('activities').find({ userId:new ObjectId(userId) }).count();
+    }
+
+	static get(userId, limit=null, skip=null) {
+
+        const db = getDB();
+
+        if(limit && !skip)
         {
 		    return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).limit(limit).toArray();
+        }
+
+        if(limit && skip) 
+        {
+		    return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).skip(skip).limit(limit).toArray();
         }
 
         return db.collection('activities').find({ userId:new ObjectId(userId) }).sort({ created_at:-1 }).toArray();
@@ -55,7 +67,7 @@ class Activity {
 
 	static getStats(userId) {
 
-		const db = getDB();
+		let db = getDB();
 		let activities;
 
 		return Activity.get(userId)
@@ -65,7 +77,6 @@ class Activity {
 		})
 		.then(() => {
 
-			const db = getDB();
 			return db.collection('activities').find({ $and:[{ userId:new ObjectId(userId) }, { is_completed:true }]}).count();
 		})
 		.then(completedCount => {

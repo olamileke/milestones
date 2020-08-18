@@ -158,7 +158,7 @@ exports.postLogin = (req, res, next) => {
 
 			return req.session.regenerate(() => {
 				req.session.userId = user._id;
-				req.session.cookieExpiry = new Date().getTime() + (30 * 86400000);
+				req.session.cookieExpiry = new Date().getTime() + (30 * 60 * 1000);
 				return res.redirect('/dashboard');
 			})
 		})

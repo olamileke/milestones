@@ -32,7 +32,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({secret:config.secretString, saveUninitialized:false,
-resave:false, store:store, cookie:{ maxAge:(30 * 86400000) }}));
+resave:false, store:store, cookie:{ maxAge:(30 * 60 * 1000) }}));
 
 app.use(csrfProtection);
 
@@ -51,6 +51,9 @@ app.use((req, res, next) => {
 
 // checking if the session has expired
 app.use(middlewares.checkSessionExpiry);
+
+// refreshing the session
+app.use(middlewares.refreshSessionExpiry);
 
 // setting the authenticated user in the request object
 app.use(middlewares.setUser);

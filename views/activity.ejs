@@ -10,8 +10,8 @@
 	<div class='w-full lg:w-5/6 self-center z-10 pt-2 pb-5 sm:pt-4 z-20'>
 		<p class='csrf__token hidden'><%= csrfToken %></p>
 		<div class='bg-white shadow flex flex-col sm:flex-row sm:items-center p-4 mb-3 relative' style='font-size:0.92em;'>
-			<div class='flex flex-row items-center justify-between pr-5'>
-				<p class='sm:hidden text-gray-700 text-xl font-semibold mr-5'><%= activity.name %></p>
+			<div class='flex flex-row items-center justify-between pr-2'>
+				<p class='sm:hidden text-gray-700 text-xl font-semibold ml-2'><%= activity.name %></p>
 				<img src="<%= activity.imageUrl %>" alt='<%= activity.name %>' class='cursor-pointer image mt-2 sm:mt-0 object-cover w-16 h-16 rounded mr-0 mb-3 sm:mb-0'>
 			</div>
 			<div class='flex flex-col'>
@@ -52,9 +52,9 @@
 			<% if(activity.milestones.length > 0) { %>
 				<% milestones.forEach(milestone => { %>
 
-				<div class='pl-6 sm:px-4 py-4 flex flex-col sm:flex-row sm:items-center bg-white shadow mb-2 relative group'>
+				<div class='pl-6 sm:px-4 py-4 flex flex-col sm:flex-row sm:items-center bg-white shadow mb-10 sm:mb-2 relative group'>
 					<div class='flex flex-row-reverse pr-5 items-center justify-between'>
-						<img src="<%= milestone.imageUrl %>" class='cursor-pointer image mb-2 sm:mb-0 object-cover w-10 h-10 rounded mr-5 sm:mr-0 milestone__image'>
+						<img src="<%= milestone.imageUrl %>" class='cursor-pointer image mb-2 sm:mb-0 object-cover w-10 h-10 rounded milestone__image'>
 						<div class='flex flex-row pr-12 text-gray-700 sm:hidden'>
 							<button class='focus:outline-none mr-3 underline text-sm edit relative' style='top:-2px;'>Edit</button>
 							<form action='/delete/milestone/<%= milestone._id %>?_csrf=<%= csrfToken %>' method='POST' class='delete__milestone__form'>
@@ -62,14 +62,15 @@
 							</form>
 						</div>
 						<p class='hidden milestone__description__sm' style='font-size:0.93em;'>
-						<%= milestone.description %>
+						    <%= milestone.description %>
 						</p>
-						<p class='milestone__id hidden'><%= milestone._id %></p>
+                        <p class='milestone__id hidden'><%= milestone._id %></p>
 					</div>
 					<p class='m-0 text-gray-700 mr-2 milestone__description' style='font-size:0.93em;'>
 						<%= milestone.description %>
-					</p>
-				</div>
+                    </p>
+                    <p class='absolute sm:hidden m-0 bottom-0 mt-2 right-0 text-sm lowercase quicksand text-gray-700' style='bottom:-31px;'><%= getDateString(milestone.created_at) %></p>
+                </div>
 				<div class='hidden sm:flex flex-row justify-end items-center mb-2'>
                     <p class='text-gray-700 text-sm lowercase text-right relative mr-2' style='top:1px;'><%= getDateString(milestone.created_at) %></p>
                     <a class='text-sm text-gray-800 edit relative cursor-pointer mr-2' style='top:1px;'>edit</a>

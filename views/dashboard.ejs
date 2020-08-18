@@ -3,28 +3,28 @@
 
     <div class='lg:w-5/6 self-center bsm:pt-24 lg:pt-0 pb-5 sm:mt-12 bsm:mt-0 lg:mt-4 z-20'>
         <% if(activities.length > 0) { %>
-		    <div class='grid grid-cols-12 col-gap-8'>
-            <div class='text-lg sm:text-base col-span-12 baloo-bhaina mb-4 '>Recent Activities</div>
-            <% activities.forEach(activity => { %>
-                <div class='hover:ml-1 transition-all duration-300 ease-in col-span-12 mb-8 sm:mb-0 sm:px-0 sm:col-span-6 flex flex-col cursor-pointer relative'>
-                    <div class='relative'>
-                        <img src="<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
-                        <div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.14)'></div>
-                    </div>
-                    <div class='shadow-lg p-4 bg-white' style='font-size:0.92em'>
-                        <p class='font-semibold lowercase mb-1'><%= activity.name %></p>
-                        <p class='mb-1 text-md text-gray-700'><%= activity.description.slice(0,50) %>...</p>
-                        <p class='mb-1 text-sm text-gray-700'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
-                        <a href="/activity/<%= activity._id %>" class='underline text-sm text-gray-700'>view</a>
+		    <div class='grid grid-cols-12 sm:col-gap-8'>
+                <div class='text-lg sm:text-base col-span-12 baloo-bhaina mb-4 '>Recent Activities</div>
+                <% activities.forEach(activity => { %>
+                    <div class='hover:ml-1 transition-all duration-300 ease-in col-span-12 mb-8 sm:mb-0 sm:px-0 sm:col-span-6 flex flex-col cursor-pointer relative'>
+                        <div class='relative'>
+                            <img src="<%= activity.imageUrl %>" class='h-32 object-cover w-full'>
+                            <div class='absolute top-0 w-full h-full' style='background:rgba(0,0,0,0.14)'></div>
+                        </div>
+                        <div class='shadow-lg p-4 bg-white' style='font-size:0.92em'>
+                            <p class='font-semibold lowercase mb-1'><%= activity.name %></p>
+                            <p class='mb-1 text-md text-gray-800'><%= activity.description.slice(0,50) %>...</p>
+                            <p class='mb-1 text-sm text-gray-800'><%= getDateString(activity.created_at) %>. <%= activity.milestones.length %> milestones</p>
+                            <a href="/activity/<%= activity._id %>" class='text-sm text-gray-800'>view</a>
 
-                        <% if(activity.is_completed) { %>
-                            <div class='absolute bottom-0 right-0 mb-4 mr-8 sm:mr-4'>
-                                <i class='fa fa-check-circle text-lg' style='color:#709255'></i>
-                            </div>
-                        <% } %>
+                            <% if(activity.is_completed) { %>
+                                <div class='absolute bottom-0 right-0 mb-4 mr-8 sm:mr-4'>
+                                    <i class='fa fa-check-circle text-lg' style='color:#709255'></i>
+                                </div>
+                            <% } %>
+                        </div>
                     </div>
-                </div>
-            <% }) %>
+                <% }) %>
             </div>
         <% } %>
 		<% if(actions.length > 0) { %>
@@ -35,7 +35,7 @@
                         <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                             <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-3'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
-                                <p class='m-0'>new activity created.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase() %>"</a></p>
+                                <p class='m-0'>new activity created. <a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase() %>"</a></p>
                             </div>
                             <p class='absolute m-0 bottom-0 mt-2 right-0 text-sm lowercase quicksand text-gray-700' style='bottom:-30px;'><%= getDateString(action.created_at) %></p>
                         </div>
@@ -44,7 +44,7 @@
                         <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                             <img src="<%= action.milestone.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
-                                <p class='m-0'>milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase()%>.</a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
+                                <p class='m-0'>milestone achieved in <a href='/activity/<%= action.milestone.activityId %>'><%= action.milestone.activityName.toLowerCase()%>. </a> "<%= action.milestone.description.slice(0,25).toLowerCase() %>..."</p>
                             </div>
                             <p class='absolute m-0 right-0 text-sm lowercase quicksand text-gray-700 mr-2' style='bottom:-29px;'><%= getDateString(action.created_at) %></p>
                         </div>
@@ -53,7 +53,7 @@
                         <div class='bg-white shadow flex flex-row items-center p-4 relative mb-10'>
                             <img src="<%= action.activity.imageUrl %>" class='cursor-pointer image rounded object-cover w-8 h-8 mr-4'>
                             <div class='text-gray-700 sm:text-gray-700 mt-1' style='font-size:0.94em;'>
-                                <p class='m-0'>activity edited.<a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
+                                <p class='m-0'>activity edited. <a href='/activity/<%= action.activity._id %>'>"<%= action.activity.name.toLowerCase()%>"</a></p>
                             </div>
                             <p class='absolute m-0 right-0 text-sm lowercase quicksand text-gray-700 mr-2' style='bottom:-30px;'><%= getDateString(action.created_at) %></p>
                         </div>

@@ -96,7 +96,7 @@ form button[type="submit"]:hover
 .activity__dialog
 {
 	width:400px;
-	top:-10vh;
+	top:-5vh;
 }
 
 .empty__activities__message
