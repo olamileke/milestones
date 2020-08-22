@@ -5,5 +5,8 @@ node_modules
 # App configuration
 /utils/config.js
 
+# Vercel configuration
+now.json
+
 # VS CODE 
 .vscode
