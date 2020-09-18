@@ -14,7 +14,7 @@ To run this application locally, there are a number of prerequisites which are
 
   Create an IAM user and take note of the unique access key id and the secret access key. This is especially important as you will not be able to view it again.
 
-  Finally, enable S3 permissions for this IAM user. If there are any issues, check out this [guide](https://docs.aws.amazon.com/directoryservice/latest/admin-      guide/setting_up_create_iam_user.html "guide").
+  Finally, enable S3 permissions for this IAM user. If there are any issues, check out this [guide]((https://docs.aws.amazon.com/directoryservice/latest/admin-guide/setting_up_create_iam_user.html  "guide").
 
 - An S3 bucket. Log into the [S3 console](https://console.aws.amazon.com/s3/home "S3 console") and create a new S3 bucket.  Note the **bucket name** and the **region** in the name and region tab. Make sure to untick the **block public options** in the set permissions tab. This is needed to make sure that you can access objects in the bucket from the application.
 
