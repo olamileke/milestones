@@ -1,28 +1,28 @@
 const path = require('path');
 
-exports.connectionString = "mongodb+srv://olamileke:Arsenalfc1886@milestones-cluster-2hezc.mongodb.net/milestones?retryWrites=true&w=majority"
+exports.connectionString = " "
 
-exports.secretString = "yWkKdUHeKGQGDA2JEK3BTMHZJZFuncJL";
+exports.secretString = " ";
 
 exports.appRoot = 'http://localhost:4000/';
 
-exports.API_KEY = "key-618e6125c452b712ee91e57f028fbd0f";
+exports.API_KEY = " ";
 
-exports.DOMAIN = "sandboxb3e06f45528541edbc677fe253ca0c00.mailgun.org";
+exports.DOMAIN = " ";
 
-exports.aws_access_key_id = "AKIAWQHYH6CU34IS3E7T";
+exports.aws_access_key_id = " ";
 
-exports.aws_secret_key = "czN10/wqfRbZpCFJ8eLDr4M4D2N5WgIZzEn3e5iD";
+exports.aws_secret_key = " ";
 
-exports.aws_region = "us-east-2";
+exports.aws_region = " ";
 
-exports.aws_bucket_name = "themilestonesbucket";
+exports.aws_bucket_name = " ";
 
-exports.s3_file_link = "https://s3-us-east-2.amazonaws.com/themilestonesbucket/";
+exports.s3_file_link = " ";
 
 exports.mail = {
-    from:'Milestones <me@samples.milestones.org>',
-    to:'olamileke.dev@gmail.com',
+    from:'Milestones <admin@admin.milestones.org>',
+    to:'',
     subject:'',
     html:'',
     inline:path.join(path.dirname(process.mainModule.filename), 'public', 'images', 'favicon', 'icon.png')
