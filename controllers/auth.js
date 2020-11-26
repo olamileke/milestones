@@ -64,13 +64,13 @@ exports.postSignup = (req, res, next) => {
 
 			return bcrypt.hash(password, 12)
 			.then(hashedPassword => {
-				const avatar = config.s3_file_link + 'users/anon.png';
+				const avatar = config.s3_file_link + 'users/unknown.png';
 				const user =  new User(name, email, hashedPassword, avatar, token, Date.now());
 				user.save()
 				.then(() => {
 					const mailTemplatePath = path.join('public', 'mail', 'activate.html');
 					const mailData = { path:mailTemplatePath, subject:'Confirm your email',
-									   name:user.name.split(' ')[1], token:token};
+									   name:user.name.split(' ')[1], email:user.email, token:token};
                     mail(mailData)
                     .then(() => {
                         req.flash('message', {class:'success', message:'Registration successful. Check your email'});
@@ -90,7 +90,8 @@ exports.postSignup = (req, res, next) => {
 async function mail(data) {
 
 	const mail = {...config.mail};
-	mail.subject = data.subject;
+    mail.subject = data.subject;
+    mail.to = data.email;
 	ejs.renderFile(data.path, { 
 		name:data.name,
 		appRoot:config.appRoot,
@@ -258,7 +259,7 @@ exports.postConfirmEmail = (req, res, next) => {
 			const expiry = `${date.getHours()}:${minutes}`; 
 			const mailTemplatePath = path.join('public', 'mail', 'reset.html');
 			const mailData = { path:mailTemplatePath, subject:'Change your password',
-						  	   name:user.name.split(' ')[1], token:token, expiry:expiry,
+						  	   name:user.name.split(' ')[1], email:user.email, token:token, expiry:expiry,
 						       };
 
 			User.createResetToken(user._id, token, date)

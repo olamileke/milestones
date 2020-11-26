@@ -10,19 +10,19 @@ exports.API_KEY = "key-618e6125c452b712ee91e57f028fbd0f";
 
 exports.DOMAIN = "sandboxb3e06f45528541edbc677fe253ca0c00.mailgun.org";
 
-exports.aws_access_key_id = "AKIAWQHYH6CU34IS3E7T";
+exports.aws_access_key_id = "AKIAZDKFKYGLWFFFCJU3";
 
-exports.aws_secret_key = "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";
+exports.aws_secret_key = "S2LShqy8j/JfEdBxyU7uZl07Gs5g5yVI9oVDZies";
 
 exports.aws_region = "us-east-2";
 
-exports.aws_bucket_name = "themilestonesbucket";
+exports.aws_bucket_name = "themilestonesappbucket";
 
-exports.s3_file_link = "https://s3-us-east-2.amazonaws.com/themilestonesbucket/";
+exports.s3_file_link = "https://s3-us-east-2.amazonaws.com/themilestonesappbucket/";
 
 exports.mail = {
     from:'Milestones <me@samples.milestones.org>',
-    to:'olamileke.dev@gmail.com',
+    to:'',
     subject:'',
     html:'',
     inline:path.join(path.dirname(process.mainModule.filename), 'public', 'images', 'favicon', 'icon.png')
