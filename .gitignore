@@ -7,3 +7,6 @@ now.json
 
 # VS CODE 
 .vscode
+
+# configuration
+/utils/config.js
